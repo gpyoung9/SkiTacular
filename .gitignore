@@ -1,0 +1,13 @@
+.DS_Store
+
+.sass-cache/
+frontend/node_modules/
+frontend/npm-debug.log
+frontend/public/css/
+frontend/public/js/
+frontend/public/lib/
+backend/node_modules/
+backend/npm-debug.log
+backend/public/css/
+backend/public/js/
+backend/public/lib/
