@@ -9,6 +9,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./lib/font-awesome/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700' rel='stylesheet' type='text/css'>
 
     <!-- Angular Scripts -->
     <!-- NOTE: removing the ".min." can help debugging in the console-->
@@ -23,22 +24,22 @@
 
 <nav class="row">
     <!-- The desktop version -->
-    <div class="hide-for-small-only text-center">
-        <a class="button" href="#/settings">Settings</a>
-        <a class="button" href="#/llamalist">Llama List</a>
+    <div class="hide-for-small-only  desktop_bar fullWidth">
+        <a class="button" href="#/home">Home</a>
+        <a class="button" href="#/llamalist">Suggestions</a>
         <a class="button" href="#/firstview">First View</a>
         <a class="button" href="#/secondview">Second View</a>
     </div>
 
     <!-- The mobile version -->
-    <div class="show-for-small-only">
+    <div class="show-for-small-only fullWidth">
         <ul class="vertical menu" data-accordion-menu>
             <li>
                 <a href="#">
                     <button><i class="fa fa-bars fa-2x"></i></button>
                 </a>
                 <ul class="menu vertical nested text-center mobile_bar">
-                    <li><a href="#Home" class="button">Home</a></li>
+                    <li><a href="#/home" class="button">Home</a></li>
                     <li><a class="button" data-open="Login-form" href="#">Login</a>
                     </li>
                 </ul>
