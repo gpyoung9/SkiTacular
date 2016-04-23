@@ -1,4 +1,4 @@
-var mp4Services = angular.module('mp4Services', []);
+var mp4Services = angular.module('AppServices', []);
 
 mp4Services.factory('CommonData', function(){
     var data = "";
