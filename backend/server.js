@@ -1,7 +1,9 @@
 // Get the packages we need
 var express = require('express');
 var mongoose = require('mongoose');
-var Llama = require('./models/llama');
+var User = require('./models/user');
+var Resort = require('./models/resort');
+var Preference = require('./models/preference');
 var bodyParser = require('body-parser');
 var router = express.Router();
 
@@ -37,14 +39,150 @@ homeRoute.get(function(req, res) {
   res.json({ message: 'Hello World!' });
 });
 
-//Llama route
-var llamaRoute = router.route('/llamas');
+//Users route
+var usersRoute = router.route('/users');
 
-llamaRoute.get(function(req, res) {
-  res.json([{ "name": "alice", "height": 12 }, { "name": "jane", "height": 13 }]);
+usersRoute.get(function(req, res) {
+    User.find(function(err, users) {
+        if (err) {
+            res.status(500);
+            res.json({ message : "We don't know what happened!", data : []});
+            return;
+        }
+        res.json({ message : "OK", data : users});
+    });
 });
 
-//Add more routes here
+usersRoute.post(function(req, res) {
+    User.create(req.body, function(err, user) {
+        if (err) {
+            res.status(500);
+            res.json({ message : "This email already exists", data : []});
+            return;
+        }
+        res.status(201);
+        res.json({ message : 'User added', data : user});
+    });
+})
+
+//User route
+var userRoute = router.route('/users/:user_id');
+
+userRoute.get(function(req, res) {
+    User.findById(req.params.user_id, function(err, user) {
+        if (err || user === null) {
+            res.status(404);
+            res.json({ message : "User not found", data : []});
+            return;
+        }
+        res.json({ message : "OK", data : user});
+    });
+});
+
+userRoute.put(function(req, res) {
+    User.findById(req.params.user_id, function(err, old_user) {
+        old_user.save(function(err, new_user) {
+            if (err) {
+                res.status(500);
+                res.json({ message : "We don't know what happened!", data : []});
+                return;
+            }
+            // return user with updated info
+            User.findById(old_user._id, function(err, new_info) {
+                if (err) {
+                    res.status(500);
+                    res.json({ message : "We don't know what happened!", data : []});
+                    return;
+                }
+                res.json({ message : "User updated", data : new_info});
+            });
+        });
+    });
+});
+
+userRoute.delete(function(req, res) {
+    User.findByIdAndRemove(req.params.user_id, function(err, user) {
+        if (err || user === null) {
+            res.status(404);
+            res.json({ message : "User not found", data : []});
+            return;
+        }
+        res.json({ message : "User deleted", data : []});
+    });
+});
+
+//Resorts route
+var resortsRoute = router.route('/resorts');
+
+resortsRoute.get(function(req, res) {
+    Resort.find(function(err, resorts) {
+        if (err) {
+            res.status(500);
+            res.json({ message : "We don't know what happened!", data : []});
+            return;
+        }
+        res.json({ message : "OK", data : resorts});
+    });
+});
+
+resortsRoute.post(function(req, res) {
+    Resort.create(req.body, function(err, resort) {
+        if (err) {
+            res.status(500);
+            res.json({ message : "This email already exists", data : []});
+            return;
+        }
+        res.status(201);
+        res.json({ message : 'Resort added', data : resort});
+    });
+})
+
+//Resort route
+var resortRoute = router.route('/resorts/:resort_id');
+
+resortRoute.get(function(req, res) {
+    Resort.findById(req.params.resort_id, function(err, resort) {
+        if (err || resort === null) {
+            res.status(404);
+            res.json({ message : "Resort not found", data : []});
+            return;
+        }
+        res.json({ message : "OK", data : resort});
+    });
+});
+
+resortRoute.put(function(req, res) {
+    Resort.findById(req.params.resort_id, function(err, old_resort) {
+        old_resort.save(function(err, new_resort) {
+            if (err) {
+                res.status(500);
+                res.json({ message : "We don't know what happened!", data : []});
+                return;
+            }
+            // return resort with updated info
+            Resort.findById(old_resort._id, function(err, new_info) {
+                if (err) {
+                    res.status(500);
+                    res.json({ message : "We don't know what happened!", data : []});
+                    return;
+                }
+                res.json({ message : "Resort updated", data : new_info});
+            });
+        });
+    });
+});
+
+resortRoute.delete(function(req, res) {
+    Resort.findByIdAndRemove(req.params.resort_id, function(err, resort) {
+        if (err || resort === null) {
+            res.status(404);
+            res.json({ message : "Resort not found", data : []});
+            return;
+        }
+        res.json({ message : "Resort deleted", data : []});
+    });
+});
+
 
 // Start the server
 app.listen(port);
