@@ -1,6 +1,6 @@
 var mp4Controllers = angular.module('AppControllers', []);
 
-mp4Controllers.controller('FirstController', ['$scope', 'CommonData'  , function($scope, CommonData) {
+mp4Controllers.controller('homeController', ['$scope', 'CommonData'  , function($scope, CommonData) {
   $scope.data = "";
    $scope.displayText = ""
 

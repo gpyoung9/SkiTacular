@@ -24,11 +24,16 @@
 
 <nav class="row">
     <!-- The desktop version -->
-    <div class="hide-for-small-only  desktop_bar fullWidth">
-        <a class="button" href="#/home">Home</a>
-        <a class="button" href="#/llamalist">Suggestions</a>
-        <a class="button" href="#/firstview">First View</a>
-        <a class="button" href="#/secondview">Second View</a>
+    <div class="title-bar hide-for-small-only  desktop_bar fullWidth">
+        <div class="title-bar-left">
+            <a class="button" href="#/home">HOME</a>
+            <a class="button" href="#/llamalist">SUGGESTION</a>
+            <a class="button" href="#/firstview">FIRST VIEW</a>
+            <a class="button" href="#/secondview">ANOTHER VIEW</a>
+        </div>
+        <div class="title-bar-right">
+            <a class="button" href="#/login">LOGIN</a>
+        </div>
     </div>
 
     <!-- The mobile version -->
@@ -40,7 +45,7 @@
                 </a>
                 <ul class="menu vertical nested text-center mobile_bar">
                     <li><a href="#/home" class="button">Home</a></li>
-                    <li><a class="button" data-open="Login-form" href="#">Login</a>
+                    <li><a href="#/login" class="button" data-open="Login-form" href="#">Login</a>
                     </li>
                 </ul>
             </li>

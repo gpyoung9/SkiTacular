@@ -1,5 +1,20 @@
 // Add any custom Sass & CSS here
 
+h1 {
+  font-family: Playfair;
+  font-size:90px;
+  margin-bottom: 4%;
+}
+
+h2 {
+  font-family: Playfair;
+}
+
+h3 {
+  font-family: Playfair;
+
+}
+
 .mobile_bar {
   color: $first_color;
   .button {
@@ -17,8 +32,8 @@
   .button {
     background-color: transparent;
     font-family: Playfair;
-    font-weight: 700;
-    font-size: 20px;
+    font-weight: 400;
+    font-size: 18px;
     color: $third_color;
   }
 }
@@ -29,3 +44,13 @@
   margin-right: auto;
   max-width: initial;
 }
+
+.title-bar {
+  background-color: transparent;
+}
+
+.home_title {
+  margin-top: 5%;
+  padding-left: 2%;
+}
+
