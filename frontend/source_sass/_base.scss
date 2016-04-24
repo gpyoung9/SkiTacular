@@ -48,6 +48,9 @@ a {
     font-weight: 400;
     font-size: 18px;
     color: $third_color;
+    :focus{
+      border-color: $third_color;
+    }
   }
 }
 
@@ -99,6 +102,7 @@ a {
   margin: 10px auto;
   padding-top: 3px;
   padding-bottom: 3px;
+  border-radius: 12px;
 }
 
 .login_title {
@@ -110,5 +114,27 @@ a {
   margin-left: 3%;
   margin-right: 3%;
 }
+
+
+/*The search bar's css*/
+
+
+input[type=search] {
+  background: #ededed url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+  border: solid 1px #ccc;
+  padding: 9px 10px 9px 32px;
+  width: 150px;
+  border-radius: 10em;
+  @include transition(0.5);
+}
+
+input[type=search]:focus {
+  width: 300px;
+  background-color: #fff;
+  border-color: #66CC75;
+  box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+  @include transition(0.5);
+}
+
 
 /* These are ng-view animation effects*/

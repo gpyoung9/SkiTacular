@@ -1,6 +1,21 @@
 <div class="function_view" ng-controller='functionController'>
-    <div class="row fullWidth">
-        
+    <div class="row">
+
+        <div class="row">
+            <div class="slider" data-slider data-initial-start="0" data-initial-end="500">
+                <span class="slider-handle" data-slider-handle role="slider" tabindex="1"></span>
+                <span class="slider-fill" data-slider-fill></span>
+                <span class="slider-handle" data-slider-handle role="slider" tabindex="1"></span>
+                <input ng-model="distance_min" ng-change="update_status()">
+                <input ng-model="distance_max" ng-change="update_status()">
+                {{distance_min}}
+                {{distance_max}}
+            </div>
+        </div>
+
+        <div class="search_bar_area">
+            <input type="search" class="search_bar" placeholder="Search">
+        </div>
 
     </div>
 
