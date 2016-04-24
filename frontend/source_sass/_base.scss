@@ -4,18 +4,29 @@ h1 {
   font-family: Playfair;
   font-size: 90px;
   margin-bottom: 4%;
+  color: $third_color;
 }
 
 h2 {
   font-family: Playfair;
+  color: $third_color;
 }
 
 h3 {
   font-family: Playfair;
+  color: $third_color;
 
 }
 
+h4 {
+  font-family: Playfair;
+  color: $third_color;
 
+}
+
+a {
+  color: $third_color;
+}
 
 .mobile_bar {
   color: $first_color;
@@ -61,3 +72,43 @@ h3 {
   font-size: 22px;
 }
 
+.discover_button {
+  padding: 10px 0 10px 0;
+  color: $third_color;
+  /*:hover {
+    color: #0c4d78;
+    @include transition(0.5s);
+    border-bottom: solid;
+    border-bottom-color: $third_color;
+    border-width: 2px;
+  }*/
+}
+
+.hvr-underline-from-left:hover{
+  color: $third_color;
+}
+
+.login_form {
+  height: auto;
+  width: auto;
+  color: $third_color;
+}
+
+.login_input {
+  width: 200px;
+  margin: 10px auto;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.login_title {
+  margin-bottom: 5%;
+}
+
+.login_buttons {
+  margin-top: 5%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+/* These are ng-view animation effects*/

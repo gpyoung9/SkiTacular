@@ -23,7 +23,7 @@ mp4Controllers.controller('SecondController', ['$scope', 'CommonData' , function
 }]);
 
 
-mp4Controllers.controller('LlamaListController', ['$scope', '$http', 'Llamas', '$window' , function($scope, $http,  Llamas, $window) {
+mp4Controllers.controller('functionController', ['$scope', '$http', 'Llamas', '$window' , function($scope, $http,  Llamas, $window) {
 
   Llamas.get().success(function(data){
     $scope.llamas = data;

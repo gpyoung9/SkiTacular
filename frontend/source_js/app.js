@@ -10,9 +10,9 @@ app.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'partials/secondview.html',
     controller: 'SecondController'
   }).
-  when('/llamalist', {
-    templateUrl: 'partials/llamalist.html',
-    controller: 'LlamaListController'
+  when('/function', {
+    templateUrl: 'partials/function.html',
+    controller: 'functionController'
   }).
   otherwise({
     redirectTo: '/home'
