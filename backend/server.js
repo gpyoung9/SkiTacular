@@ -8,7 +8,13 @@ var bodyParser = require('body-parser');
 var router = express.Router();
 
 //replace this with your Mongolab URL
-mongoose.connect('mongodb://user:pw@ds019101.mlab.com:19101/498final');
+mongoose.connect('mongodb://user:pw@ds019101.mlab.com:19101/498final', function(err) {
+    if(err) {
+        console.log('connection error', err);
+    } else {
+        console.log('connection to 498db successful');
+    }
+});
 
 // Create our Express application
 var app = express();
@@ -54,15 +60,17 @@ usersRoute.get(function(req, res) {
 });
 
 usersRoute.post(function(req, res) {
-    User.create(req.body, function(err, user) {
-        if (err) {
-            res.status(500);
-            res.json({ message : "This email already exists", data : []});
-            return;
-        }
-        res.status(201);
-        res.json({ message : 'User added', data : user});
-    });
+    if(req.body.password != undefined){
+        console.log(req.body.password);
+    }
+    var newUser = new User({name: req.body.name, email: req.body.email, password: req.body.password});
+    newUser.save(function(err){    
+            if(err){
+                res.json({message: "error in saving to db", error: err});
+            }
+            else
+                res.status(201).json({message: "ok", data: newUser});       
+        });
 })
 
 //User route
@@ -138,9 +146,9 @@ resortsRoute.post(function(req, res) {
 })
 
 //Resort route
-var resortRoute = router.route('/resorts/:resort_id');
+var resortIdRoute = router.route('/resorts/:resort_id');
 
-resortRoute.get(function(req, res) {
+resortIdRoute.get(function(req, res) {
     Resort.findById(req.params.resort_id, function(err, resort) {
         if (err || resort === null) {
             res.status(404);
@@ -151,7 +159,7 @@ resortRoute.get(function(req, res) {
     });
 });
 
-resortRoute.put(function(req, res) {
+resortIdRoute.put(function(req, res) {
     Resort.findById(req.params.resort_id, function(err, old_resort) {
         old_resort.save(function(err, new_resort) {
             if (err) {
@@ -172,7 +180,7 @@ resortRoute.put(function(req, res) {
     });
 });
 
-resortRoute.delete(function(req, res) {
+resortIdRoute.delete(function(req, res) {
     Resort.findByIdAndRemove(req.params.resort_id, function(err, resort) {
         if (err || resort === null) {
             res.status(404);
