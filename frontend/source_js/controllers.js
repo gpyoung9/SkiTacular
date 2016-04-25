@@ -24,8 +24,17 @@ mp4Controllers.controller('SecondController', ['$scope', 'CommonData', function 
 
 
 mp4Controllers.controller('functionController', ['$scope', '$http', '$window', function ($scope, $http, $window) {
-    $scope.distance_min = "50";
-    $scope.distance_max = "200";
+
+
+    $scope.range_slider_ticks_values = {
+        minValue: 1,
+        maxValue: 8,
+        options: {
+            ceil: 10,
+            floor: 0,
+            showTicksValues: true
+        }
+    };
 
 
 }]);

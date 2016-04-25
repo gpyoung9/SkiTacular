@@ -1,4 +1,4 @@
-var app = angular.module('mainApp', ['ngRoute', 'AppControllers', 'AppServices']);
+var app = angular.module('mainApp', ['ngRoute', 'AppControllers', 'AppServices', 'rzModule']);
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/home', {
