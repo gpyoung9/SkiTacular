@@ -27,7 +27,6 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', function ($
 
 }]);
 
-
 AppControllers.controller('SecondController', ['$scope', 'CommonData', function ($scope, CommonData) {
     $scope.data = "";
 
