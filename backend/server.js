@@ -66,7 +66,6 @@ function httpGet(model) {
         if(count != undefined){
             query = query.count(count);
         }
-
         query
         .sort(sort)
         .skip(skip)
@@ -81,16 +80,18 @@ function httpGet(model) {
     }   
 }
 
-usersRoute.get(function(req, res) {
-    User.find(function(err, users) {
-        if (err) {
-            res.status(500);
-            res.json({ message : "We don't know what happened!", data : []});
-            return;
-        }
-        res.json({ message : "OK", data : users});
-    });
-});
+// usersRoute.get(function(req, res) {
+//     User.find(function(err, users) {
+//         if (err) {
+//             res.status(500);
+//             res.json({ message : "We don't know what happened!", data : []});
+//             return;
+//         }
+//         res.json({ message : "OK", data : users});
+//     });
+// });
+usersRoute.get(httpGet(User));
+
 
 usersRoute.post(function(req, res) {
     if(req.body.password != undefined){
@@ -155,20 +156,24 @@ userRoute.delete(function(req, res) {
 //Resorts route
 var resortsRoute = router.route('/resorts');
 
-resortsRoute.get(function(req, res) {
-    Resort.find(function(err, resorts) {
-        if (err) {
-            res.status(500);
-            res.json({ message : "We don't know what happened!", data : []});
-            return;
-        }
-        res.json({ message : "OK", data : resorts});
-    });
-});
+// resortsRoute.get(function(req, res) {
+//     Resort.find(function(err, resorts) {
+//         if (err) {
+//             res.status(500);
+//             res.json({ message : "We don't know what happened!", data : []});
+//             return;
+//         }
+//         res.json({ message : "OK", data : resorts});
+//     });
+// });
+
+resortsRoute.get(httpGet(Resort));
+
+
 
 resortsRoute.post(function(req, res) {
 
-    var newResort = new Resort({name: req.body.name, Location: req.body.Location, Price: req.body.Price, URL: req.body.URL});
+    var newResort = new Resort({name: req.body.name, Location: req.body.Location, Price: req.body.Price, URL: req.body.URL, Distance: req.body.Distance});
     newResort.save(function(err){    
         if(err){
             res.status(500);

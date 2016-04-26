@@ -6,7 +6,8 @@ var ResortSchema   = new mongoose.Schema({
     name : {type: String, required : true},
     URL : {type: String, required : true},
     Location : {type: String, required : true},
-    Price : {type : Number, required : true}
+    Price : {type : Number, required : true},
+    Distance : {type: String}
 });
 
 // Export the Mongoose model
