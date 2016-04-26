@@ -1,22 +1,25 @@
-var mp4Services = angular.module('AppServices', []);
+var AppServices = angular.module('AppServices', []);
 
-mp4Services.factory('CommonData', function(){
+AppServices.factory('CommonData', function () {
     var data = "";
-    return{
-        getData : function(){
+    var login_status = false;
+    return {
+        getData: function () {
             return data;
         },
-        setData : function(newData){
+        setData: function (newData) {
             data = newData;
+        },
+        login: function () {
+            login_status = true;
+        },
+        logout: function () {
+            login_status = false;
+        },
+        get_login: function () {
+            return login_status;
         }
+
     }
 });
 
-mp4Services.factory('Llamas', function($http, $window) {
-    return {
-        get : function() {
-            var baseUrl = $window.sessionStorage.baseurl;
-            return $http.get(baseUrl+'/api/llamas');
-        }
-    }
-});

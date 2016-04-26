@@ -23,7 +23,7 @@
     <script src="./js/services.js"></script>
 </head>
 
-<body ng-app="mainApp">
+<body ng-app="mainApp" ng-controller="mainController">
 
 <nav class="row">
     <!-- The desktop version -->
@@ -35,7 +35,10 @@
             <a class="button hvr-shadow-radial" href="#/secondview">ANOTHER VIEW</a>
         </div>
         <div class="title-bar-right">
-            <a class="button hvr-shadow-radial" href="#/login" data-toggle="desktop_login_form">LOGIN</a>
+            <a class="button hvr-shadow-radial" href="#/login" ng-show="!login_status" data-toggle="desktop_login_form">LOGIN</a>
+        </div>
+        <div class="title-bar-right">
+            <a class="button hvr-shadow-radial" href="#/login" ng-show="login_status" data-toggle="desktop_login_form">LOGOUT</a>
         </div>
 
         <div class="reveal" id="desktop_login_form" data-reveal data-close-on-click="true" data-animation-in="fade-in"
@@ -46,10 +49,9 @@
                 <input type="text" class="login_input" placeholder="Username" ng-model="username">
                 <input type="password" class="login_input" placeholder="Password" ng-model="password">
                 <input type="password" class="login_input" placeholder="Confirm Password" ng-model="password_confirm">
-                <button class="button login_buttons hvr-shadow-radial">JOIN US</button>
-                <button class=" button login_buttons hvr-shadow-radial">LOGIN</button>
+                <button class="button login_buttons hvr-shadow-radial" ng-click="joinus()">JOIN US</button>
+                <button class=" button login_buttons hvr-shadow-radial" ng-click="login()">LOGIN</button>
             </div>
-
 
             <button class="close-button" data-close aria-label="Close reveal" type="button">
                 <span aria-hidden="true">&times;</span>
