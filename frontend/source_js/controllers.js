@@ -1,8 +1,21 @@
-var mp4Controllers = angular.module('AppControllers', []);
+var AppControllers = angular.module('AppControllers', []);
 
-mp4Controllers.controller('homeController', ['$scope', 'CommonData', function ($scope, CommonData) {
+AppControllers.controller('homeController', ['$scope', 'CommonData', function ($scope, CommonData) {
     $scope.data = "";
-    $scope.displayText = ""
+    $scope.displayText = "";
+
+
+    $scope.setData = function () {
+        CommonData.setData($scope.data);
+        $scope.displayText = "Data set"
+    };
+}]);
+
+AppControllers.controller('mainController', ['$scope', 'CommonData', function ($scope, CommonData) {
+    $scope.data = "";
+    $scope.displayText = "";
+    $scope.login_status = CommonData.get_login();
+
 
     $scope.setData = function () {
         CommonData.setData($scope.data);
@@ -12,7 +25,7 @@ mp4Controllers.controller('homeController', ['$scope', 'CommonData', function ($
 
 }]);
 
-mp4Controllers.controller('SecondController', ['$scope', 'CommonData', function ($scope, CommonData) {
+AppControllers.controller('SecondController', ['$scope', 'CommonData', function ($scope, CommonData) {
     $scope.data = "";
 
     $scope.getData = function () {
@@ -23,23 +36,33 @@ mp4Controllers.controller('SecondController', ['$scope', 'CommonData', function 
 }]);
 
 
-mp4Controllers.controller('functionController', ['$scope', '$http', '$window', function ($scope, $http, $window) {
+AppControllers.controller('functionController', ['$scope', '$http', '$window', function ($scope, $http, $window) {
 
 
-    $scope.range_slider_ticks_values = {
-        minValue: 1,
-        maxValue: 8,
+    $scope.price_slider = {
+        minValue: 50,
+        maxValue: 500,
         options: {
-            ceil: 10,
+            ceil: 500,
             floor: 0,
-            showTicksValues: true
+            showTicksValues: false
+        }
+    };
+
+    $scope.distance_slider = {
+        minValue: 10,
+        maxValue: 600,
+        options: {
+            ceil: 600,
+            floor: 10,
+            showTicksValues: false
         }
     };
 
 
 }]);
 
-mp4Controllers.controller('SettingsController', ['$scope', '$window', function ($scope, $window) {
+AppControllers.controller('SettingsController', ['$scope', '$window', function ($scope, $window) {
     $scope.url = $window.sessionStorage.baseurl;
 
     $scope.setUrl = function () {
