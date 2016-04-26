@@ -1,15 +1,24 @@
 <div class="function_view" ng-controller='functionController'>
     <div class="row">
 
-        <div class="row">
-            <rzslider rz-slider-model="range_slider_ticks_values.minValue"
-                      rz-slider-high="range_slider_ticks_values.maxValue"
-                      rz-slider-options="range_slider_ticks_values.options"></rzslider>
-        </div>
 
-        <div class="search_bar_area">
+        <h3>DISCOVER YOUR INTEREST</h3>
+        <div class="medium-5 slide_module">
+            <label>Price Range (Dollars)</label>
+            <rzslider rz-slider-model="price_slider.minValue"
+                      rz-slider-high="price_slider.maxValue"
+                      rz-slider-options="price_slider.options"></rzslider>
+        </div>
+        <div class="medium-5 slide_module">
+            <label>Distance Range (KM)</label>
+            <rzslider rz-slider-model="distance_slider.minValue"
+                      rz-slider-high="distance_slider.maxValue"
+                      rz-slider-options="distance_slider.options"></rzslider>
+        </div>
+        <div class="search_bar_area medium-5">
             <input type="search" class="search_bar" placeholder="Search">
         </div>
+
 
     </div>
 

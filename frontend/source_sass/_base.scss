@@ -48,7 +48,7 @@ a {
     font-weight: 400;
     font-size: 18px;
     color: $third_color;
-    :focus{
+    :focus {
       border-color: $third_color;
     }
   }
@@ -87,7 +87,7 @@ a {
   }*/
 }
 
-.hvr-underline-from-left:hover{
+.hvr-underline-from-left:hover {
   color: $third_color;
 }
 
@@ -115,26 +115,38 @@ a {
   margin-right: 3%;
 }
 
-
 /*The search bar's css*/
-
 
 input[type=search] {
   background: #ededed url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+  font-family: Playfair;
   border: solid 1px #ccc;
   padding: 9px 10px 9px 32px;
-  width: 150px;
+  width: 180px;
   border-radius: 10em;
   @include transition(0.5);
 }
 
 input[type=search]:focus {
-  width: 300px;
+  width: 320px;
+  font-family: Playfair;
   background-color: #fff;
   border-color: #66CC75;
   box-shadow: 0 0 5px rgba(109, 207, 246, .5);
   @include transition(0.5);
 }
 
+label {
+  font-family: Playfair;
+  font-size: 18px;
+}
+
+.slide_module {
+  padding: 10px 0 10px 0;
+}
+
+.search_bar_area{
+  margin-top: 30px;
+}
 
 /* These are ng-view animation effects*/
