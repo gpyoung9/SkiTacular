@@ -48,6 +48,39 @@ homeRoute.get(function(req, res) {
 //Users route
 var usersRoute = router.route('/users');
 
+function httpGet(model) {
+    return function(req, res){
+        var where = eval("("+req.query.where+")");
+        var sort = eval("("+req.query.sort+")");
+        var select = eval("("+req.query.select+")");
+        var limit = eval("("+req.query.limit+")");
+        var skip = eval("("+req.query.skip+")");
+        var count = eval("("+req.query.count+")");
+        var query;
+        if(where != undefined){
+            query = model.find(where);
+        }
+        else{
+            query = model.find();
+        }   
+        if(count != undefined){
+            query = query.count(count);
+        }
+
+        query
+        .sort(sort)
+        .skip(skip)
+        .limit(limit)
+        .select(select)
+        .exec(function(err, lists){
+            if(err)
+                res.status(500).json({message: "error", data: err});    
+            else
+                res.json({message: "ok", data: lists});     
+        });
+    }   
+}
+
 usersRoute.get(function(req, res) {
     User.find(function(err, users) {
         if (err) {
@@ -134,16 +167,17 @@ resortsRoute.get(function(req, res) {
 });
 
 resortsRoute.post(function(req, res) {
-    Resort.create(req.body, function(err, resort) {
-        if (err) {
+
+    var newResort = new Resort({name: req.body.name, Location: req.body.Location, Price: req.body.Price, URL: req.body.URL});
+    newResort.save(function(err){    
+        if(err){
             res.status(500);
-            res.json({ message : "This email already exists", data : []});
-            return;
+            res.json({message: "error in saving to db", error: err});
         }
-        res.status(201);
-        res.json({ message : 'Resort added', data : resort});
-    });
-})
+        else
+            res.status(201).json({message: "Resort added", data: newResort});       
+    });  
+});
 
 //Resort route
 var resortIdRoute = router.route('/resorts/:resort_id');
