@@ -16,7 +16,15 @@
                       rz-slider-options="distance_slider.options"></rzslider>
         </div>
         <div class="search_bar_area medium-5">
-            <input type="search" class="search_bar" placeholder="Search">
+            <form ng-submit="search()">
+                <input type="search" class="search_bar" placeholder="Search" ng-model="search_parameter">
+            </form>
+        </div>
+
+        <div ng-repeat="site in search_result">
+            {{site.name}}
+            {{site.distance}}
+            {{site.location}}
         </div>
 
 

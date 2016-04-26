@@ -36,29 +36,58 @@ AppControllers.controller('SecondController', ['$scope', 'CommonData', function 
 }]);
 
 
-AppControllers.controller('functionController', ['$scope', '$http', '$window', function ($scope, $http, $window) {
+AppControllers.controller('functionController', ['$scope', '$http', '$window', 'ResortService', function ($scope, $http, $window, ResortService) {
 
+    $scope.search_parameter = "";
 
+    /**
+     * Price slider parameters
+     * @type {{minValue: number, maxValue: number, options: {ceil: number, floor: number, showTicksValues: boolean}}}
+     */
     $scope.price_slider = {
         minValue: 50,
         maxValue: 500,
         options: {
             ceil: 500,
             floor: 0,
+            step: 10,
             showTicksValues: false
         }
     };
 
+    /**
+     * Distance slider parameters
+     * @type {{minValue: number, maxValue: number, options: {ceil: number, floor: number, showTicksValues: boolean}}}
+     */
     $scope.distance_slider = {
         minValue: 10,
         maxValue: 600,
         options: {
             ceil: 600,
             floor: 10,
+            step: 10,
             showTicksValues: false
         }
     };
 
+    /**
+     * When pressing the search button, this function will be triggered
+     * ?where={ Price: { $gt: 200, $lt: 400 }, Distance:  { $gt: 200, $lt: 400 } }
+     */
+
+    $scope.search = function () {
+
+        get_request = "where={ Price: { $gt:" + $scope.price_slider.minValue.toString() + ", $lt:"
+            + $scope.price_slider.maxValue.toString() + "}, Distance:  { $gt: "
+            + $scope.distance_slider.minValue.toString() + ", $lt:"
+            + $scope.distance_slider.maxValue.toString() + "} }";
+
+        console.log(get_request)
+        ResortService.get_service(get_request, function (data) {
+            $scope.search_result = data;
+            console.log($scope.search_result);
+        })
+    }
 
 }]);
 
