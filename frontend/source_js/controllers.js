@@ -82,7 +82,7 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
             + $scope.distance_slider.minValue.toString() + ", $lt:"
             + $scope.distance_slider.maxValue.toString() + "} }";
 
-        console.log(get_request)
+        //console.log(get_request)
         ResortService.get_service(get_request, function (data) {
             $scope.search_result = data;
             console.log($scope.search_result);

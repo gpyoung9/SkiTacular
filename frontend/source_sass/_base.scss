@@ -116,6 +116,12 @@ a {
   margin-right: 3%;
 }
 
+.thumbnail {
+  width: 250px;
+  max-width: 100%;
+  height: auto;
+}
+
 /*The search bar's css*/
 
 input[type=search] {
@@ -152,20 +158,23 @@ label {
 
 /* These are ng-view animation effects*/
 .enter-setup {
-  position:absolute;
+  position: absolute;
   -webkit-transition: 0.3s ease-out all;
-  -webkit-transform:translate3d(100%,0,0) ;
+  -webkit-transform: translate3d(100%, 0, 0);
 }
+
 .enter-setup.enter-start {
-  position:absolute;
-  -webkit-transform:translate3d(0,0,0) ;
+  position: absolute;
+  -webkit-transform: translate3d(0, 0, 0);
 }
+
 .leave-setup {
-  position:absolute;
+  position: absolute;
   -webkit-transition: 0.3s ease-out all;
-  -webkit-transform:translate3d(0,0,0);
+  -webkit-transform: translate3d(0, 0, 0);
 }
+
 .leave-setup.leave-start {
-  position:absolute;
-  -webkit-transform:translate3d(-100%,0,0);
+  position: absolute;
+  -webkit-transform: translate3d(-100%, 0, 0);
 }

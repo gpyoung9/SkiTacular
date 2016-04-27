@@ -20,13 +20,25 @@
                 <input type="search" class="search_bar" placeholder="Search" ng-model="search_parameter">
             </form>
         </div>
-
-        <div ng-repeat="site in search_result">
-            {{site.name}}
-            {{site.distance}}
-            {{site.location}}
+        <div class="row">
+            <div ng-repeat="site in search_result">
+                <div class="small-6 columns">
+                    <div class="media-object stack-for-small">
+                        <div class="media-object-section">
+                            <div>
+                                <img class="thumbnail"
+                                     src="http://hiddenvalleyraceclub.org/wp-content/uploads/2013/10/hd-wallpapers-snow-mountain-desktop-pcmac-wallpaper-1920x1200-wallpaper.jpg">
+                            </div>
+                        </div>
+                        <div class="media-object-section">
+                            <h4>{{site.name}}</h4>
+                            <h6>{{"Distance: "+site.Distance +" Km"}}</h6>
+                            <h6>{{"Price: $"+site.Price}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
 
     </div>
 
