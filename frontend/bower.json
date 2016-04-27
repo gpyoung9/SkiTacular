@@ -21,6 +21,8 @@
     "font-awesome": "*",
     "hover": "*",
     "angularjs-slider": "*",
-    "angular-animate": "*"
+    "angular-animate": "*",
+    "ng-simplePagination": "*",
+    "animate.css": "*"
   }
 }

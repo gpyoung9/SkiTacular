@@ -122,6 +122,23 @@ a {
   height: auto;
 }
 
+.sites_result {
+  margin-top: 100px;
+  .ng-enter {
+    -webkit-animation: fadeInLeft 1s;
+    -moz-animation: fadeInLeft 1s;
+    -ms-animation: fadeInLeft 1s;
+    animation: fadeInLeft 1s;
+  }
+
+  .ng-leave {
+    -webkit-animation: bounceOut 1s;
+    -moz-animation: bounceOut 1s;
+    -ms-animation: bounceOut 1s;
+    animation: bounceOut 1s;
+  }
+}
+
 /*The search bar's css*/
 
 input[type=search] {
@@ -157,24 +174,11 @@ label {
 }
 
 /* These are ng-view animation effects*/
-.enter-setup {
-  position: absolute;
-  -webkit-transition: 0.3s ease-out all;
-  -webkit-transform: translate3d(100%, 0, 0);
+
+.my-element.ng-enter {
+  animation: fadeIn 1s;
 }
 
-.enter-setup.enter-start {
-  position: absolute;
-  -webkit-transform: translate3d(0, 0, 0);
-}
-
-.leave-setup {
-  position: absolute;
-  -webkit-transition: 0.3s ease-out all;
-  -webkit-transform: translate3d(0, 0, 0);
-}
-
-.leave-setup.leave-start {
-  position: absolute;
-  -webkit-transform: translate3d(-100%, 0, 0);
+.my-element.ng-leave {
+  animation: fadeOut 1s;
 }

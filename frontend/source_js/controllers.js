@@ -36,7 +36,7 @@ AppControllers.controller('SecondController', ['$scope', 'CommonData', function 
 }]);
 
 
-AppControllers.controller('functionController', ['$scope', '$http', '$window', 'ResortService', function ($scope, $http, $window, ResortService) {
+AppControllers.controller('functionController', ['$scope', '$http', '$window', 'ResortService', 'Pagination', function ($scope, $http, $window, ResortService, Pagination) {
 
     $scope.search_parameter = "";
 
@@ -85,7 +85,10 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
         //console.log(get_request)
         ResortService.get_service(get_request, function (data) {
             $scope.search_result = data;
-            console.log($scope.search_result);
+
+            //console.log($scope.search_result);
+            $scope.pagination = Pagination.getNew(16);
+            $scope.pagination.numPages = Math.ceil($scope.search_result.length / $scope.pagination.perPage);
         })
     }
 

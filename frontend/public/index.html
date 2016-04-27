@@ -13,7 +13,7 @@
     <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.1.1/motion-ui.min.css"/>
     <link rel="stylesheet" href="./lib/angularjs-slider/dist/rzslider.min.css"/>
-
+    <link rel="stylesheet" href="./lib/animate.css/animate.min.css"/>
     <!-- Angular Scripts -->
     <!-- NOTE: removing the ".min." can help debugging in the console-->
     <script src="./lib/angular/angular.min.js"></script>
@@ -82,17 +82,19 @@
         </div>
     </nav>
 
-    <div ng-view ng-animate="{enter: 'enter', leave: 'leave'}"></div>
+    <div ng-view class="my-element"></div>
 
     <!-- Scripts -->
     <script src="./lib/jquery-2.1.3.min/index.js"></script>
     <script src="./lib/angularjs-slider/dist/rzslider.min.js"></script>
     <script src="./foundation6_lib/js/foundation.min.js"></script>
+    <script src="./lib/ng-simplePagination/simplePagination.js"></script>
     <script src="./js/script.js"></script>
     <script>
         $(document).foundation();
     </script>
     <script src="http://localhost:35729/livereload.js"></script>
+
 </div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-var app = angular.module('mainApp', ['ngRoute', 'AppControllers', 'AppServices', 'rzModule','ngAnimate']);
+var app = angular.module('mainApp', ['ngRoute', 'AppControllers', 'AppServices', 'rzModule', 'ngAnimate', 'simplePagination']);
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/home', {
