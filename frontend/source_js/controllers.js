@@ -35,6 +35,11 @@ AppControllers.controller('SecondController', ['$scope', 'CommonData', function 
 
 }]);
 
+AppControllers.controller('detailsController', ['$scope', 'CommonData', function ($scope, CommonData) {
+    $scope.mountainName="Sunapee";
+
+}]);
+
 
 AppControllers.controller('functionController', ['$scope', '$http', '$window', 'ResortService', function ($scope, $http, $window, ResortService) {
 

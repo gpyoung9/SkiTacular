@@ -10,6 +10,9 @@ app.config(['$routeProvider', function ($routeProvider) {
     }).when('/function', {
         templateUrl: 'partials/function.html',
         controller: 'functionController'
+    }).when('/details', {
+        templateUrl: 'partials/details.html',
+        controller: 'detailsController'
     }).otherwise({
         redirectTo: '/home'
     });
