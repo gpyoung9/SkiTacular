@@ -13,9 +13,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     }).when('/details', {
         templateUrl: 'partials/details.html',
         controller: 'detailsController'
-    }).otherwise({
-        redirectTo: '/home'
-    });
+    })
 }]);
 
 app.run(function ($rootScope) {
