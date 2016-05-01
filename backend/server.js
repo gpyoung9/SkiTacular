@@ -1,11 +1,14 @@
 // Get the packages we need
 var express = require('express');
 var mongoose = require('mongoose');
+var http = require('http');
+var https = require('https');
 var User = require('./models/user');
 var Resort = require('./models/resort');
 var Preference = require('./models/preference');
 var bodyParser = require('body-parser');
 var router = express.Router();
+
 
 //replace this with your Mongolab URL
 mongoose.connect('mongodb://user:pw@ds019101.mlab.com:19101/498final', function(err) {
@@ -206,7 +209,7 @@ resortIdRoute.put(function(req, res) {
         old_resort.save(function(err, new_resort) {
             if (err) {
                 res.status(500);
-                res.json({ message : "We don't know what happened!", data : []});
+                res.json({ message : "We don't know what happened!", data : err});
                 return;
             }
             // return resort with updated info
@@ -230,6 +233,77 @@ resortIdRoute.delete(function(req, res) {
             return;
         }
         res.json({ message : "Resort deleted", data : []});
+    });
+});
+
+
+var distanceRoute = router.route('/distance/:zipcode/:resort_id');
+
+distanceRoute.get(function(req, res){
+    Resort.findById(req.params.resort_id, function(err, origin) {
+
+        if(err){
+            res.status(500);
+            res.json({ message : "server side error", data : err});
+            console.log(err);
+            return;
+        }
+        var options = {
+          host: 'maps.googleapis.com',
+          path: '/maps/api/geocode/json?address=' + req.params.zipcode
+        };
+
+        callback = function(response) {
+          var data = '';
+
+          //another chunk of data has been recieved, so append it to `str`
+          response.on('data', function (chunk) {
+            data += chunk;
+          });
+
+          //the whole response has been recieved, so we just print it out here
+          response.on('end', function() {
+            var resJson = JSON.parse(data);
+            var destination = resJson.results[0].geometry.location;
+            googleDistQuery(origin.Latitude, origin.Longitude, destination.lat, destination.lng);
+          });
+        };
+
+        http.request(options, callback).end();
+        
+        var googleDistQuery = function(originLat, originLng, destLat, destLng){
+            var options = {
+              host: 'maps.googleapis.com',
+              path: '/maps/api/distancematrix/json?units=imperial&origins=' + originLat +
+              ','+ originLng + '&destinations='+ destLat +'%2C'+ destLng
+               +'%7C&key=AIzaSyDlPhwrvT97gH5WRVrjmiT1ZeItaE5AZt4'
+            };
+
+            callback = function(response) {
+                var data = '';
+
+                //another chunk of data has been recieved, so append it to `str`
+                response.on('data', function (chunk) {
+                    data += chunk;
+                });
+
+                //the whole response has been recieved, so we just print it out here
+                response.on('end', function() {
+                    console.log(data);
+                    // var resJson = JSON.parse(data);
+                    // console.log(resJson);
+                    sendBackResult();
+                });
+            };
+         
+            https.request(options, callback).end();                
+        };
+        var sendBackResult = function(){
+            res.json({ message : "distance calculated", data : "ss"});
+        }
+
+        //resort.Longitude
+        // 'http://maps.googleapis.com/maps/api/geocode/json?address=050000'
     });
 });
 
