@@ -289,21 +289,18 @@ distanceRoute.get(function(req, res){
 
                 //the whole response has been recieved, so we just print it out here
                 response.on('end', function() {
-                    console.log(data);
-                    // var resJson = JSON.parse(data);
-                    // console.log(resJson);
-                    sendBackResult();
+                    var resJson = JSON.parse(data);
+                    console.log(resJson.rows[0].elements[0].distance.text);
+                    sendBackResult(resJson.rows[0].elements[0].distance.text);
+                    //sendBackResult("dd");
                 });
             };
          
             https.request(options, callback).end();                
         };
-        var sendBackResult = function(){
-            res.json({ message : "distance calculated", data : "ss"});
+        var sendBackResult = function(distance){
+            res.json({ message : "distance calculated", data : distance});
         }
-
-        //resort.Longitude
-        // 'http://maps.googleapis.com/maps/api/geocode/json?address=050000'
     });
 });
 
