@@ -97,7 +97,8 @@ usersRoute.post(function(req, res) {
     if(req.body.password != undefined){
         console.log(req.body.password);
     }
-    var newUser = new User({name: req.body.name, email: req.body.email, password: req.body.password});
+
+    var newUser = new User({name: req.body.name, email: req.body.email, password: req.body.password, zipcode: req.body.zipcode != undefined ? req.body.zipcode : 61801 });
     newUser.save(function(err){    
             if(err){
                 res.json({message: "error in saving to db", error: err});
@@ -123,6 +124,8 @@ userRoute.get(function(req, res) {
 
 userRoute.put(function(req, res) {
     User.findById(req.params.user_id, function(err, old_user) {
+        old_user.zipcode = req.body.zipcode;
+        console.log(old_user);
         old_user.save(function(err, new_user) {
             if (err) {
                 res.status(500);
@@ -173,7 +176,7 @@ resortsRoute.get(httpGet(Resort));
 
 resortsRoute.post(function(req, res) {
 
-    var newResort = new Resort({name: req.body.name, Location: req.body.Location, Price: req.body.Price, URL: req.body.URL, Distance: req.body.Distance});
+    var newResort = new Resort({name: req.body.name, Location: req.body.Location, Price: req.body.Price, URL: req.body.URL, Distance: req.body.Distance, Latitude: req.body.Latitude ,Longitude: req.body.Longitude});
     newResort.save(function(err){    
         if(err){
             res.status(500);
