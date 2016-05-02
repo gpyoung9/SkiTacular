@@ -25,64 +25,67 @@
 </head>
 
 <body ng-app="mainApp">
+
 <div ng-controller="mainController">
-
-    <nav class="row">
-        <!-- The desktop version -->
-        <div class="title-bar hide-for-small-only  desktop_bar fullWidth">
-            <div class="title-bar-left">
-                <a class="button hvr-shadow-radial" href="#/home">HOME</a>
-                <a class="button hvr-shadow-radial" href="#/llamalist">SUGGESTION</a>
-                <a class="button hvr-shadow-radial" href="#/firstview">FIRST VIEW</a>
-                <a class="button hvr-shadow-radial" href="#/secondview">ANOTHER VIEW</a>
-            </div>
-            <div class="title-bar-right">
-                <a class="button hvr-shadow-radial" href="#/login" ng-show="!login_status"
-                   data-toggle="desktop_login_form">LOGIN</a>
-            </div>
-            <div class="title-bar-right">
-                <a class="button hvr-shadow-radial" href="#/logout" ng-show="login_status"
-                   data-toggle="desktop_logout_form">LOGOUT</a>
-            </div>
-
-            <div class="reveal" id="desktop_login_form" data-reveal data-close-on-click="true"
-                 data-animation-in="fade-in"
-                 data-animation-out="fade-out">
-
-                <div class="login_form text-center">
-                    <h4 class="login_title">LOGIN OR JOIN US</h4>
-                    <input type="text" class="login_input" placeholder="Username" ng-model="username">
-                    <input type="password" class="login_input" placeholder="Password" ng-model="password">
-                    <input type="password" class="login_input" placeholder="Confirm Password"
-                           ng-model="password_confirm">
-                    <button class="button login_buttons hvr-shadow-radial" ng-click="joinus()">JOIN US</button>
-                    <button class=" button login_buttons hvr-shadow-radial" ng-click="login()">LOGIN</button>
+    <div class="snowBackground">
+        <nav class="row">
+            <!-- The desktop version -->
+            <div class="title-bar hide-for-small-only  desktop_bar fullWidth">
+                <div class="title-bar-left">
+                    <a class="button hvr-shadow-radial" href="#/home">HOME</a>
+                    <a class="button hvr-shadow-radial" href="#/llamalist">SUGGESTION</a>
+                    <a class="button hvr-shadow-radial" href="#/firstview">FIRST VIEW</a>
+                    <a class="button hvr-shadow-radial" href="#/secondview">ANOTHER VIEW</a>
+                </div>
+                <div class="title-bar-right">
+                    <a class="button hvr-shadow-radial" ng-show="!login_status"
+                       data-toggle="desktop_login_form">LOGIN</a>
+                </div>
+                <div class="title-bar-right">
+                    <a class="button hvr-shadow-radial" ng-show="login_status"
+                       data-toggle="desktop_logout_form">LOGOUT</a>
                 </div>
 
-                <button class="close-button" data-close aria-label="Close reveal" type="button">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
+
+            <!-- The mobile version -->
+            <div class="show-for-small-only fullWidth">
+                <ul class="vertical menu" data-accordion-menu>
+                    <li>
+                        <a href="#">
+                            <button><i class="fa fa-bars fa-2x"></i></button>
+                        </a>
+                        <ul class="menu vertical nested text-center mobile_bar">
+                            <li><a href="#/home" class="button">Home</a></li>
+                            <li><a href="#/login" class="button">Login</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="reveal" id="desktop_login_form" data-reveal data-close-on-click="true"
+         data-animation-in="fade-in"
+         data-animation-out="fade-out">
+
+        <div class="login_form text-center">
+            <h4 class="login_title">LOGIN OR JOIN US</h4>
+            <input type="text" class="login_input" placeholder="Username" ng-model="username">
+            <input type="password" class="login_input" placeholder="Password" ng-model="password">
+            <input type="password" class="login_input" placeholder="Confirm Password"
+                   ng-model="password_confirm">
+            <input type="text" class="login_input" placeholder="Zip Code" ng-model="zip_code">
+            <button class="login_buttons hvr-shadow-radial" ng-click="joinus()">JOIN US</button>
+            <button class="login_buttons hvr-shadow-radial" ng-click="login()">LOGIN</button>
         </div>
 
-        <!-- The mobile version -->
-        <div class="show-for-small-only fullWidth">
-            <ul class="vertical menu" data-accordion-menu>
-                <li>
-                    <a href="#">
-                        <button><i class="fa fa-bars fa-2x"></i></button>
-                    </a>
-                    <ul class="menu vertical nested text-center mobile_bar">
-                        <li><a href="#/home" class="button">Home</a></li>
-                        <li><a href="#/login" class="button">Login</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container">
-        <div data-ng-view class="slide-animation" ></div>
+        <button class="close-button" data-close aria-label="Close reveal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="container snowBackground" >
+        <div data-ng-view class="slide-animation"></div>
     </div>
     <!-- Scripts -->
     <script src="./lib/jquery-2.1.3.min/index.js"></script>

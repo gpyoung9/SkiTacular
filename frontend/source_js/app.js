@@ -10,10 +10,12 @@ app.config(['$routeProvider', function ($routeProvider) {
     }).when('/function', {
         templateUrl: 'partials/function.html',
         controller: 'functionController'
-    }).when('/details', {
+    }).when('/details/:id', {
         templateUrl: 'partials/details.html',
         controller: 'detailsController'
-    })
+    }).otherwise({
+        redirectTo: '/home'
+    });
 }]);
 
 app.run(function ($rootScope) {
