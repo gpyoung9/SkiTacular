@@ -195,7 +195,7 @@ a {
 /*The search bar's css*/
 
 input[type=search] {
-  background: #ededed url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+  background: url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
   font-family: Playfair;
   border: solid 1px #ccc;
   padding: 9px 10px 9px 32px;
@@ -223,7 +223,13 @@ label {
 }
 
 .search_bar_area {
-  margin-top: 30px;
+  margin-left: 10px;
+  margin-top: 22%;
+  padding-bottom: 5%;
+}
+
+.search_bar {
+  margin-top: 10%;
 }
 
 /*Animation for ng-repeat*/

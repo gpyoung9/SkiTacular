@@ -3,41 +3,52 @@
 
 
         <h3>DISCOVER YOUR INTEREST</h3>
-        <div class="medium-5 slide_module">
-            <label>Price Range (Dollars)</label>
-            <rzslider rz-slider-model="price_slider.minValue"
-                      rz-slider-high="price_slider.maxValue"
-                      rz-slider-options="price_slider.options"></rzslider>
+        <div class="medium-5 columns">
+            <div class="medium-12 slide_module">
+                <label>Price Range (Dollars)</label>
+                <rzslider rz-slider-model="price_slider.minValue"
+                          rz-slider-high="price_slider.maxValue"
+                          rz-slider-options="price_slider.options"></rzslider>
+            </div>
+            <div class="medium-12 slide_module">
+                <label>Distance Range (KM)</label>
+                <rzslider rz-slider-model="distance_slider.minValue"
+                          rz-slider-high="distance_slider.maxValue"
+                          rz-slider-options="distance_slider.options"></rzslider>
+            </div>
         </div>
-        <div class="medium-5 slide_module">
-            <label>Distance Range (KM)</label>
-            <rzslider rz-slider-model="distance_slider.minValue"
-                      rz-slider-high="distance_slider.maxValue"
-                      rz-slider-options="distance_slider.options"></rzslider>
+
+
+        <div class="medium-5 columns -align-left">
+            <div>
+                <input type="text" class="login_input" placeholder="Zip Code" ng-model="zip_code">
+            </div>
         </div>
-        <div class="search_bar_area medium-5">
-            <form ng-submit="search()">
+
+        <div class="search_bar_area medium-5 text-center">
+            <form ng-submit="search()" class = "text-center">
                 <input type="search" class="search_bar" placeholder="Search" ng-model="search_parameter">
             </form>
         </div>
+
         <div class="row sites_result">
             <div ng-repeat="site in search_result | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
                 <div class="small-6 columns">
-                    <a href="#/details">
-                    <div class="media-object stack-for-small">
-                        <div class="media-object-section">
-                            <div>
-                                <img class="thumbnail"
-                                     src="http://hiddenvalleyraceclub.org/wp-content/uploads/2013/10/hd-wallpapers-snow-mountain-desktop-pcmac-wallpaper-1920x1200-wallpaper.jpg">
+                    <a href="#/details/{{site.name}}">
+                        <div class="media-object stack-for-small">
+                            <div class="media-object-section">
+                                <div>
+                                    <img class="thumbnail"
+                                         src="http://hiddenvalleyraceclub.org/wp-content/uploads/2013/10/hd-wallpapers-snow-mountain-desktop-pcmac-wallpaper-1920x1200-wallpaper.jpg">
+                                </div>
+                            </div>
+                            <div class="media-object-section">
+                                <h4>{{site.name}}</h4>
+                                <h6>{{"Distance: "+site.Distance +" Km"}}</h6>
+                                <h6>{{"Price: $"+site.Price}}</h6>
                             </div>
                         </div>
-                        <div class="media-object-section">
-                            <h4>{{site.name}}</h4>
-                            <h6>{{"Distance: "+site.Distance +" Km"}}</h6>
-                            <h6>{{"Price: $"+site.Price}}</h6>
-                        </div>
-                    </div>
-                </a>
+                    </a>
                 </div>
             </div>
             <ul class="pagination" ng-show="!hidePagination">
