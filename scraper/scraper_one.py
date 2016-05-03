@@ -128,7 +128,7 @@ def getWebsiteOneData():
 			except:
 				print("no trail info")
 		continue
-
+		print(len(mountain_dict))
 	return mountain_dict
 
 def write_data_to_file(dictionary):
