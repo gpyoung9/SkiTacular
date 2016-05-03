@@ -3,6 +3,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var http = require('http');
 var https = require('https');
+var request = require("request"); // use command: npm install request if you see package not found error
 var User = require('./models/user');
 var Resort = require('./models/resort');
 var Preference = require('./models/preference');
@@ -77,8 +78,10 @@ function httpGet(model) {
         .exec(function(err, lists){
             if(err)
                 res.status(500).json({message: "error", data: err});    
-            else
-                res.json({message: "ok", data: lists});     
+            else {                   
+                res.json({message: "ok", data: lists});  
+            } 
+                   
         });
     }   
 }
@@ -162,20 +165,7 @@ userRoute.delete(function(req, res) {
 //Resorts route
 var resortsRoute = router.route('/resorts');
 
-// resortsRoute.get(function(req, res) {
-//     Resort.find(function(err, resorts) {
-//         if (err) {
-//             res.status(500);
-//             res.json({ message : "We don't know what happened!", data : []});
-//             return;
-//         }
-//         res.json({ message : "OK", data : resorts});
-//     });
-// });
-
 resortsRoute.get(httpGet(Resort));
-
-
 
 resortsRoute.post(function(req, res) {
 
@@ -236,7 +226,6 @@ resortIdRoute.delete(function(req, res) {
     });
 });
 
-
 var distanceRoute = router.route('/distance/:zipcode/:resort_id');
 
 distanceRoute.get(function(req, res){
@@ -264,8 +253,12 @@ distanceRoute.get(function(req, res){
           //the whole response has been recieved, so we just print it out here
           response.on('end', function() {
             var resJson = JSON.parse(data);
-            var destination = resJson.results[0].geometry.location;
-            googleDistQuery(origin.Latitude, origin.Longitude, destination.lat, destination.lng);
+            if(resJson.results[0] != undefined){
+                var destination = resJson.results[0].geometry.location; 
+                googleDistQuery(origin.Latitude, origin.Longitude, destination.lat, destination.lng);
+            }
+            else
+                sendBackResult(1000000);
           });
         };
 
@@ -290,8 +283,10 @@ distanceRoute.get(function(req, res){
                 //the whole response has been recieved, so we just print it out here
                 response.on('end', function() {
                     var resJson = JSON.parse(data);
-                    console.log(resJson.rows[0].elements[0].distance.text.replace(/,/i, ''));
-                    var ret = parseFloat(resJson.rows[0].elements[0].distance.text.replace(/,/i, ''));
+                    console.log(resJson.rows[0].elements[0]);
+                    var ret = 1000000; //unreliable distance
+                    if(resJson.rows[0].elements[0].distance != undefined)
+                        ret = parseFloat(resJson.rows[0].elements[0].distance.text.replace(/,/i, ''));
                     sendBackResult(ret);
                     //sendBackResult("dd");
                 });
@@ -304,6 +299,46 @@ distanceRoute.get(function(req, res){
         }
     });
 });
+
+var batchDistanceUpdateRoute = router.route('/distances/:zipcode');
+
+batchDistanceUpdateRoute.put(function(req, res){
+
+    var query = Resort.find();
+    query.exec(function(err, lists){
+        if(err)
+            res.status(500).json({message: "db search error", data: err});    
+        else{                  
+            lists = JSON.parse(JSON.stringify(lists));
+             
+            for(r in lists){
+                var queryStr = 'http://localhost:4000/api/distance/'+ req.params.zipcode + '/' + lists[r]._id;
+                request({
+                    url: queryStr,
+                    json: true
+                }, function (error, response, body) {
+                    if (!error && response.statusCode === 200) {
+                        console.log(body.data);
+                        Resort.findOneAndUpdate({ _id: lists[r]._id }, {$set: {Distance: body.data}}, function (err, obj){
+                            if(err)
+                                console.log(err);
+                            else
+                                console.log('success');
+                        });
+                    }
+                    else
+                        console.log(error);
+                });
+            
+              }
+                // findOneAndUpdate
+            res.json({message: "distance updated"});  
+           } 
+    });
+});
+
+
+
 
 
 // Start the server

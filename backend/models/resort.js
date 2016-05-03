@@ -7,7 +7,7 @@ var ResortSchema   = new mongoose.Schema({
     URL : {type: String, required : true},
     Location : {type: String, required : true},
     Price : {type : Number, required : true},
-    Distance : {type: String},
+    Distance : {type: Number},
     Latitude : {type: Number},
     Longitude : {type: Number}
 });
