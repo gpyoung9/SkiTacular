@@ -123,6 +123,21 @@ a {
   border-radius: 12px;
 }
 
+.function_input {
+  @extend .login_input;
+  margin: 10px 10px 10px 0;
+  border: solid 1px #ccc;
+  padding: 9px 10px 9px 32px;
+  width: 180px;
+  border-radius: 10em;
+  //background-color: transparent;
+  background: url(../media/zip.png) no-repeat 9px center transparent;
+}
+
+.search_area {
+  margin-top: 5%;
+}
+
 .login_title {
   margin-bottom: 5%;
 }
@@ -165,6 +180,10 @@ a {
   }
 }
 
+.slide_module {
+  color: darkgrey;
+}
+
 /*Site's background*/
 .snowBackground {
   background-image: url('../media/snow1.png'), url('../media/snow2.png'), url('../media/snow3.png');
@@ -189,7 +208,8 @@ a {
 
 /*The glass blur for other views.*/
 .function_view {
-
+  margin-left: 3.5%;
+  margin-right: 3.5%;
 }
 
 /*The search bar's css*/
@@ -223,20 +243,16 @@ label {
 }
 
 .search_bar_area {
-  margin-left: 10px;
-  margin-top: 22%;
+  margin-top: 3%;
   padding-bottom: 5%;
-}
-
-.search_bar {
-  margin-top: 10%;
 }
 
 /*Animation for ng-repeat*/
 
 /* Animations */
 .slide-animation.ng-enter {
-  transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s;
+  -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s;
 
   position: absolute;
   left: 0;
@@ -246,11 +262,11 @@ label {
 
 .slide-animation.ng-enter {
   opacity: 0;
-  top: 60%;
+  left: 60%;
 }
 
 .slide-animation.ng-enter.ng-enter-active {
-  top: 10%;
+  left: 0;
   opacity: 1;
 }
 
@@ -260,6 +276,6 @@ label {
 }
 
 .slide-animation.ng-leave.ng-leave-active {
-  top: -100px;
+  left: -100px;
   opacity: 0;
 }

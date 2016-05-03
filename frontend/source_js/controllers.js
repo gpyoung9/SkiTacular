@@ -48,9 +48,9 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
     $scope.zipcode = "";
 
     /**
-     * If already searched, keep the history
+     * If already searched, use the history as a temporary solution.
      */
-    if (CommonData.get_search_status()){
+    if (CommonData.get_search_status()) {
         $scope.search_result = CommonData.get_search_data();
         $scope.pagination = Pagination.getNew(16);
         $scope.pagination.numPages = Math.ceil($scope.search_result.length / $scope.pagination.perPage);
@@ -68,7 +68,13 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
             ceil: 500,
             floor: 0,
             step: 10,
-            showTicksValues: false
+            showTicksValues: false,
+            getSelectionBarColor: function (value) {
+                return '#7A9D96'
+            },
+            getPointerColor: function (value) {
+                return '#7A9D96'
+            }
         }
     };
 
@@ -83,7 +89,13 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
             ceil: 600,
             floor: 10,
             step: 10,
-            showTicksValues: false
+            showTicksValues: false,
+            getSelectionBarColor: function (value) {
+                return '#7A9D96'
+            },
+            getPointerColor: function (value) {
+                return '#7A9D96'
+            }
         }
     };
 
