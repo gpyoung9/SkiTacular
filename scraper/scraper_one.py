@@ -36,9 +36,73 @@ def getWebsiteOneData():
 			#print(prefix+the_href)
 			#details = browser.follow_link(prefix+the_href)
 			#we are now opening a specifc mountains detail page
+
+
+			###scrape resort name
 			browser_2 = RoboBrowser(history=True)
-			browser_2.open(prefix+the_href)
+			init_detail_url=prefix+the_href
+			browser_2.open(init_detail_url)
 			mountain_name=browser_2.select('.resort_name')
+
+
+			###scrape resort url
+			website_of_resort=browser_2.select('.contact_wrap')
+			soup_4 = BeautifulSoup(str(website_of_resort))
+			try:
+				website_of_resort_link=soup_4.find('a').getText()
+			except:
+				print("no webpage")
+				website_of_resort_link="sorry, no link found, try google search"
+			#print(website_of_resort_link)
+
+
+			###scrape lift tickets:
+			lift_url=init_detail_url[:-14]+"lift-tickets.html"
+			browser_4 = RoboBrowser(history=True)
+			browser_4.open(lift_url)
+			ticket_box=browser_4.select('.resort_ticket_price')
+			soup_5 = BeautifulSoup(str(ticket_box))
+			data=[]
+			#source: http://stackoverflow.com/questions/23377533/python-beautifulsoup-parsing-table
+			for tr in soup_5.find_all('tr'):
+				cols = tr.find_all('td')
+				cols = [ele.text.strip() for ele in cols]
+				data.append([ele for ele in cols if ele])
+			#child, junior, adult, senior
+			weekday_prices=data[1][1:-1]
+			weekend_prices=data[2][1:]
+			#print(weekday_prices)
+			#print(weekend_prices)
+
+
+			###scrape trail map picture:
+			image_url=init_detail_url[:-14]+"trailmap.html"
+			browser_5 = RoboBrowser(history=True)
+			browser_5.open(image_url)
+			map_html=browser_5.select('.trailMap')
+			soup_6=BeautifulSoup(str(map_html))
+			try:
+				img_tag=soup_6.find("img")
+			except:
+				print("image not found")
+				img_rc="NULL"
+			try:
+				img_src=img_tag['src']
+			except:
+				img_src="NULL"
+
+
+
+			###scrape address:
+			driving_url=init_detail_url[:-14]+"driving-directions.html"
+			#print(driving_url)
+			browser_3 = RoboBrowser(history=True)
+			browser_3.open(driving_url)
+			direction_text=browser_3.select('.directions')
+			soup_4 = BeautifulSoup(str(direction_text))
+			destination_text = soup_4.find("input", {"id": "end"})
+			destination_text = destination_text['value']
+			
 
 			soup_3 = BeautifulSoup(str(mountain_name))
 			mountain_name=soup_3.find('span').getText()
@@ -55,7 +119,8 @@ def getWebsiteOneData():
 					#print(num_open)
 					#print(total_num)
 					if mountain_name not in mountain_dict:
-						mountain_dict[mountain_name]={'open':num_open, 'total':total_num}
+						#send %instead of open and total
+						mountain_dict[mountain_name]={'resort_open_trails':num_open, 'resort_total_trails':total_num, 'resort_website': website_of_resort_link, 'resort_location':destination_text, 'weekday_prices': weekday_prices, 'weekend_prices': weekend_prices, 'trail_map_url': img_src}
 					#print(runs_open)
 					#exit()
 				except:
