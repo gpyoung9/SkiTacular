@@ -44,6 +44,7 @@ AppControllers.controller('detailsController', ['$scope', 'CommonData', function
 AppControllers.controller('functionController', ['$scope', '$http', '$window', 'ResortService', 'Pagination', function ($scope, $http, $window, ResortService, Pagination) {
 
     $scope.search_parameter = "";
+    $scope.hidePagination = true;
 
     /**
      * Price slider parameters
@@ -82,6 +83,7 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
 
     $scope.search = function () {
 
+        $scope.hidePagination = false;
         get_request = "where={ Price: { $gt:" + $scope.price_slider.minValue.toString() + ", $lt:"
             + $scope.price_slider.maxValue.toString() + "}, Distance:  { $gt: "
             + $scope.distance_slider.minValue.toString() + ", $lt:"

@@ -1,4 +1,12 @@
 // Add any custom Sass & CSS here
+body {
+  background-image: url('../media/mountain.png');
+  background-size: cover;
+  background-position: top;
+  background-attachment: fixed;
+  max-width: 100%;
+  z-index: -1;
+}
 
 h1 {
   font-family: Playfair;
@@ -76,8 +84,17 @@ a {
 }
 
 .discover_button {
-  padding: 10px 0 10px 0;
+  //padding: 10px 0 10px 0;
   color: $third_color;
+  border-width: 1px;
+  border: solid lightslategrey;
+  border-radius: 20px;
+  padding: 10px;
+  :hover {
+    border-width: 0;
+    @include transition(0.5);
+  }
+
   /*:hover {
     color: #0c4d78;
     @include transition(0.5s);
@@ -111,9 +128,21 @@ a {
 }
 
 .login_buttons {
+  @extend button;
+  padding-top: 2%;
+  padding-bottom: 2%;
   margin-top: 5%;
   margin-left: 3%;
   margin-right: 3%;
+  background-color: transparent;
+  font-family: Playfair;
+  font-weight: 400;
+  font-size: 18px;
+  color: $third_color;
+  :focus {
+    border-color: $third_color;
+    background-color: transparent;
+  }
 }
 
 .thumbnail {
@@ -124,27 +153,49 @@ a {
 
 .sites_result {
   margin-top: 100px;
+  opacity: 0.8;
+  //background-color: #0b97c4;
+  background-size: cover;
+  background-position: top;
+  background-attachment: fixed;
+  max-width: 100%;
+  z-index: 1;
   .ng-enter {
-    -webkit-animation: bounceIn 1s;
-    -moz-animation: bounceIn 1s;
-    -ms-animation: bounceIn 1s;
-    animation: bounceIn 1s;
+    animation: fadeInDown 1s;
   }
-
-  .ng-leave {
-    -webkit-animation: bounceOut 1s;
-    -moz-animation: bounceOut 1s;
-    -ms-animation: bounceOut 1s;
-    animation: bounceOut 1s;
-  }
-
 }
 
+/*Site's background*/
+.snowBackground {
+  background-image: url('../media/snow1.png'), url('../media/snow2.png'), url('../media/snow3.png');
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+  animation: snow 10s linear infinite;
+}
+
+@keyframes snow {
+  0% {
+    background-position: 0px 0px, 0px 0px, 0px 0px;
+  }
+  50% {
+    background-position: 500px 500px, 100px 200px, -100px 150px;
+  }
+  100% {
+    background-position: 500px 1000px, 200px 400px, -100px 300px;
+  }
+}
+
+/*The glass blur for other views.*/
+.function_view {
+
+}
 
 /*The search bar's css*/
 
 input[type=search] {
-  background: #ededed url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+  background: url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
   font-family: Playfair;
   border: solid 1px #ccc;
   padding: 9px 10px 9px 32px;
@@ -172,16 +223,19 @@ label {
 }
 
 .search_bar_area {
-  margin-top: 30px;
+  margin-left: 10px;
+  margin-top: 22%;
+  padding-bottom: 5%;
+}
+
+.search_bar {
+  margin-top: 10%;
 }
 
 /*Animation for ng-repeat*/
 
 /* Animations */
-.slide-animation.ng-enter{
-  -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-  -moz-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-  -o-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+.slide-animation.ng-enter {
   transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
 
   position: absolute;
@@ -192,11 +246,11 @@ label {
 
 .slide-animation.ng-enter {
   opacity: 0;
-  left: 100px;
+  top: 60%;
 }
 
 .slide-animation.ng-enter.ng-enter-active {
-  left: 0;
+  top: 10%;
   opacity: 1;
 }
 
@@ -206,6 +260,6 @@ label {
 }
 
 .slide-animation.ng-leave.ng-leave-active {
-  left: -100px;
+  top: -100px;
   opacity: 0;
 }
