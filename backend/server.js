@@ -169,8 +169,13 @@ var resortsRoute = router.route('/resorts');
 resortsRoute.get(httpGet(Resort));
 
 resortsRoute.post(function(req, res) {
+    var newResort = new Resort({name: req.body.name, Location: req.body.Location, 
+        Price: req.body.Price, Discount_price: req.body.Discount_price, 
+        URL: req.body.URL, Img_URL: req.body.Img_URL, 
+        Percent_trails_open: req.body.Percent_trails_open, Description : req.body.Discription, 
+        Distance: req.body.Distance, 
+        Latitude: req.body.Latitude ,Longitude: req.body.Longitude});
 
-    var newResort = new Resort({name: req.body.name, Location: req.body.Location, Price: req.body.Price, URL: req.body.URL, Distance: req.body.Distance, Latitude: req.body.Latitude ,Longitude: req.body.Longitude});
     newResort.save(function(err){    
         if(err){
             res.status(500);
