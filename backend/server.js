@@ -304,6 +304,11 @@ var batchDistanceUpdateRoute = router.route('/distances/:zipcode');
 
 batchDistanceUpdateRoute.put(function(req, res){
 
+    var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(req.params.zipcode);
+    if(!isValidZip){
+        req.params.zipcode = "61801"; //set urbana as default location
+    }
+    console.log("current zip code: " + req.params.zipcode);
     var query = Resort.find();
     query.exec(function(err, lists){
         if(err)
