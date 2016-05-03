@@ -3,6 +3,8 @@ var AppServices = angular.module('AppServices', []);
 AppServices.factory('CommonData', function () {
     var data = "http://localhost:4000/api/";
     var login_status = false;
+    var search_result = [];
+    var search_status = false;
     return {
         getData: function () {
             return data;
@@ -18,7 +20,20 @@ AppServices.factory('CommonData', function () {
         },
         get_login: function () {
             return login_status;
+        },
+        get_search_status: function () {
+            return search_status;
+        },
+        set_search_status: function () {
+            search_status = true;
+        },
+        set_search_data: function (data) {
+            search_result = data;
+        },
+        get_search_data: function () {
+            return search_result;
         }
+
 
     }
 });
@@ -26,7 +41,7 @@ AppServices.factory('CommonData', function () {
 AppServices.factory('ResortService', ['$http', 'CommonData', function ($http, CommonData) {
     return {
         get_service: function (select, callback) {
-            $http.get(CommonData.getData() + "resorts?" + select)
+            $http.get(CommonData.getData() + select)
                 .success(function (data) {
                     callback(data.data)
                 })
@@ -36,7 +51,7 @@ AppServices.factory('ResortService', ['$http', 'CommonData', function ($http, Co
         },
 
         delete_service: function (delete_call, callback) {
-            $http.delete(CommonData.getData + "resorts?" + delete_call)
+            $http.delete(CommonData.getData + delete_call)
                 .success(function (data) {
                     callback(data.data)
                 })
@@ -48,7 +63,7 @@ AppServices.factory('ResortService', ['$http', 'CommonData', function ($http, Co
         post_service: function (post_call, data_send, callback) {
             $http({
                 method: 'POST',
-                url: CommonData.getData() + "resorts?" + post_call,
+                url: CommonData.getData() + post_call,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 data: $.param(data_send)
             })
@@ -60,12 +75,12 @@ AppServices.factory('ResortService', ['$http', 'CommonData', function ($http, Co
                 })
         },
 
-        put_service: function (put_call, data_send, callback) {
+        put_service: function (put_call, callback) {
             $http({
                 method: 'PUT',
-                url: CommonData.getData() + "resorts?" + put_call,
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                data: $.param(data_send)
+                url: CommonData.getData() + put_call
+                //  headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                //  data: $.param(data_send)
             })
                 .success(function (response, status) {
                     callback(response, status)

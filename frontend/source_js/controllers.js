@@ -36,15 +36,26 @@ AppControllers.controller('SecondController', ['$scope', 'CommonData', function 
 }]);
 
 AppControllers.controller('detailsController', ['$scope', 'CommonData', function ($scope, CommonData) {
-    $scope.mountainName="Sunapee";
+    $scope.mountainName = "Sunapee";
 
 }]);
 
 
-AppControllers.controller('functionController', ['$scope', '$http', '$window', 'ResortService', 'Pagination', function ($scope, $http, $window, ResortService, Pagination) {
+AppControllers.controller('functionController', ['$scope', '$http', '$window', 'ResortService', 'Pagination', 'CommonData', function ($scope, $http, $window, ResortService, Pagination, CommonData) {
 
     $scope.search_parameter = "";
     $scope.hidePagination = true;
+    $scope.zipcode = "";
+
+    /**
+     * If already searched, keep the history
+     */
+    if (CommonData.get_search_status()){
+        $scope.search_result = CommonData.get_search_data();
+        $scope.pagination = Pagination.getNew(16);
+        $scope.pagination.numPages = Math.ceil($scope.search_result.length / $scope.pagination.perPage);
+    }
+
 
     /**
      * Price slider parameters
@@ -82,21 +93,26 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
      */
 
     $scope.search = function () {
-
+        zipcode_request = "distances/" + $scope.zipcode;
         $scope.hidePagination = false;
-        get_request = "where={ Price: { $gt:" + $scope.price_slider.minValue.toString() + ", $lt:"
+        get_request = "resorts?where={ Price: { $gt:" + $scope.price_slider.minValue.toString() + ", $lt:"
             + $scope.price_slider.maxValue.toString() + "}, Distance:  { $gt: "
             + $scope.distance_slider.minValue.toString() + ", $lt:"
             + $scope.distance_slider.maxValue.toString() + "} }";
 
         //console.log(get_request)
-        ResortService.get_service(get_request, function (data) {
-            $scope.search_result = data;
+        ResortService.put_service(zipcode_request, function () {
+            ResortService.get_service(get_request, function (data) {
+                $scope.search_result = data;
+                CommonData.set_search_status();
+                CommonData.set_search_data(data);
 
-            //console.log($scope.search_result);
-            $scope.pagination = Pagination.getNew(16);
-            $scope.pagination.numPages = Math.ceil($scope.search_result.length / $scope.pagination.perPage);
+                //console.log($scope.search_result);
+                $scope.pagination = Pagination.getNew(16);
+                $scope.pagination.numPages = Math.ceil($scope.search_result.length / $scope.pagination.perPage);
+            })
         })
+
     }
 
 }]);
