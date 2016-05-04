@@ -67,7 +67,7 @@ function httpGet(model) {
         }
         else{
             query = model.find();
-        }   
+        }
         if(count != undefined){
             query = query.count(count);
         }
@@ -78,13 +78,13 @@ function httpGet(model) {
         .select(select)
         .exec(function(err, lists){
             if(err)
-                res.status(500).json({message: "error", data: err});    
-            else {                   
-                res.json({message: "ok", data: lists});  
-            } 
-                   
+                res.status(500).json({message: "error", data: err});
+            else {
+                res.json({message: "ok", data: lists});
+            }
+
         });
-    }   
+    }
 }
 
 // usersRoute.get(function(req, res) {
@@ -106,12 +106,12 @@ usersRoute.post(function(req, res) {
     }
 
     var newUser = new User({name: req.body.name, email: req.body.email, password: req.body.password, zipcode: req.body.zipcode != undefined ? req.body.zipcode : 61801 });
-    newUser.save(function(err){    
+    newUser.save(function(err){
             if(err){
                 res.json({message: "error in saving to db", error: err});
             }
             else
-                res.status(201).json({message: "ok", data: newUser});       
+                res.status(201).json({message: "ok", data: newUser});
         });
 })
 
@@ -163,27 +163,166 @@ userRoute.delete(function(req, res) {
     });
 });
 
+//User Favorites route
+var userFavoriteResortsRoute = router.route('/users/:user_id/favorite/');
+
+userFavoriteResortsRoute.get(function(req, res) {
+    User.findById(req.params.user_id, function(err, user) {
+        if (err || user === null) {
+            res.status(404);
+            res.json({ message : "User not found", data : []});
+            return;
+        }
+        Resort.find().where({"_id": {"$in": user.favoriteResorts}}).exec(function(err, resorts) {
+            if(err)
+                res.status(500).json({message: "error", data: err});
+            else {
+                res.json({message: "ok", data: resorts});
+            }
+        });
+    });
+});
+
+userFavoriteResortsRoute.post(function(req, res) {
+    User.findById(req.params.user_id, function(err, old_user) {
+        if (err || old_user === null) {
+            res.status(404);
+            res.json({ message : "User not found", data : []});
+            return;
+        }
+        old_user.favoriteResorts.push(req.body.resort_id);
+        old_user.save(function(err, new_user) {
+            if (err) {
+                res.status(500);
+                res.json({ message : "We don't know what happened!", data : []});
+                return;
+            }
+            // return user with updated info
+            User.findById(old_user._id, function(err, new_info) {
+                if (err) {
+                    res.status(500);
+                    res.json({ message : "We don't know what happened!", data : []});
+                    return;
+                }
+                res.json({ message : "User updated", data : new_info});
+            });
+        });
+    });
+});
+
+userFavoriteResortsRoute.delete(function(req, res) {
+    User.findById(req.params.user_id, function(err, old_user) {
+        if (err || old_user === null) {
+            res.status(404);
+            res.json({ message : "User not found", data : []});
+            return;
+        }
+
+        if (req.body.resort_id === "" || typeof req.body.resort_id === "undefined") {
+            res.status(500);
+            res.json({ message : "A resort ID is required!", data : []});
+            return;
+        }
+
+        var idx = old_user.favoriteResorts.indexOf(req.body.resort_id);
+        if (idx > -1) {
+            old_user.favoriteResorts.splice(idx, 1);
+        } else {
+            res.status(404);
+            res.json({ message : "ID not in favorites.", data : []});
+            return;
+        }
+        old_user.save(function(err, new_user) {
+            if (err) {
+                res.status(500);
+                res.json({ message : "We don't know what happened!", data : []});
+                return;
+            }
+            // return user with updated info
+            User.findById(old_user._id, function(err, new_info) {
+                if (err) {
+                    res.status(500);
+                    res.json({ message : "We don't know what happened!", data : []});
+                    return;
+                }
+                res.json({ message : "User updated", data : new_info});
+            });
+        });
+    });
+});
+
+//User Favorite Resort route
+// var userFavoriteResortRoute = router.route('/users/:user_id/favorite/:resort_id');
+//
+// userFavoriteResortRoute.get(function(req, res) {
+//     User.findById(req.params.user_id, function(err, user) {
+//         if (err || user === null) {
+//             res.status(404);
+//             res.json({ message : "User not found", data : []});
+//             return;
+//         }
+//         Resort.findById(req.params.resort_id, function(err, resort) {
+//             if (err || resort === null) {
+//                 res.status(404);
+//                 res.json({ message : "Resort not found", data : []});
+//                 return;
+//             }
+//             res.json({ message : "OK", data : resort});
+//         });
+//     });
+// });
+//
+// userFavoriteResortRoute.delete(function(req, res) {
+//     User.findById(req.params.user_id, function(err, old_user) {
+//         if (err || user === null) {
+//             res.status(404);
+//             res.json({ message : "User not found", data : []});
+//             return;
+//         }
+//         var idx = old_user.favoriteResorts.indexOf(req.params.resort_id);
+//         if (idx > -1) {
+//             old_user.favoriteResorts.splice(idx, 1);
+//         }
+//         old_user.save(function(err, new_user) {
+//             if (err) {
+//                 res.status(500);
+//                 res.json({ message : "We don't know what happened!", data : []});
+//                 return;
+//             }
+//             // return user with updated info
+//             User.findById(old_user._id, function(err, new_info) {
+//                 if (err) {
+//                     res.status(500);
+//                     res.json({ message : "We don't know what happened!", data : []});
+//                     return;
+//                 }
+//                 res.json({ message : "User updated", data : new_info});
+//             });
+//         });
+//     });
+// });
+
 //Resorts route
 var resortsRoute = router.route('/resorts');
 
 resortsRoute.get(httpGet(Resort));
 
 resortsRoute.post(function(req, res) {
-    var newResort = new Resort({name: req.body.name, Location: req.body.Location, 
-        Price: req.body.Price, Discount_price: req.body.Discount_price, 
-        URL: req.body.URL, Img_URL: req.body.Img_URL, 
-        Percent_trails_open: req.body.Percent_trails_open, Description : req.body.Discription, 
-        Distance: req.body.Distance, 
+    var newResort = new Resort({name: req.body.name, Location: req.body.Location,
+        Price: req.body.Price, Discount_price: req.body.Discount_price,
+        URL: req.body.URL, Img_URL: req.body.Img_URL,
+        Percent_trails_open: req.body.Percent_trails_open, Description : req.body.Discription,
+        Distance: req.body.Distance,
         Latitude: req.body.Latitude ,Longitude: req.body.Longitude});
 
-    newResort.save(function(err){    
+    newResort.save(function(err){
         if(err){
             res.status(500);
             res.json({message: "error in saving to db", error: err});
         }
         else
-            res.status(201).json({message: "Resort added", data: newResort});       
-    });  
+            res.status(201).json({message: "Resort added", data: newResort});
+    });
 });
 
 //Resort route
@@ -260,7 +399,7 @@ distanceRoute.get(function(req, res){
           response.on('end', function() {
             var resJson = JSON.parse(data);
             if(resJson.results[0] != undefined){
-                var destination = resJson.results[0].geometry.location; 
+                var destination = resJson.results[0].geometry.location;
                 googleDistQuery(origin.Latitude, origin.Longitude, destination.lat, destination.lng);
             }
             else
@@ -269,7 +408,7 @@ distanceRoute.get(function(req, res){
         };
 
         http.request(options, callback).end();
-        
+
         var googleDistQuery = function(originLat, originLng, destLat, destLng){
             var options = {
               host: 'maps.googleapis.com',
@@ -297,8 +436,8 @@ distanceRoute.get(function(req, res){
                     //sendBackResult("dd");
                 });
             };
-         
-            https.request(options, callback).end();                
+
+            https.request(options, callback).end();
         };
         var sendBackResult = function(distance){
             res.json({ message : "distance calculated", data : distance});
@@ -318,10 +457,10 @@ batchDistanceUpdateRoute.put(function(req, res){
     var query = Resort.find();
     query.exec(function(err, lists){
         if(err)
-            res.status(500).json({message: "db search error", data: err});    
-        else{                  
+            res.status(500).json({message: "db search error", data: err});
+        else{
             lists = JSON.parse(JSON.stringify(lists));
-             
+
             for(r in lists){
                 var queryStr = 'http://localhost:4000/api/distance/'+ req.params.zipcode + '/' + lists[r]._id;
                 request({
@@ -340,11 +479,11 @@ batchDistanceUpdateRoute.put(function(req, res){
                     else
                         console.log(error);
                 });
-            
+
               }
                 // findOneAndUpdate
-            res.json({message: "distance updated"});  
-           } 
+            res.json({message: "distance updated"});
+           }
     });
 });
 
