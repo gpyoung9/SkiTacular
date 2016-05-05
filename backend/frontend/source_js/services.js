@@ -16,15 +16,18 @@ AppServices.factory('CommonData', function () {
         signup: function (userObject) {
             console.log(userObject);
             login_status = true;
-            user=userObject;
+            user = userObject;
         },
         login: function (userObject) {
             login_status = true;
-            user=userObject;
+            user = userObject;
+        },
+        get_user: function () {
+            return user;
         },
         logout: function () {
             login_status = false;
-            user={};
+            user = {};
         },
         get_login: function () {
             return login_status;

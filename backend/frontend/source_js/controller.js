@@ -12,9 +12,17 @@ AppControllers.controller('homeController', ['$scope', 'CommonData', function ($
 }]);
 
 
-AppControllers.controller('favoritesController', ['$scope', 'CommonData', function ($scope, CommonData) {
+AppControllers.controller('favoritesController', ['$scope', 'CommonData', 'UserService', function ($scope, CommonData, UserService) {
     $scope.data = "";
     $scope.displayText = "";
+
+    var quest = "'/users/" + CommonData.get_user()._id + "/favorite/";
+    UserService.get_service(quest, function (data) {
+        $scope.search_result = data;
+        console.log($scope.search_result);
+        $scope.pagination = Pagination.getNew(16);
+        $scope.pagination.numPages = Math.ceil($scope.search_result.length / $scope.pagination.perPage);
+    })
 
     console.log("get this user's favorites");
     console.log(username);
@@ -50,10 +58,10 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
         console.log("zip length");
         console.log($scope.zipcode.length);
         //http://stackoverflow.com/questions/2577236/regex-for-zip-code
-        var zipChecker= /^\d{5}(?:[-\s]\d{4})?$/.test($scope.zipcode);
+        var zipChecker = /^\d{5}(?:[-\s]\d{4})?$/.test($scope.zipcode);
         console.log(zipChecker);
 
-        if(zipChecker){
+        if (zipChecker) {
             UserService.post_service("signup", data, function (data) {
                 $scope.user = data;
                 console.log(data);
@@ -65,7 +73,7 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
                     //console.log("nah fam");
                 }
                 else {
-                    $scope.login_status=true;
+                    $scope.login_status = true;
                     $('#desktop_login_form').foundation('close');
                     CommonData.signup(data);
                 }
@@ -93,14 +101,14 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
                 //el.style.display = "block";
                 //console.log("nah fam");
                 $('#desktop_login_form').animo({animation: "tada", duration: 0.5, keep: false}, function () {
-                    });
+                });
             }
 
             else {
-              //  el = document.getElementById('invalid_login');
+                //  el = document.getElementById('invalid_login');
                 $('#desktop_login_form').foundation('close');
                 //el.style.display = "none";
-                $scope.login_status=true;
+                $scope.login_status = true;
                 CommonData.login(data);
 
             }
@@ -110,13 +118,12 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
 
     };
 
-    $scope.logout = function (){
-        $scope.login_status=false;
+    $scope.logout = function () {
+        $scope.login_status = false;
         CommonData.logout();
     };
 
 }]);
-
 
 
 AppControllers.controller('detailsController', ['$scope', 'CommonData', '$routeParams', 'ResortService', function ($scope, CommonData, $routeParams, ResortService) {
