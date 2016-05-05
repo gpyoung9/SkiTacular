@@ -40,12 +40,13 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
         UserService.post_service("signup", data, function (data) {
             $scope.user = data;
             console.log(data);
-            if(data=="Unauthorized"){
-                 el = document.getElementById('username_exists');
-                el.style.display = "block";
+            if (data == "Unauthorized") {
+                el = document.getElementById('username_exists');
+                $('.login_form').animo({animation: "tada", duration: 0.5, keep: false}, function () {
+                });
                 console.log("nah fam");
             }
-            else{
+            else {
                 el = document.getElementById('username_exists');
                 el.style.display = "none";
             }
@@ -71,13 +72,14 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
         UserService.post_service("login", data, function (data) {
             $scope.user = data;
             console.log(data);
-            if(data=="Unauthorized"){
+            if (data == "Unauthorized") {
                 el = document.getElementById('invalid_login');
                 el.style.display = "block";
                 console.log("nah fam");
             }
-            else{
+            else {
                 el = document.getElementById('invalid_login');
+                $('#desktop_login_form').foundation('close');
                 el.style.display = "none";
             }
 
