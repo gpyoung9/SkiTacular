@@ -105,6 +105,7 @@ function httpGet(model) {
             if(err)
                 res.status(500).json({message: "error", data: err});
             else {
+                console.log("number of resorts " + lists.length);
                 res.json({message: "ok", data: lists});
             }
 
