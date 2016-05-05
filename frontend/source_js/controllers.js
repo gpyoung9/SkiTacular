@@ -107,10 +107,10 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
     $scope.search = function () {
         zipcode_request = "distances/" + $scope.zipcode;
         $scope.hidePagination = false;
-        get_request = "resorts?where={ Price: { $gt:" + $scope.price_slider.minValue.toString() + ", $lt:"
+        var get_request = "resorts?where={ Price: { $gt:" + $scope.price_slider.minValue.toString() + ", $lt:"
             + $scope.price_slider.maxValue.toString() + "}, Distance:  { $gt: "
             + $scope.distance_slider.minValue.toString() + ", $lt:"
-            + $scope.distance_slider.maxValue.toString() + "} }";
+            + $scope.distance_slider.maxValue.toString() + "}, name:{ $regex:" + $scope.search_parameter + "}}";
 
         //console.log(get_request)
         ResortService.put_service(zipcode_request, function () {
