@@ -11,6 +11,16 @@ AppControllers.controller('homeController', ['$scope', 'CommonData', function ($
     };
 }]);
 
+
+AppControllers.controller('favoritesController', ['$scope', 'CommonData', function ($scope, CommonData) {
+    $scope.data = "";
+    $scope.displayText = "";
+
+    console.log("get this user's favorites");
+    console.log(username);
+}]);
+
+
 AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserService', function ($scope, CommonData, UserService) {
     $scope.data = {};
     $scope.displayText = "";
@@ -57,7 +67,7 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
                 else {
                     $scope.login_status=true;
                     $('#desktop_login_form').foundation('close');
-                    CommonData.signup($scope.username, $scope.password, $scope.zipcode);
+                    CommonData.signup(data);
                 }
             });
         }
@@ -91,7 +101,7 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
                 $('#desktop_login_form').foundation('close');
                 //el.style.display = "none";
                 $scope.login_status=true;
-                CommonData.login($scope.username, $scope.password, $scope.zipcode);
+                CommonData.login(data);
 
             }
 

@@ -7,9 +7,9 @@ app.config(['$routeProvider', function ($routeProvider) {
     }).when('/discover', {
         templateUrl: 'partials/function.html',
         controller: 'functionController'
-    }).when('/function', {
-        templateUrl: 'partials/function.html',
-        controller: 'functionController'
+    }).when('/favorites', {
+        templateUrl: 'partials/favorites.html',
+        controller: 'favoritesController'
     }).when('/suggested', {
         templateUrl: 'partials/suggested.html',
         controller: 'suggestedController'

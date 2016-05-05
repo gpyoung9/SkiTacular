@@ -4,7 +4,7 @@ AppServices.factory('CommonData', function () {
     var data = "http://localhost:4000/api/";
     var login_status = false;
     var search_result = [];
-    var user = "";
+    var user = {};
     var search_status = false;
     return {
         getData: function () {
@@ -13,18 +13,18 @@ AppServices.factory('CommonData', function () {
         setData: function (newData) {
             data = newData;
         },
-        signup: function (username, pword, zip) {
-            console.log(username);
+        signup: function (userObject) {
+            console.log(userObject);
             login_status = true;
-            user=username;
+            user=userObject;
         },
-        login: function (username, pword, zip) {
+        login: function (userObject) {
             login_status = true;
-            user=username;
+            user=userObject;
         },
         logout: function () {
             login_status = false;
-            user="";
+            user={};
         },
         get_login: function () {
             return login_status;
