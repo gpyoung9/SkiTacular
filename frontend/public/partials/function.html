@@ -11,7 +11,7 @@
                               rz-slider-options="price_slider.options"></rzslider>
                 </div>
                 <div class="medium-12 slide_module">
-                    <label>Distance Range (KM)</label>
+                    <label>Distance Range (Miles)</label>
                     <rzslider rz-slider-model="distance_slider.minValue"
                               rz-slider-high="distance_slider.maxValue"
                               rz-slider-options="distance_slider.options"></rzslider>
@@ -55,7 +55,7 @@
                             </div>
                             <div class="media-object-section">
                                 <h4>{{site.name}}</h4>
-                                <h6>{{"Distance: "+site.Distance +" Km"}}</h6>
+                                <h6>{{"Distance: "+site.Distance +" Miles"}}</h6>
                                 <h6>{{"Price: $"+site.Price}}</h6>
                                 <h6>{{"Trail: "+(site.Percent_trails_open*100).toFixed(2)+" %"}}</h6>
                             </div>
