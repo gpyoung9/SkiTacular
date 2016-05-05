@@ -36,9 +36,9 @@
 
     </div>
     <div class="row sites_result">
-        <div class="small-10">
+        <div class="small-12">
             <div ng-repeat="site in search_result |startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
-                <div class="small-12  medium-6 columns">
+                <div class="small-12  medium-12 large-6 columns">
                     <a href="#/details/{{site.name}}">
                         <div class="media-object stack-for-small">
                             <div class="media-object-section">
@@ -56,8 +56,6 @@
                     </a>
                 </div>
             </div>
-        </div>
-        <div class="small-10">
             <ul class="pagination" ng-show="!hidePagination">
                 <li><a href="" ng-hide="pagination.page == 0"
                        ng-click="pagination.prevPage()"><i class="fa fa-angle-double-left"

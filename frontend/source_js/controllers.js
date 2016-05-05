@@ -110,7 +110,7 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
         var get_request = "resorts?where={ Price: { $gt:" + $scope.price_slider.minValue.toString() + ", $lt:"
             + $scope.price_slider.maxValue.toString() + "}, Distance:  { $gt: "
             + $scope.distance_slider.minValue.toString() + ", $lt:"
-            + $scope.distance_slider.maxValue.toString() + "}, name:{ $regex:" + $scope.search_parameter + "}}";
+            + $scope.distance_slider.maxValue.toString() + "}}";
 
         //console.log(get_request)
         ResortService.put_service(zipcode_request, function () {
@@ -119,7 +119,7 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
                 CommonData.set_search_status();
                 CommonData.set_search_data(data);
 
-                //console.log($scope.search_result);
+                console.log($scope.search_result);
                 $scope.pagination = Pagination.getNew(16);
                 $scope.pagination.numPages = Math.ceil($scope.search_result.length / $scope.pagination.perPage);
             })
