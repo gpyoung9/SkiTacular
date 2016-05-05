@@ -57,7 +57,8 @@
                         </a>
                         <ul class="menu vertical nested text-center mobile_bar">
 
-                            <li><a class="button" ng-show="!login_status" data-toggle="desktop_login_form">Login | Join Us</a>
+                            <li><a class="button" ng-show="!login_status" data-toggle="desktop_login_form">Login | Join
+                                Us</a>
                             <li><a class="button" ng-show="login_status">Logout</a>
                             <li><a href="#/home" class="button">Home</a></li>
                             </li>
@@ -74,20 +75,19 @@
         <div class="login_form text-center">
             <form data-abide novalidate>
                 <h4 class="login_title">LOGIN | JOIN US</h4>
-                <input type="text" class="login_input" placeholder="Username" ng-model="formData.username" required
-                       pattern="alpha_numeric" value="Username" id="username">
-                       {{formData.username}}{{"show here"}}
+                <input type="text" class="login_input" placeholder="Username" required
+                       pattern="alpha_numeric" id="username">
                 <span class="form-error">
                     A username is required
                 </span>
-                <input type="password" class="login_input" id="password" value="Password" placeholder="Password" ng-model="password"
+                <input type="password" class="login_input" id="password" placeholder="Password"
                        required
                        pattern="alpha_numeric">
             <span class="form-error">
                 A password is required
             </span>
                 <input type="password" class="login_input" placeholder="Confirm Password"
-                       ng-model="password_confirm" data-equalto="password" required pattern="alpha_numeric">
+                       data-equalto="password" required pattern="alpha_numeric">
             <span class="form-error">
                 Password don't match
             </span>

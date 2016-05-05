@@ -11,15 +11,12 @@ AppControllers.controller('homeController', ['$scope', 'CommonData', function ($
     };
 }]);
 
-AppControllers.controller('mainController', ['$scope', 'CommonData', function ($scope, CommonData) {
+AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserService', function ($scope, CommonData, UserService) {
     $scope.data = {};
     $scope.displayText = "";
     $scope.login_status = CommonData.get_login();
 
-    $scope.formData={};
-    $scope.username="";
-    $scope.password="";
-    $scope.zip_code="";
+    $scope.formData = {};
 
 
     $scope.setData = function () {
@@ -28,19 +25,31 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', function ($
 
     };
 
-    $scope.joinus = function() {
-        $scope.username=document.getElementById('username').value;
-        $scope.password=document.getElementById('password').value;
-        $scope.zipcode=document.getElementById('zipcode').value;
+    $scope.joinus = function () {
+        $scope.username = document.getElementById('username').value;
+        $scope.password = document.getElementById('password').value;
+        $scope.zipcode = document.getElementById('zipcode').value;
         console.log($scope.username);
+
+        data = {
+            "email": $scope.username,
+            "password": $scope.password,
+            "zipcode": $scope.zipcode
+        };
+
+        UserService.post_service("signup", data, function (data) {
+            $scope.user = data;
+            console.log(data);
+        });
+
 
         CommonData.signup($scope.username, $scope.password, $scope.zipcode);
     };
 
-    $scope.login = function() {
-        $scope.username=document.getElementById('username').value;
-        $scope.password=document.getElementById('password').value;
-        $scope.zipcode=document.getElementById('zipcode').value;
+    $scope.login = function () {
+        $scope.username = document.getElementById('username').value;
+        $scope.password = document.getElementById('password').value;
+        $scope.zipcode = document.getElementById('zipcode').value;
         console.log($scope.username);
 
     };
@@ -93,9 +102,9 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
      */
     $scope.price_slider = {
         minValue: 50,
-        maxValue: 500,
+        maxValue: 50000,
         options: {
-            ceil: 500,
+            ceil: 50000,
             floor: 0,
             step: 10,
             showTicksValues: false,
@@ -113,12 +122,12 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
      * @type {{minValue: number, maxValue: number, options: {ceil: number, floor: number, showTicksValues: boolean}}}
      */
     $scope.distance_slider = {
-        minValue: 10,
-        maxValue: 600,
+        minValue: 100,
+        maxValue: 3000,
         options: {
-            ceil: 600,
-            floor: 10,
-            step: 10,
+            ceil: 3000,
+            floor: 0,
+            step: 100,
             showTicksValues: false,
             getSelectionBarColor: function (value) {
                 return '#7A9D96'
@@ -135,7 +144,8 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
         maxValue: 60,
         options: {
             ceil: 100,
-            floor: 1,
+            floor: 0,
+
             step: 1,
             showTicksValues: false,
             getSelectionBarColor: function (value) {
@@ -157,12 +167,14 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
         zipcode_request = "distances/" + $scope.zipcode;
         $scope.hidePagination = false;
         var get_request = "resorts?where={ Price: { $gt:" + $scope.price_slider.minValue.toString() + ", $lt:"
-            + $scope.price_slider.maxValue.toString() + "}, Percent_trails_open: { $gt:" + ($scope.p_t.minValue/100).toString() + ", $lt:"
-            + ($scope.p_t.maxValue/100).toString() + "}, Distance:  { $gt: "
+            + $scope.price_slider.maxValue.toString() + "}, Percent_trails_open: { $gt:" + ($scope.p_t.minValue / 100).toString() + ", $lt:"
+            + ($scope.p_t.maxValue / 100).toString() + "}, Distance:  { $gt: "
             + $scope.distance_slider.minValue.toString() + ", $lt:"
             + $scope.distance_slider.maxValue.toString() + '},"name": {$regex:"' + $scope.search_parameter + '"}}';
 
-        //console.log(get_request)
+
+
+        console.log(get_request)
         ResortService.put_service(zipcode_request, function () {
             ResortService.get_service(get_request, function (data) {
                 $scope.search_result = data;
