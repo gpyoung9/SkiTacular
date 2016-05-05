@@ -1,0 +1,320 @@
+// Add any custom Sass & CSS here
+body {
+  background: url('../media/mountain.png') no-repeat center center;
+  background-size: cover;
+  background-position: top;
+  background-attachment: fixed;
+  max-width: 100%;
+  z-index: -1;
+}
+
+@keyframes snow {
+  0% {
+    background-position: 0px 0px, 0px 0px, 0px 0px;
+  }
+  50% {
+    background-position: 500px 500px, 100px 200px, -100px 150px;
+  }
+  100% {
+    background-position: 500px 1000px, 200px 400px, -100px 300px;
+  }
+}
+
+h1 {
+  font-family: Playfair;
+  font-size: 90px;
+  margin-bottom: 4%;
+  color: $third_color;
+}
+
+h2 {
+  font-family: Playfair;
+  color: $third_color;
+}
+
+h3 {
+  font-family: Playfair;
+  color: $third_color;
+
+}
+
+h4 {
+  font-family: Playfair;
+  color: $third_color;
+
+}
+
+a {
+  color: $third_color;
+}
+
+.mobile_bar {
+  color: $first_color;
+  .button {
+    margin: auto auto;
+    background-color: transparent;
+    font-family: Playfair;
+    font-weight: 700;
+    font-size: 18px;
+    color: $third_color;
+  }
+  background-color: transparent;
+}
+
+.desktop_bar {
+  .button {
+    background-color: transparent;
+    font-family: Playfair;
+    font-weight: 400;
+    font-size: 18px;
+    color: $third_color;
+    :focus {
+      border-color: $third_color;
+    }
+  }
+}
+
+.fullWidth {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: initial;
+}
+
+.title-bar {
+  background-color: transparent;
+}
+
+.home_title {
+  margin-top: 5%;
+  padding-left: 2%;
+}
+
+.discover_section {
+  margin-top: 60px;
+  font-size: 22px;
+}
+
+.discover_button {
+  //padding: 10px 0 10px 0;
+  color: $third_color;
+  border-width: 1px;
+  border: solid lightslategrey;
+  border-radius: 20px;
+  padding: 10px;
+  :hover {
+    border-width: 0;
+    @include transition(0.5);
+  }
+
+  /*:hover {
+    color: #0c4d78;
+    @include transition(0.5s);
+    border-bottom: solid;
+    border-bottom-color: $third_color;
+    border-width: 2px;
+  }*/
+}
+
+.desktop_login_form {
+  border-radius: 20px;
+}
+
+.hvr-underline-from-left:hover {
+  color: $third_color;
+}
+
+.login_form {
+  height: auto;
+  width: auto;
+  color: $third_color;
+}
+
+.login_input {
+  font-family: Playfair;
+  width: 200px;
+  margin: 10px auto;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-radius: 12px;
+}
+
+.function_input {
+  @extend .login_input;
+  margin: 10px 10px 10px 0;
+  border: solid 1px #ccc;
+  padding: 9px 10px 9px 32px;
+  width: 180px;
+  border-radius: 10em;
+  //background-color: transparent;
+  background: url(../media/zip.png) no-repeat 9px center transparent;
+}
+
+.search_area {
+  margin-top: 5%;
+}
+
+.login_title {
+  margin-bottom: 5%;
+}
+
+.login_buttons {
+  @extend button;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  margin-top: 5%;
+  margin-left: 3%;
+  margin-right: 3%;
+  background-color: transparent;
+  font-family: Playfair;
+  font-weight: 400;
+  font-size: 18px;
+  color: $third_color;
+  :focus {
+    border-color: $third_color;
+    background-color: transparent;
+  }
+}
+
+.thumbnail {
+  width: 300px;
+  max-width: 100%;
+  height: 200px;
+}
+
+.img_detail {
+  height: 600px;
+  //min-height: 100%;
+  width: auto;
+}
+
+.sites_result {
+  margin-top: 100px;
+  //opacity: 0.8;
+  //background-color: #0b97c4;
+  background-size: cover;
+  background-position: top;
+  background-attachment: fixed;
+  max-width: 100%;
+  z-index: 1;
+  .ng-enter {
+    animation: fadeInDown 1s;
+  }
+}
+
+.slide_module {
+  color: darkgrey;
+}
+
+.media-object {
+  background: url('../media/mountain_p2.png') no-repeat center center;
+
+  //background-color: white;
+  background-size: cover;
+  background-position: top;
+  padding: 4px;
+  padding-bottom: 0px;
+  border: dashed;
+  border-width: 1.8px;
+  border-color: lightgrey;
+  box-shadow:
+          0 1px 3px rgba(0,0,0, 0.12),
+          0 1px 2px rgba(0,0,0, 0.24);
+  // opacity: ;
+}
+
+/*Site's background*/
+.snowBackground {
+  background-image: url('../media/snow1.png'), url('../media/snow2.png'), url('../media/snow3.png');
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+  animation: snow 10s linear infinite;
+}
+
+@keyframes snow {
+  0% {
+    background-position: 0px 0px, 0px 0px, 0px 0px;
+  }
+  50% {
+    background-position: 500px 500px, 100px 200px, -100px 150px;
+  }
+  100% {
+    background-position: 500px 1000px, 200px 400px, -100px 300px;
+  }
+}
+
+/*The glass blur for other views.*/
+.function_view {
+  margin-left: 3.5%;
+  margin-right: 3.5%;
+}
+
+/*The search bar's css*/
+
+input[type=search] {
+  background: url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+  font-family: Playfair;
+  border: solid 1px #ccc;
+  padding: 9px 10px 9px 32px;
+  width: 180px;
+  border-radius: 10em;
+  @include transition(0.5);
+}
+
+input[type=search]:focus {
+  width: 320px;
+  font-family: Playfair;
+  background-color: #fff;
+  border-color: #66CC75;
+  box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+  @include transition(0.5);
+}
+
+label {
+  font-family: Playfair;
+  font-size: 18px;
+}
+
+.slide_module {
+  padding: 10px 0 10px 0;
+}
+
+.search_bar_area {
+  margin-top: 3%;
+  padding-bottom: 5%;
+}
+
+/*Animation for ng-repeat*/
+
+/* Animations */
+.slide-animation.ng-enter {
+  transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s;
+  -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  min-height: 1000px;
+}
+
+.slide-animation.ng-enter {
+  opacity: 0;
+  left: 60%;
+}
+
+.slide-animation.ng-enter.ng-enter-active {
+  left: 0;
+  opacity: 1;
+}
+
+.slide-animation.ng-leave {
+  left: 0;
+  opacity: 1;
+}
+
+.slide-animation.ng-leave.ng-leave-active {
+  left: -100px;
+  opacity: 0;
+}
