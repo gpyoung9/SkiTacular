@@ -54,8 +54,8 @@
       <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/frontend/source_js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.65868264">
-              <caret line="50" column="61" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="61" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -90,8 +90,8 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-49" />
-    <option name="y" value="471" />
+    <option name="x" value="62" />
+    <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="873" />
   </component>
@@ -220,7 +220,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-49" y="471" width="1440" height="873" extended-state="0" />
+    <frame x="62" y="23" width="1440" height="873" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22551093" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -545,8 +545,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/source_js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.65868264">
-          <caret line="50" column="61" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="61" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
