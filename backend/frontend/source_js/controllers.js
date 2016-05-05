@@ -37,23 +37,30 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
             "zipcode": $scope.zipcode
         };
 
-        UserService.post_service("signup", data, function (data) {
-            $scope.user = data;
-            console.log(data);
+        console.log("zip length");
+        console.log($scope.zipcode.length);
+        //http://stackoverflow.com/questions/2577236/regex-for-zip-code
+        var zipChecker= /^\d{5}(?:[-\s]\d{4})?$/.test($scope.zipcode);
+        console.log(zipChecker);
 
-            if (data == "Unauthorized" || null) {
-                el = document.getElementById('username_exists');
-                $('#desktop_login_form').animo({animation: "tada", duration: 0.5, keep: false}, function () {
-                });
-                console.log("nah fam");
-            }
-            else {
-                $('#desktop_login_form').foundation('close');
-            }
-        });
+        if(zipChecker){
+            UserService.post_service("signup", data, function (data) {
+                $scope.user = data;
+                console.log(data);
 
-
-        CommonData.signup($scope.username, $scope.password, $scope.zipcode);
+                if (data == "Unauthorized" || null) {
+                    //el = document.getElementById('username_exists');
+                    $('#desktop_login_form').animo({animation: "tada", duration: 0.5, keep: false}, function () {
+                    });
+                    //console.log("nah fam");
+                }
+                else {
+                    $scope.login_status=true;
+                    $('#desktop_login_form').foundation('close');
+                    CommonData.signup($scope.username, $scope.password, $scope.zipcode);
+                }
+            });
+        }
     };
 
     $scope.login = function () {
@@ -72,20 +79,30 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
             $scope.user = data;
             console.log(data);
             if (data == "Unauthorized") {
-                el = document.getElementById('invalid_login');
-                el.style.display = "block";
-                console.log("nah fam");
+                //el = document.getElementById('invalid_login');
+                //el.style.display = "block";
+                //console.log("nah fam");
+                $('#desktop_login_form').animo({animation: "tada", duration: 0.5, keep: false}, function () {
+                    });
             }
 
             else {
-                el = document.getElementById('invalid_login');
+              //  el = document.getElementById('invalid_login');
                 $('#desktop_login_form').foundation('close');
-                el.style.display = "none";
+                //el.style.display = "none";
+                $scope.login_status=true;
+                CommonData.login($scope.username, $scope.password, $scope.zipcode);
+
             }
 
         });
 
 
+    };
+
+    $scope.logout = function (){
+        $scope.login_status=false;
+        CommonData.logout();
     };
 
 }]);

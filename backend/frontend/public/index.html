@@ -42,7 +42,7 @@
                        data-toggle="desktop_login_form">LOGIN | JOIN US</a>
                 </div>
                 <div class="title-bar-right">
-                    <a class="button hvr-shadow-radial" ng-show="login_status"
+                    <a class="button hvr-shadow-radial" ng-show="login_status" ng-click="logout()"
                        data-toggle="desktop_logout_form">LOGOUT</a>
                 </div>
 
@@ -59,7 +59,7 @@
 
                             <li><a class="button" ng-show="!login_status" data-toggle="desktop_login_form">Login | Join
                                 Us</a>
-                            <li><a class="button" ng-show="login_status">Logout</a>
+                            <li><a class="button" ng-show="login_status" ng-click="logout()">Logout</a>
                             <li><a href="#/home" class="button">Home</a></li>
                             </li>
                         </ul>
@@ -80,25 +80,36 @@
                 <span class="form-error">
                     A username is required
                 </span>
+            </form>
+
+            <form data-abide novalidate>
                 <input type="password" class="login_input" id="password" placeholder="Password"
                        required
                        pattern="alpha_numeric">
             <span class="form-error">
                 A password is required
             </span>
+        </form>
+
+        <form data-abide novalidate>
                 <input type="password" class="login_input" placeholder="Confirm Password"
                        data-equalto="password" required pattern="alpha_numeric">
             <span class="form-error">
                 Passwords don't match
             </span>
+
+        </form>
+
+        <form data-abide novalidate>
                 <input type="text" class="login_input" placeholder="Zip Code" ng-model="zip_code" required
                        pattern="number" id="zipcode" value="Zip Code">
             <span class="form-error">
                 Please input your zip code correctly
             </span>
+        </form>
+
                 <button class="login_buttons hvr-shadow-radial" ng-click="joinus()">JOIN US</button>
                 <button class="login_buttons hvr-shadow-radial" ng-click="login()">LOGIN</button>
-            </form>
             <span id="username_exists" class="form-error">Username already exists!</span>
         </div>
 
