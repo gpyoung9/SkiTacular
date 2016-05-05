@@ -10,7 +10,7 @@ var ResortSchema   = new mongoose.Schema({
     Price : {type : Number, required : true},
     Discount_price : {type : Number, required : true},
     Percent_trails_open : {type : Number},
-    Discription: {type : String},
+    Description: {type : String},
     Distance : {type: Number},
     Latitude : {type: Number},
     Longitude : {type: Number}
