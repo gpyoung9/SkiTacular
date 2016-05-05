@@ -129,6 +129,25 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
         }
     };
 
+
+    $scope.p_t = {
+        minValue: 10,
+        maxValue: 60,
+        options: {
+            ceil: 100,
+            floor: 1,
+            step: 1,
+            showTicksValues: false,
+            getSelectionBarColor: function (value) {
+                return '#7A9D96'
+            },
+            getPointerColor: function (value) {
+                return '#7A9D96'
+            }
+        }
+    };
+
+
     /**
      * When pressing the search button, this function will be triggered
      * ?where={ Price: { $gt: 200, $lt: 400 }, Distance:  { $gt: 200, $lt: 400 } }
@@ -138,7 +157,8 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
         zipcode_request = "distances/" + $scope.zipcode;
         $scope.hidePagination = false;
         var get_request = "resorts?where={ Price: { $gt:" + $scope.price_slider.minValue.toString() + ", $lt:"
-            + $scope.price_slider.maxValue.toString() + "}, Distance:  { $gt: "
+            + $scope.price_slider.maxValue.toString() + "}, Percent_trails_open: { $gt:" + ($scope.p_t.minValue/100).toString() + ", $lt:"
+            + ($scope.p_t.maxValue/100).toString() + "}, Distance:  { $gt: "
             + $scope.distance_slider.minValue.toString() + ", $lt:"
             + $scope.distance_slider.maxValue.toString() + '},"name": {$regex:"' + $scope.search_parameter + '"}}';
 
