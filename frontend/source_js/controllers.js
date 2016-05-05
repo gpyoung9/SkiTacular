@@ -105,9 +105,13 @@ AppControllers.controller('detailsController', ['$scope', 'CommonData', '$routeP
     ResortService.get_service(query, function (data) {
         console.log(data);
         $scope.resort = data[0];
-    });
+        $scope.resort.Location.replace(",,", ",");
+        var s = $scope.resort.Description;
+        var p = s.slice(s.length / 2).split(" ").slice(1).join(" ").length;
+        $scope.word_1 = s.slice(0, s.length - p);
+        $scope.word_2 = s.slice(s.length - p);
 
-    $scope.mountainName = "Sunapee";
+    });
 
 }]);
 
@@ -203,7 +207,6 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
             + ($scope.p_t.maxValue / 100).toString() + "}, Distance:  { $gt: "
             + $scope.distance_slider.minValue.toString() + ", $lt:"
             + $scope.distance_slider.maxValue.toString() + '},"name": {$regex:"' + $scope.search_parameter + '"}}';
-
 
 
         console.log(get_request)

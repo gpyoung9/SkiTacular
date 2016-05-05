@@ -44,6 +44,9 @@ h4 {
 
 }
 
+p{
+  font-family: "Helvetica Neue";
+}
 a {
   color: $third_color;
 }
@@ -116,8 +119,17 @@ a {
   }*/
 }
 
-.desktop_login_form {
-  border-radius: 20px;
+#desktop_login_form {
+  border-radius: 2px;
+  box-shadow:
+          0 1px 3px rgba(0,0,0, 0.12),
+          0 1px 2px rgba(0,0,0, 0.24);
+}
+
+.reveal{
+  .ng-enter{
+    animation: fadeInDown 1s;
+  }
 }
 
 .hvr-underline-from-left:hover {
@@ -183,9 +195,15 @@ a {
 }
 
 .img_detail {
-  height: 600px;
+  transition: scale(2.5);
+  //height: 600px;
   //min-height: 100%;
   width: auto;
+}
+
+.picture_wrapper{
+  height: 600px;
+  width: 400px;
 }
 
 .sites_result {
@@ -285,6 +303,11 @@ label {
   margin-top: 3%;
   padding-bottom: 5%;
 }
+
+.right_bar_detail{
+  margin-top:250px;
+}
+
 
 /*Animation for ng-repeat*/
 
