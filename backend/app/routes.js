@@ -1,12 +1,12 @@
 module.exports = function(app, passport) {
 
-	app.post('/signup', passport.authenticate('local-signup'), function(req, res) {
+	app.post('/api/signup', passport.authenticate('local-signup'), function(req, res) {
         res.json({
             user: req.user
         });
 	});
 
-	app.post('/login', passport.authenticate('local-login'), function(req, res) {
+	app.post('/api/login', passport.authenticate('local-login'), function(req, res) {
 		res.json({
             user: req.user
         });

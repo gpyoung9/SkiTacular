@@ -26,7 +26,7 @@ module.exports = function(passport) {
 			} else {
 				var newUser = new User();
 
-				newUser.name = req.body.name;
+				// newUser.name = req.body.name;
 				newUser.email = email;
 				newUser.password = newUser.generateHash(password);
 				newUser.zipcode = req.body.zipcode;
