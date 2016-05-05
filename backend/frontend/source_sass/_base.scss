@@ -183,9 +183,15 @@ a {
 }
 
 .img_detail {
-  height: 600px;
+  transition: scale(2.5);
+  //height: 600px;
   //min-height: 100%;
   width: auto;
+}
+
+.picture_wrapper{
+  height: 600px;
+  width: 400px;
 }
 
 .sites_result {

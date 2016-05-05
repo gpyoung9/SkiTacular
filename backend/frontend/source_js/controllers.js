@@ -73,6 +73,7 @@ AppControllers.controller('detailsController', ['$scope', 'CommonData', '$routeP
     ResortService.get_service(query, function (data) {
         console.log(data);
         $scope.resort = data[0];
+        //$scope.resort["Location"].replace(",,",",");
     });
 
     $scope.mountainName = "Sunapee";
@@ -102,9 +103,9 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
      */
     $scope.price_slider = {
         minValue: 50,
-        maxValue: 500,
+        maxValue: 50000,
         options: {
-            ceil: 500,
+            ceil: 50000,
             floor: 0,
             step: 10,
             showTicksValues: false,
@@ -122,12 +123,12 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
      * @type {{minValue: number, maxValue: number, options: {ceil: number, floor: number, showTicksValues: boolean}}}
      */
     $scope.distance_slider = {
-        minValue: 10,
-        maxValue: 600,
+        minValue: 100,
+        maxValue: 3000,
         options: {
-            ceil: 600,
-            floor: 10,
-            step: 10,
+            ceil: 3000,
+            floor: 0,
+            step: 100,
             showTicksValues: false,
             getSelectionBarColor: function (value) {
                 return '#7A9D96'
@@ -145,6 +146,7 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
         options: {
             ceil: 100,
             floor: 0,
+
             step: 1,
             showTicksValues: false,
             getSelectionBarColor: function (value) {
@@ -171,7 +173,9 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
             + $scope.distance_slider.minValue.toString() + ", $lt:"
             + $scope.distance_slider.maxValue.toString() + '},"name": {$regex:"' + $scope.search_parameter + '"}}';
 
-        //console.log(get_request)
+
+
+        console.log(get_request)
         ResortService.put_service(zipcode_request, function () {
             ResortService.get_service(get_request, function (data) {
                 $scope.search_result = data;
