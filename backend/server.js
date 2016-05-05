@@ -438,9 +438,9 @@ distanceRoute.get(function(req, res){
                 //the whole response has been recieved, so we just print it out here
                 response.on('end', function() {
                     var resJson = JSON.parse(data);
-                    console.log(resJson.rows[0].elements[0]);
+                    console.log(resJson);
                     var ret = 1000000; //unreliable distance
-                    if(resJson.rows[0].elements[0].distance != undefined)
+                    if(resJson.rows != undefined && resJson.rows[0].elements[0].distance != undefined)
                         ret = parseFloat(resJson.rows[0].elements[0].distance.text.replace(/,/i, ''));
                     sendBackResult(ret);
                     //sendBackResult("dd");
