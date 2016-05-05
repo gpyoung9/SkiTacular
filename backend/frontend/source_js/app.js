@@ -4,12 +4,15 @@ app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/home', {
         templateUrl: 'partials/home.html',
         controller: 'homeController'
-    }).when('/secondview', {
-        templateUrl: 'partials/secondview.html',
-        controller: 'SecondController'
+    }).when('/discover', {
+        templateUrl: 'partials/function.html',
+        controller: 'functionController'
     }).when('/function', {
         templateUrl: 'partials/function.html',
         controller: 'functionController'
+    }).when('/suggested', {
+        templateUrl: 'partials/suggested.html',
+        controller: 'suggestedController'
     }).when('/details/:id', {
         templateUrl: 'partials/details.html',
         controller: 'detailsController'

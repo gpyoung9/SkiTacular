@@ -37,23 +37,30 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
             "zipcode": $scope.zipcode
         };
 
-        UserService.post_service("signup", data, function (data) {
-            $scope.user = data;
-            console.log(data);
+        console.log("zip length");
+        console.log($scope.zipcode.length);
+        //http://stackoverflow.com/questions/2577236/regex-for-zip-code
+        var zipChecker= /^\d{5}(?:[-\s]\d{4})?$/.test($scope.zipcode);
+        console.log(zipChecker);
 
-            if (data == "Unauthorized" || null) {
-                el = document.getElementById('username_exists');
-                $('#desktop_login_form').animo({animation: "tada", duration: 0.5, keep: false}, function () {
-                });
-                console.log("nah fam");
-            }
-            else {
-                $('#desktop_login_form').foundation('close');
-            }
-        });
+        if(zipChecker){
+            UserService.post_service("signup", data, function (data) {
+                $scope.user = data;
+                console.log(data);
 
-
-        CommonData.signup($scope.username, $scope.password, $scope.zipcode);
+                if (data == "Unauthorized" || null) {
+                    //el = document.getElementById('username_exists');
+                    $('#desktop_login_form').animo({animation: "tada", duration: 0.5, keep: false}, function () {
+                    });
+                    //console.log("nah fam");
+                }
+                else {
+                    $scope.login_status=true;
+                    $('#desktop_login_form').foundation('close');
+                    CommonData.signup($scope.username, $scope.password, $scope.zipcode);
+                }
+            });
+        }
     };
 
     $scope.login = function () {
@@ -65,21 +72,27 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
 
         data = {
             "email": $scope.username,
-            "password": $scope.password,
+            "password": $scope.password
         };
 
         UserService.post_service("login", data, function (data) {
             $scope.user = data;
             console.log(data);
             if (data == "Unauthorized") {
-                el = document.getElementById('invalid_login');
-                el.style.display = "block";
-                console.log("nah fam");
+                //el = document.getElementById('invalid_login');
+                //el.style.display = "block";
+                //console.log("nah fam");
+                $('#desktop_login_form').animo({animation: "tada", duration: 0.5, keep: false}, function () {
+                    });
             }
+
             else {
-                el = document.getElementById('invalid_login');
+              //  el = document.getElementById('invalid_login');
                 $('#desktop_login_form').foundation('close');
-                el.style.display = "none";
+                //el.style.display = "none";
+                $scope.login_status=true;
+                CommonData.login($scope.username, $scope.password, $scope.zipcode);
+
             }
 
         });
@@ -87,17 +100,14 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
 
     };
 
-}]);
-
-AppControllers.controller('SecondController', ['$scope', 'CommonData', function ($scope, CommonData) {
-    $scope.data = "";
-
-    $scope.getData = function () {
-        $scope.data = CommonData.getData();
-
+    $scope.logout = function (){
+        $scope.login_status=false;
+        CommonData.logout();
     };
 
 }]);
+
+
 
 AppControllers.controller('detailsController', ['$scope', 'CommonData', '$routeParams', 'ResortService', function ($scope, CommonData, $routeParams, ResortService) {
 
@@ -138,10 +148,10 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
      * @type {{minValue: number, maxValue: number, options: {ceil: number, floor: number, showTicksValues: boolean}}}
      */
     $scope.price_slider = {
-        minValue: 50,
-        maxValue: 50000,
+        minValue: 10,
+        maxValue: 50,
         options: {
-            ceil: 50000,
+            ceil: 200,
             floor: 0,
             step: 10,
             showTicksValues: false,
@@ -203,8 +213,8 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
     $scope.search = function () {
         zipcode_request = "distances/" + $scope.zipcode;
         $scope.hidePagination = false;
-        var get_request = "resorts?where={ Price: { $gt:" + $scope.price_slider.minValue.toString() + ", $lt:"
-            + $scope.price_slider.maxValue.toString() + "}, Percent_trails_open: { $gt:" + ($scope.p_t.minValue / 100).toString() + ", $lt:"
+        var get_request = "resorts?where={ Price: { $gt: " + $scope.price_slider.minValue.toString() + ", $lt: "
+            + $scope.price_slider.maxValue.toString() + " }, Percent_trails_open: { $gt:" + ($scope.p_t.minValue / 100 - 0.01).toString() + ", $lt:"
             + ($scope.p_t.maxValue / 100).toString() + "}, Distance:  { $gt: "
             + $scope.distance_slider.minValue.toString() + ", $lt:"
             + $scope.distance_slider.maxValue.toString() + '},"name": {$regex:"' + $scope.search_parameter + '"}}';
@@ -227,13 +237,3 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
 
 }]);
 
-AppControllers.controller('SettingsController', ['$scope', '$window', function ($scope, $window) {
-    $scope.url = $window.sessionStorage.baseurl;
-
-    $scope.setUrl = function () {
-        $window.sessionStorage.baseurl = $scope.url;
-        $scope.displayText = "URL set";
-
-    };
-
-}]);
