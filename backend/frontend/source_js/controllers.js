@@ -65,7 +65,7 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
 
         data = {
             "email": $scope.username,
-            "password": $scope.password,
+            "password": $scope.password
         };
 
         UserService.post_service("login", data, function (data) {
@@ -76,6 +76,7 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
                 el.style.display = "block";
                 console.log("nah fam");
             }
+
             else {
                 el = document.getElementById('invalid_login');
                 $('#desktop_login_form').foundation('close');
