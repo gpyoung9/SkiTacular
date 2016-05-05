@@ -1,6 +1,6 @@
 // Add any custom Sass & CSS here
 body {
-  background-image: url('../media/mountain.png');
+  background: url('../media/mountain.png') no-repeat center center;
   background-size: cover;
   background-position: top;
   background-attachment: fixed;
@@ -102,6 +102,10 @@ a {
     border-bottom-color: $third_color;
     border-width: 2px;
   }*/
+}
+
+.desktop_login_form {
+  border-radius: 20px;
 }
 
 .hvr-underline-from-left:hover {
