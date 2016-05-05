@@ -156,10 +156,10 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
      * @type {{minValue: number, maxValue: number, options: {ceil: number, floor: number, showTicksValues: boolean}}}
      */
     $scope.price_slider = {
-        minValue: 50,
-        maxValue: 50000,
+        minValue: 10,
+        maxValue: 50,
         options: {
-            ceil: 50000,
+            ceil: 200,
             floor: 0,
             step: 10,
             showTicksValues: false,
@@ -221,8 +221,8 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
     $scope.search = function () {
         zipcode_request = "distances/" + $scope.zipcode;
         $scope.hidePagination = false;
-        var get_request = "resorts?where={ Price: { $gt:" + $scope.price_slider.minValue.toString() + ", $lt:"
-            + $scope.price_slider.maxValue.toString() + "}, Percent_trails_open: { $gt:" + ($scope.p_t.minValue / 100).toString() + ", $lt:"
+        var get_request = "resorts?where={ Price: { $gt: " + $scope.price_slider.minValue.toString() + ", $lt: "
+            + $scope.price_slider.maxValue.toString() + " }, Percent_trails_open: { $gt:" + ($scope.p_t.minValue / 100 - 0.01).toString() + ", $lt:"
             + ($scope.p_t.maxValue / 100).toString() + "}, Distance:  { $gt: "
             + $scope.distance_slider.minValue.toString() + ", $lt:"
             + $scope.distance_slider.maxValue.toString() + '},"name": {$regex:"' + $scope.search_parameter + '"}}';
