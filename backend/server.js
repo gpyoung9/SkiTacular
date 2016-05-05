@@ -327,10 +327,10 @@ resortsRoute.post(function(req, res) {
     var newResort = new Resort({name: req.body.name, Location: req.body.Location,
         Price: req.body.Price, Discount_price: req.body.Discount_price,
         URL: req.body.URL, Img_URL: req.body.Img_URL,
-        Percent_trails_open: req.body.Percent_trails_open, Description : req.body.Discription,
+        Percent_trails_open: req.body.Percent_trails_open, Description : req.body.Description,
         Distance: req.body.Distance,
         Latitude: req.body.Latitude ,Longitude: req.body.Longitude});
-
+    //console.log(newResort.Description);
     newResort.save(function(err){
         if(err){
             res.status(500);
@@ -476,8 +476,8 @@ batchDistanceUpdateRoute.put(function(req, res){
             res.status(500).json({message: "db search error", data: err});
         else{
             lists = JSON.parse(JSON.stringify(lists));
-
-            for(r in lists){
+     
+            for(r in lists){              
                 var queryStr = 'http://localhost:4000/api/distance/'+ req.params.zipcode + '/' + lists[r]._id;
                 request({
                     url: queryStr,
@@ -495,7 +495,6 @@ batchDistanceUpdateRoute.put(function(req, res){
                     else
                         console.log(error);
                 });
-
               }
                 // findOneAndUpdate
             res.json({message: "distance updated"});

@@ -40,6 +40,16 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
         UserService.post_service("signup", data, function (data) {
             $scope.user = data;
             console.log(data);
+            if(data=="Unauthorized"){
+                 el = document.getElementById('username_exists');
+                el.style.display = "block";
+                console.log("nah fam");
+            }
+            else{
+                el = document.getElementById('username_exists');
+                el.style.display = "none";
+            }
+
         });
 
 
@@ -50,7 +60,29 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
         $scope.username = document.getElementById('username').value;
         $scope.password = document.getElementById('password').value;
         $scope.zipcode = document.getElementById('zipcode').value;
-        console.log($scope.username);
+        console.log("login attempt");
+
+
+        data = {
+            "email": $scope.username,
+            "password": $scope.password,
+        };
+
+        UserService.post_service("login", data, function (data) {
+            $scope.user = data;
+            console.log(data);
+            if(data=="Unauthorized"){
+                el = document.getElementById('invalid_login');
+                el.style.display = "block";
+                console.log("nah fam");
+            }
+            else{
+                el = document.getElementById('invalid_login');
+                el.style.display = "none";
+            }
+
+        });
+
 
     };
 
