@@ -135,6 +135,7 @@ usersRoute.post(function(req, res) {
 var userRoute = router.route('/users/:user_id');
 
 userRoute.get(function(req, res) {
+
     User.findById(req.params.user_id, function(err, user) {
         if (err || user === null) {
             res.status(404);
@@ -330,7 +331,6 @@ resortsRoute.post(function(req, res) {
         Percent_trails_open: req.body.Percent_trails_open, Description : req.body.Description,
         Distance: req.body.Distance,
         Latitude: req.body.Latitude ,Longitude: req.body.Longitude});
-    //console.log(newResort.Description);
     newResort.save(function(err){
         if(err){
             res.status(500);
@@ -469,6 +469,55 @@ batchDistanceUpdateRoute.put(function(req, res){
     if(!isValidZip){
         req.params.zipcode = "61801"; //set urbana as default location
     }
+
+    var allUpdate = function(lists, r, distances, queryLimit){
+        if(r >= lists.length){
+
+            var bulk = Resort.collection.initializeUnorderedBulkOp();
+            Resort.findByIdAndUpdate('572b98bc24f9d93614ea120a', {Distance : 233}, function(err, resort){
+                console.log(resort);
+            } );
+            for(r in lists){
+                console.log(lists[r]._id);
+                console.log(distances[r]);
+                bulk.find({name: lists[r].name}).update({$set: { Distance : distances[r]}});
+            }
+
+            bulk.execute(function(err, got) {
+                if(err)
+                    console.log(err);
+                else
+                    console.log(got);
+                res.json({message: "distance updated"});  
+            });       
+            return;
+        }
+        var googleQueryStr = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=' 
+            + req.params.zipcode + '&destinations=';
+
+        for(var i = r; i < Math.min(lists.length, r + queryLimit); i++){
+            googleQueryStr += lists[i].Latitude +'%2C'+ lists[i].Longitude +'%7C';   
+        }
+        googleQueryStr += '&key=AIzaSyDlPhwrvT97gH5WRVrjmiT1ZeItaE5AZt4'; 
+        request({
+            url: googleQueryStr,
+            json: true
+        }, function (error, response, body) {
+            if (!error && response.statusCode === 200) {
+                console.log(body);
+                var result = JSON.parse(JSON.stringify(body)).rows[0].elements;
+                for (var i = 0; i < result.length; i++){
+                    distances[i+r] = 100000;
+                    if(result[i].distance !=undefined)
+                        distances[i+r]  = parseFloat(result[i].distance.text.replace(/,/i, ''));
+                }
+            }
+            else
+                console.log(error);
+            allUpdate(lists, r+queryLimit, distances, queryLimit);
+        });
+    }
+
     console.log("current zip code: " + req.params.zipcode);
     var query = Resort.find();
     query.exec(function(err, lists){
@@ -476,29 +525,30 @@ batchDistanceUpdateRoute.put(function(req, res){
             res.status(500).json({message: "db search error", data: err});
         else{
             lists = JSON.parse(JSON.stringify(lists));
-     
-            for(r in lists){              
-                var queryStr = 'http://localhost:4000/api/distance/'+ req.params.zipcode + '/' + lists[r]._id;
-                request({
-                    url: queryStr,
-                    json: true
-                }, function (error, response, body) {
-                    if (!error && response.statusCode === 200) {
-                        console.log(body.data);
-                        Resort.findOneAndUpdate({ _id: lists[r]._id }, {$set: {Distance: body.data}}, function (err, obj){
-                            if(err)
-                                console.log(err);
-                            else
-                                console.log('success');
-                        });
-                    }
-                    else
-                        console.log(error);
-                });
-              }
-                // findOneAndUpdate
-            res.json({message: "distance updated"});
-           }
+            allUpdate(lists, 0, new Array(lists.length), 20);
+
+            // for(r in lists){       
+            //     var queryStr = 'http://localhost:4000/api/distance/'+ req.params.zipcode + '/' + lists[r]._id;
+            //     request({
+            //         url: queryStr,
+            //         json: true
+            //     }, function (error, response, body) {
+            //         if (!error && response.statusCode === 200) {
+            //             console.log(body.data);
+            //             Resort.findOneAndUpdate({ _id: lists[r]._id }, {$set: {Distance: body.data}}, function (err, obj){
+            //                 if(err)
+            //                     console.log(err);
+            //                 else
+            //                     console.log('success');
+            //             });  
+            //         }
+            //         else
+            //             console.log(error);
+            //     });
+        }
+            // findOneAndUpdate
+            //res.json({message: "distance updated"});
+           //}
     });
 });
 
