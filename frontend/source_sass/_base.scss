@@ -8,6 +8,18 @@ body {
   z-index: -1;
 }
 
+@keyframes snow {
+  0% {
+    background-position: 0px 0px, 0px 0px, 0px 0px;
+  }
+  50% {
+    background-position: 500px 500px, 100px 200px, -100px 150px;
+  }
+  100% {
+    background-position: 500px 1000px, 200px 400px, -100px 300px;
+  }
+}
+
 h1 {
   font-family: Playfair;
   font-size: 90px;
@@ -165,9 +177,15 @@ a {
 }
 
 .thumbnail {
-  width: 250px;
+  width: 300px;
   max-width: 100%;
-  height: auto;
+  height: 200px;
+}
+
+.img_detail {
+  height: 600px;
+  //min-height: 100%;
+  width: auto;
 }
 
 .sites_result {
@@ -186,6 +204,16 @@ a {
 
 .slide_module {
   color: darkgrey;
+}
+
+.media-object {
+  background: url('../media/mountain_paper.png') no-repeat center center fixed;
+  background-size: cover;
+  background-position: top;
+  padding: 6px;
+  border: dashed;
+  border-width: 1.8px;
+  border-color: lightgrey;
 }
 
 /*Site's background*/

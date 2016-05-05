@@ -35,7 +35,15 @@ AppControllers.controller('SecondController', ['$scope', 'CommonData', function 
 
 }]);
 
-AppControllers.controller('detailsController', ['$scope', 'CommonData', function ($scope, CommonData) {
+AppControllers.controller('detailsController', ['$scope', 'CommonData', '$routeParams', 'ResortService', function ($scope, CommonData, $routeParams, ResortService) {
+
+    var query = 'resorts?where={"_id":"' + $routeParams.id + '"}';
+
+    ResortService.get_service(query, function (data) {
+        console.log(data);
+        $scope.resort = data[0];
+    });
+
     $scope.mountainName = "Sunapee";
 
 }]);
@@ -110,7 +118,7 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
         var get_request = "resorts?where={ Price: { $gt:" + $scope.price_slider.minValue.toString() + ", $lt:"
             + $scope.price_slider.maxValue.toString() + "}, Distance:  { $gt: "
             + $scope.distance_slider.minValue.toString() + ", $lt:"
-            + $scope.distance_slider.maxValue.toString() + "}}";
+            + $scope.distance_slider.maxValue.toString() + '},"name": {$regex:"' + $scope.search_parameter + '"}}';
 
         //console.log(get_request)
         ResortService.put_service(zipcode_request, function () {
