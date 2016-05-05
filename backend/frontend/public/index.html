@@ -89,7 +89,7 @@
                 <input type="password" class="login_input" placeholder="Confirm Password"
                        data-equalto="password" required pattern="alpha_numeric">
             <span class="form-error">
-                Password don't match
+                Passwords don't match
             </span>
                 <input type="text" class="login_input" placeholder="Zip Code" ng-model="zip_code" required
                        pattern="number" id="zipcode" value="Zip Code">
@@ -98,10 +98,8 @@
             </span>
                 <button class="login_buttons hvr-shadow-radial" ng-click="joinus()">JOIN US</button>
                 <button class="login_buttons hvr-shadow-radial" ng-click="login()">LOGIN</button>
-                <span id="username_exists" style="display: none; color:red;">Username already exists!</span>
-                <span id="invalid_login" style="display: none; color:red;">Username or password error!</span>
-
             </form>
+            <span id="username_exists" class="form-error">Username already exists!</span>
         </div>
 
         <button class="close-button" data-close aria-label="Close reveal" type="button">
@@ -116,6 +114,7 @@
     <script src="./lib/angularjs-slider/dist/rzslider.min.js"></script>
     <script src="./foundation6_lib/js/foundation.min.js"></script>
     <script src="./lib/ng-simplePagination/simplePagination.js"></script>
+    <script src="./lib/animo/animo.js"></script>
     <script src="./js/script.js"></script>
     <script>
         $(document).foundation();

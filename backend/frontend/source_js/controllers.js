@@ -40,6 +40,18 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
         UserService.post_service("signup", data, function (data) {
             $scope.user = data;
             console.log(data);
+            if (data == "Unauthorized") {
+                el = document.getElementById('username_exists');
+                $('.login_form').animo({animation: "tada", duration: 0.5, keep: false}, function () {
+                });
+                console.log("nah fam");
+            }
+            else {
+                el = document.getElementById('username_exists');
+                $('#desktop_login_form').foundation('close');
+                el.style.display = "none";
+            }
+
         });
 
 
@@ -50,7 +62,29 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
         $scope.username = document.getElementById('username').value;
         $scope.password = document.getElementById('password').value;
         $scope.zipcode = document.getElementById('zipcode').value;
-        console.log($scope.username);
+        console.log("login attempt");
+
+
+        data = {
+            "email": $scope.username,
+            "password": $scope.password,
+        };
+
+        UserService.post_service("login", data, function (data) {
+            $scope.user = data;
+            console.log(data);
+            if (data == "Unauthorized") {
+                el = document.getElementById('invalid_login');
+                el.style.display = "block";
+                console.log("nah fam");
+            }
+            else {
+                el = document.getElementById('invalid_login');
+                el.style.display = "none";
+            }
+
+        });
+
 
     };
 
@@ -73,10 +107,13 @@ AppControllers.controller('detailsController', ['$scope', 'CommonData', '$routeP
     ResortService.get_service(query, function (data) {
         console.log(data);
         $scope.resort = data[0];
-        //$scope.resort["Location"].replace(",,",",");
-    });
+        $scope.resort.Location.replace(",,", ",");
+        var s = $scope.resort.Description;
+        var p = s.slice(s.length / 2).split(" ").slice(1).join(" ").length;
+        $scope.word_1 = s.slice(0, s.length - p);
+        $scope.word_2 = s.slice(s.length - p);
 
-    $scope.mountainName = "Sunapee";
+    });
 
 }]);
 
@@ -172,7 +209,6 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
             + ($scope.p_t.maxValue / 100).toString() + "}, Distance:  { $gt: "
             + $scope.distance_slider.minValue.toString() + ", $lt:"
             + $scope.distance_slider.maxValue.toString() + '},"name": {$regex:"' + $scope.search_parameter + '"}}';
-
 
 
         console.log(get_request)
