@@ -15,6 +15,7 @@ module.exports = function(passport) {
 	passport.use('local-signup', new LocalStrategy({
 		usernameField : 'email',
 		passwordField : 'password',
+        passReqToCallback : true
 	},
 	function(req, email, password, done) {
 		User.findOne({'email' : email}, function(err, user) {
@@ -25,7 +26,7 @@ module.exports = function(passport) {
 			} else {
 				var newUser = new User();
 
-				newUser.name = req.body.name;
+				// newUser.name = req.body.name;
 				newUser.email = email;
 				newUser.password = newUser.generateHash(password);
 				newUser.zipcode = req.body.zipcode;

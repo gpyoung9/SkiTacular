@@ -190,7 +190,7 @@ a {
 
 .sites_result {
   margin-top: 100px;
-  opacity: 0.8;
+  //opacity: 0.8;
   //background-color: #0b97c4;
   background-size: cover;
   background-position: top;
@@ -207,13 +207,20 @@ a {
 }
 
 .media-object {
-  background: url('../media/mountain_paper.png') no-repeat center center fixed;
+  background: url('../media/mountain_p2.png') no-repeat center center;
+
+  //background-color: white;
   background-size: cover;
   background-position: top;
-  padding: 6px;
+  padding: 4px;
+  padding-bottom: 0px;
   border: dashed;
   border-width: 1.8px;
   border-color: lightgrey;
+  box-shadow:
+          0 1px 3px rgba(0,0,0, 0.12),
+          0 1px 2px rgba(0,0,0, 0.24);
+  // opacity: ;
 }
 
 /*Site's background*/
