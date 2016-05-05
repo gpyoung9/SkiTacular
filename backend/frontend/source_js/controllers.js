@@ -107,15 +107,7 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
 
 }]);
 
-AppControllers.controller('SecondController', ['$scope', 'CommonData', function ($scope, CommonData) {
-    $scope.data = "";
 
-    $scope.getData = function () {
-        $scope.data = CommonData.getData();
-
-    };
-
-}]);
 
 AppControllers.controller('detailsController', ['$scope', 'CommonData', '$routeParams', 'ResortService', function ($scope, CommonData, $routeParams, ResortService) {
 
@@ -245,13 +237,3 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
 
 }]);
 
-AppControllers.controller('SettingsController', ['$scope', '$window', function ($scope, $window) {
-    $scope.url = $window.sessionStorage.baseurl;
-
-    $scope.setUrl = function () {
-        $window.sessionStorage.baseurl = $scope.url;
-        $scope.displayText = "URL set";
-
-    };
-
-}]);
