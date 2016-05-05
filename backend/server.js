@@ -9,6 +9,11 @@ var Resort = require('./models/resort');
 var Preference = require('./models/preference');
 var bodyParser = require('body-parser');
 var router = express.Router();
+// passport requires
+var passport = require('passport');
+var morgan = require('morgan');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 
 
 //replace this with your Mongolab URL
@@ -25,6 +30,21 @@ var app = express();
 
 // Use environment defined port or 4000
 var port = process.env.PORT || 4000;
+
+require('./app/passport')(passport);
+
+app.use(morgan('dev'));
+app.use(cookieParser());
+app.use(bodyParser());
+
+app.use(session({ secret: 'passport demo' }));
+// app.use(express.static(__dirname + '/frontend'));
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./app/routes.js')(app, passport);
 
 //Allow CORS so that backend and frontend could pe put on different servers
 var allowCrossDomain = function(req, res, next) {
@@ -87,16 +107,6 @@ function httpGet(model) {
     }
 }
 
-// usersRoute.get(function(req, res) {
-//     User.find(function(err, users) {
-//         if (err) {
-//             res.status(500);
-//             res.json({ message : "We don't know what happened!", data : []});
-//             return;
-//         }
-//         res.json({ message : "OK", data : users});
-//     });
-// });
 usersRoute.get(httpGet(User));
 
 
