@@ -48,7 +48,25 @@ AppControllers.controller("mainController", ["$scope", "CommonData", "UserServic
         $scope.username = document.getElementById("username").value,
         $scope.password = document.getElementById("password").value,
         $scope.zipcode = document.getElementById("zipcode").value,
-        console.log($scope.username)
+        console.log($scope.username),
+        data = {
+            email: $scope.username,
+            password: $scope.password
+        },
+        UserService.post_service("login", data, function(data) {
+            $scope.user = data;
+            console.log(data);
+            if(data=="Unauthorized"){
+                 el = document.getElementById('invalid_login');
+                el.style.display = "block";
+                console.log("nah fam");
+            }
+            else{
+                el = document.getElementById('invalid_login');
+                el.style.display = "none";
+            }
+        }),
+        CommonData.signup($scope.username, $scope.password, $scope.zipcode)
     }
 }
 ]),
