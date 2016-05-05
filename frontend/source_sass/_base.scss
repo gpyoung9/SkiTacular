@@ -44,9 +44,11 @@ h4 {
 
 }
 
-p{
+p {
   font-family: "Helvetica Neue";
+
 }
+
 a {
   color: $third_color;
 }
@@ -121,13 +123,12 @@ a {
 
 #desktop_login_form {
   border-radius: 2px;
-  box-shadow:
-          0 1px 3px rgba(0,0,0, 0.12),
-          0 1px 2px rgba(0,0,0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+  0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-.reveal{
-  .ng-enter{
+.reveal {
+  .ng-enter {
     animation: fadeInDown 1s;
   }
 }
@@ -201,7 +202,7 @@ a {
   width: auto;
 }
 
-.picture_wrapper{
+.picture_wrapper {
   height: 600px;
   width: 400px;
 }
@@ -224,6 +225,11 @@ a {
   color: darkgrey;
 }
 
+.information_section {
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+
 .media-object {
   background: url('../media/mountain_p2.png') no-repeat;
 
@@ -235,9 +241,8 @@ a {
   border: dashed;
   border-width: 1.8px;
   border-color: lightgrey;
-  box-shadow:
-          0 1px 3px rgba(0,0,0, 0.12),
-          0 1px 2px rgba(0,0,0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+  0 1px 2px rgba(0, 0, 0, 0.24);
   // opacity: ;
 }
 
@@ -304,10 +309,9 @@ label {
   padding-bottom: 5%;
 }
 
-.right_bar_detail{
-  margin-top:250px;
+.right_bar_detail {
+  margin-top: 250px;
 }
-
 
 /*Animation for ng-repeat*/
 

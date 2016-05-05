@@ -40,17 +40,16 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
         UserService.post_service("signup", data, function (data) {
             $scope.user = data;
             console.log(data);
-            if (data == "Unauthorized") {
+
+            if (data == "Unauthorized" || null) {
                 el = document.getElementById('username_exists');
-                $('.login_form').animo({animation: "tada", duration: 0.5, keep: false}, function () {
+                $('#desktop_login_form').animo({animation: "tada", duration: 0.5, keep: false}, function () {
                 });
                 console.log("nah fam");
             }
             else {
-                el = document.getElementById('username_exists');
-                el.style.display = "none";
+                $('#desktop_login_form').foundation('close');
             }
-
         });
 
 
