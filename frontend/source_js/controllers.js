@@ -40,6 +40,16 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
         UserService.post_service("signup", data, function (data) {
             $scope.user = data;
             console.log(data);
+            if(data=="Unauthorized"){
+                 el = document.getElementById('username_exists');
+                el.style.display = "block";
+                console.log("nah fam");
+            }
+            else{
+                el = document.getElementById('username_exists');
+                el.style.display = "none";
+            }
+
         });
 
 
