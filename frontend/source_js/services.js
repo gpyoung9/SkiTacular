@@ -12,7 +12,11 @@ AppServices.factory('CommonData', function () {
         setData: function (newData) {
             data = newData;
         },
-        login: function () {
+        signup: function (username, pword, zip) {
+            console.log(username);
+            login_status = true;
+        },
+        login: function (username, pword, zip) {
             login_status = true;
         },
         logout: function () {

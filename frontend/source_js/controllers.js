@@ -12,14 +12,36 @@ AppControllers.controller('homeController', ['$scope', 'CommonData', function ($
 }]);
 
 AppControllers.controller('mainController', ['$scope', 'CommonData', function ($scope, CommonData) {
-    $scope.data = "";
+    $scope.data = {};
     $scope.displayText = "";
     $scope.login_status = CommonData.get_login();
+
+    $scope.formData={};
+    $scope.username="";
+    $scope.password="";
+    $scope.zip_code="";
 
 
     $scope.setData = function () {
         CommonData.setData($scope.data);
         $scope.displayText = "Data set"
+
+    };
+
+    $scope.joinus = function() {
+        $scope.username=document.getElementById('username').value;
+        $scope.password=document.getElementById('password').value;
+        $scope.zipcode=document.getElementById('zipcode').value;
+        console.log($scope.username);
+
+        CommonData.signup($scope.username, $scope.password, $scope.zipcode);
+    };
+
+    $scope.login = function() {
+        $scope.username=document.getElementById('username').value;
+        $scope.password=document.getElementById('password').value;
+        $scope.zipcode=document.getElementById('zipcode').value;
+        console.log($scope.username);
 
     };
 
