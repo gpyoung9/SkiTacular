@@ -72,7 +72,7 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
 
         data = {
             "email": $scope.username,
-            "password": $scope.password,
+            "password": $scope.password
         };
 
         UserService.post_service("login", data, function (data) {
@@ -85,6 +85,7 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
                 $('#desktop_login_form').animo({animation: "tada", duration: 0.5, keep: false}, function () {
                     });
             }
+
             else {
               //  el = document.getElementById('invalid_login');
                 $('#desktop_login_form').foundation('close');
