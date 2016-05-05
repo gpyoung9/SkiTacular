@@ -1,19 +1,28 @@
 <div class="detail_view" ng-controller='detailsController'>
     <div class="row">
 
-        <div class="small-12 medium-8 ">
+        <div class="small-12 medium-8 columns">
 
             <div class="row">
-
                 <h1>{{resort.name}}</h1>
+                <h2>{{resort.Location}}</h2>
+                <div class="row">
+                    <div class="medium-6 columns">
+                        <p>{{word_1}}</p>
+                    </div>
+                    <div class="medium-6 columns">
+                        <p>{{word_2}}</p>
+                    </div>
+
+                </div>
+
 
             </div>
         </div>
 
-        <div class="small-12 medium-4 columns">
-            <div class="picture_wrapper">
-                <img class = "img_detail" src="{{resort.Img_URL}}">
-            </div>
+        <div class="small-12 medium-4 columns right_bar_detail">
+            <h3>Resort Manual</h3>
+            <img src="{{resort.Img_URL}}">
 
         </div>
 
