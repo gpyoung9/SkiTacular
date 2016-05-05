@@ -207,11 +207,11 @@ a {
 }
 
 .media-object {
-  background: url('../media/mountain_p2.png') no-repeat center center;
+  background: url('../media/mountain_p2.png') no-repeat;
 
   //background-color: white;
   background-size: cover;
-  background-position: top;
+  background-position: bottom;
   padding: 4px;
   padding-bottom: 0px;
   border: dashed;

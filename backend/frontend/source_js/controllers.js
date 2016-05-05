@@ -144,7 +144,7 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
         maxValue: 60,
         options: {
             ceil: 100,
-            floor: 1,
+            floor: 0,
             step: 1,
             showTicksValues: false,
             getSelectionBarColor: function (value) {
