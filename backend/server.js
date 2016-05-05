@@ -440,7 +440,7 @@ distanceRoute.get(function(req, res){
                     var resJson = JSON.parse(data);
                     console.log(resJson);
                     var ret = 1000000; //unreliable distance
-                    if(resJson.rows != undefined && resJson.rows[0].elements[0].distance != undefined)
+                    if(resJson.rows != undefined && resJson.rows[0] != undefined && resJson.rows[0].elements[0].distance != undefined)
                         ret = parseFloat(resJson.rows[0].elements[0].distance.text.replace(/,/i, ''));
                     sendBackResult(ret);
                     //sendBackResult("dd");
