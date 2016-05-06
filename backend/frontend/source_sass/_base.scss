@@ -236,6 +236,7 @@ a {
 #map {
   height: 600px;
   width: 400px;
+  z-index: 500;
 }
 
 .media-object {
@@ -356,11 +357,10 @@ label {
 
 /* loading animation*/
 
-.loading_wrpper{
+.loading_wrpper {
   margin: 200px;
 
 }
-
 
 .loading {
   width: 300px;
