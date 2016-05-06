@@ -75,7 +75,7 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
                 else {
                     $scope.login_status = true;
                     $('#desktop_login_form').foundation('close');
-                    CommonData.signup(data);
+                    CommonData.signup(data.user);
                 }
             });
         }
@@ -109,7 +109,7 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
                 $('#desktop_login_form').foundation('close');
                 //el.style.display = "none";
                 $scope.login_status = true;
-                CommonData.login(data);
+                CommonData.login(data.user);
 
             }
 
@@ -126,7 +126,7 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
 }]);
 
 
-AppControllers.controller('detailsController', ['$scope', 'CommonData', '$routeParams', 'ResortService', function ($scope, CommonData, $routeParams, ResortService) {
+AppControllers.controller('detailsController', ['$scope', 'CommonData', '$routeParams', 'ResortService', 'UserService', function ($scope, CommonData, $routeParams, ResortService, UserService) {
 
     var query = 'resorts?where={"_id":"' + $routeParams.id + '"}';
 
@@ -140,6 +140,22 @@ AppControllers.controller('detailsController', ['$scope', 'CommonData', '$routeP
         $scope.word_2 = s.slice(s.length - p);
 
     });
+
+    $scope.favorite=function(){
+        console.log("favorite clicked");
+        console.log(CommonData.get_user());
+        var query2 = 'users/'+CommonData.get_user()._id+'/favorite/'+$routeParams.id;
+
+        if(CommonData.get_login()){
+            UserService.post_service_fav(query2, function(data){
+                console.log(data);
+
+            });
+        }
+        else{
+            $('#desktop_login_form').foundation('open');
+        }
+    };
 
 }]);
 

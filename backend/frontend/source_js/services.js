@@ -140,6 +140,15 @@ AppServices.factory('UserService', ['$http', 'CommonData', function ($http, Comm
                     callback(data)
                 })
         },
+          post_service_fav: function (post_call, callback) {
+            $http.post(CommonData.getData() + post_call)
+                .success(function (data) {
+                    callback(data.data)
+                })
+                .error(function (data) {
+                    callback(null)
+                });
+        },
 
         put_service: function (put_call, callback) {
             $http({
