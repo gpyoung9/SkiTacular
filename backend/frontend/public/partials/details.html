@@ -33,8 +33,11 @@
     </div>
 
     <div class="row">
-        <h5>Regular Price: ${{resort.Price}}</h5>
-        <h5>Discount Price: ${{resort.Discount_price}}</h5>
+        <h5 ng-if="resort.Price<10000">Regular Price: ${{resort.Price}}</h5>
+        <h5 ng-if="resort.Price==10000">Regular Price: Closed</h5>
+        <h5 ng-if="resort.Discount_price<10000">Discount Price: ${{resort.Discount_price}}</h5>
+        <h5 ng-if="resort.Discount_price==10000">Discount Price: Closed</h5>
+
         <div id="map"></div>
     </div>
 
