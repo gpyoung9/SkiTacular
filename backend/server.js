@@ -200,14 +200,17 @@ userFavoriteResortsRoute.get(function(req, res) {
     });
 });
 
-userFavoriteResortsRoute.post(function(req, res) {
+var userFavoriteResortRoute = router.route('/users/:user_id/favorite/:resort_id');
+
+
+userFavoriteResortRoute.post(function(req, res) {
     User.findById(req.params.user_id, function(err, old_user) {
         if (err || old_user === null) {
             res.status(404);
             res.json({ message : "User not found", data : []});
             return;
         }
-        old_user.favoriteResorts.push(req.body.resort_id);
+        old_user.favoriteResorts.push(req.params.resort_id);
         old_user.save(function(err, new_user) {
             if (err) {
                 res.status(500);
@@ -227,7 +230,7 @@ userFavoriteResortsRoute.post(function(req, res) {
     });
 });
 
-userFavoriteResortsRoute.delete(function(req, res) {
+userFavoriteResortRoute.delete(function(req, res) {
     User.findById(req.params.user_id, function(err, old_user) {
         if (err || old_user === null) {
             res.status(404);
@@ -235,13 +238,13 @@ userFavoriteResortsRoute.delete(function(req, res) {
             return;
         }
 
-        if (req.body.resort_id === "" || typeof req.body.resort_id === "undefined") {
+        if (req.params.resort_id === "" || typeof req.params.resort_id === "undefined") {
             res.status(500);
             res.json({ message : "A resort ID is required!", data : []});
             return;
         }
 
-        var idx = old_user.favoriteResorts.indexOf(req.body.resort_id);
+        var idx = old_user.favoriteResorts.indexOf(req.params.resort_id);
         if (idx > -1) {
             old_user.favoriteResorts.splice(idx, 1);
         } else {
@@ -488,17 +491,17 @@ batchDistanceUpdateRoute.put(function(req, res){
                     console.log(err);
                 else
                     console.log(got);
-                res.json({message: "distance updated"});  
-            });       
+                res.json({message: "distance updated"});
+            });
             return;
         }
-        var googleQueryStr = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=' 
+        var googleQueryStr = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins='
             + req.params.zipcode + '&destinations=';
 
         for(var i = r; i < Math.min(lists.length, r + queryLimit); i++){
-            googleQueryStr += lists[i].Latitude +'%2C'+ lists[i].Longitude +'%7C';   
+            googleQueryStr += lists[i].Latitude +'%2C'+ lists[i].Longitude +'%7C';
         }
-        googleQueryStr += '&key=AIzaSyDlPhwrvT97gH5WRVrjmiT1ZeItaE5AZt4'; 
+        googleQueryStr += '&key=AIzaSyDlPhwrvT97gH5WRVrjmiT1ZeItaE5AZt4';
         request({
             url: googleQueryStr,
             json: true
@@ -527,7 +530,7 @@ batchDistanceUpdateRoute.put(function(req, res){
             lists = JSON.parse(JSON.stringify(lists));
             allUpdate(lists, 0, new Array(lists.length), 20);
 
-            // for(r in lists){       
+            // for(r in lists){
             //     var queryStr = 'http://localhost:4000/api/distance/'+ req.params.zipcode + '/' + lists[r]._id;
             //     request({
             //         url: queryStr,
@@ -540,7 +543,7 @@ batchDistanceUpdateRoute.put(function(req, res){
             //                     console.log(err);
             //                 else
             //                     console.log('success');
-            //             });  
+            //             });
             //         }
             //         else
             //             console.log(error);
