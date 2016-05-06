@@ -39,7 +39,9 @@
                 </div>
                 <div class="title-bar-right">
                     <a class="button hvr-shadow-radial" ng-show="!login_status"
-                       data-toggle="desktop_login_form">LOGIN | JOIN US</a>
+                       data-toggle="desktop_login_form">LOGIN</a>
+                       <a class="button hvr-shadow-radial" ng-show="!login_status"
+                       data-toggle="desktop_signup_form">JOIN US</a>
                 </div>
                 <div class="title-bar-right">
                     <a class="button hvr-shadow-radial" ng-show="login_status" ng-click="logout()"
@@ -57,8 +59,8 @@
                         </a>
                         <ul class="menu vertical nested text-center mobile_bar">
 
-                            <li><a class="button" ng-show="!login_status" data-toggle="desktop_login_form">Login | Join
-                                Us</a>
+                            <li><a class="button" ng-show="!login_status" data-toggle="desktop_login_form">Login</a>
+                            <li><a class="button" ng-show="!login_status" data-toggle="desktop_signup_form">Join Us</a>
                             <li><a class="button" ng-show="login_status" ng-click="logout()">Logout</a>
                             <li><a href="#/home" class="button">Home</a></li>
                             </li>
@@ -68,17 +70,19 @@
             </div>
         </nav>
     </div>
+
+
     <div class="reveal" id="desktop_login_form" data-reveal data-close-on-click="true"
          data-animation-in="fade-in"
          data-animation-out="fade-out">
 
         <div class="login_form text-center">
             <form data-abide novalidate>
-                <h4 class="login_title">LOGIN | JOIN US</h4>
-                <input type="text" class="login_input" placeholder="Username" required
-                       pattern="alpha_numeric" id="username">
+                <h4 class="login_title">LOGIN</h4>
+                <input type="email" class="login_input" placeholder="Email" required
+                       id="username">
                 <span class="form-error">
-                    A username is required
+                    A username is required (email format)
                 </span>
             </form>
 
@@ -90,10 +94,41 @@
                 A password is required
             </span>
             </form>
+            <button class="login_buttons hvr-shadow-radial" ng-click="login()">LOGIN</button>
+
+        </div>
+
+        <button class="close-button" data-close aria-label="Close reveal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <p ng-click="switchToSignup()">Or sign up instead...</p>
+    </div>
+
+
+  <div class="reveal" id="desktop_signup_form" data-reveal data-close-on-click="true"
+         data-animation-in="fade-in"
+         data-animation-out="fade-out">
+
+        <div class="login_form text-center">
+            <form data-abide novalidate>
+                <h4 class="login_title">JOIN US</h4>
+                <input type="email" class="login_input" placeholder="Email" required
+                        id="username_signup">
+                <span class="form-error">
+                    A username is required (email format)
+                </span>
+            </form>
 
             <form data-abide novalidate>
+                <input type="password" class="login_input" id="password_signup" placeholder="Password"
+                       required
+                       pattern="alpha_numeric">
+            <span class="form-error">
+                A password is required
+            </span>
+
                 <input type="password" class="login_input" placeholder="Confirm Password"
-                       data-equalto="password" required pattern="alpha_numeric">
+                       data-equalto="password_signup" required pattern="alpha_numeric">
             <span class="form-error">
                 Passwords don't match
             </span>
@@ -109,14 +144,16 @@
             </form>
 
             <button class="login_buttons hvr-shadow-radial" ng-click="joinus()">JOIN US</button>
-            <button class="login_buttons hvr-shadow-radial" ng-click="login()">LOGIN</button>
             <span id="username_exists" class="form-error">Username already exists!</span>
+            <p ng-click="switchToLogin()">Or log in instead...</p>
+
         </div>
 
         <button class="close-button" data-close aria-label="Close reveal" type="button">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
+
     <div class="container snowBackground">
         <div data-ng-view class="slide-animation" style="height:100%; width: 100%"></div>
     </div>
