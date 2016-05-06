@@ -43,6 +43,17 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
 
     };
 
+    $scope.switchToSignup=function(){
+        $('#desktop_login_form').foundation('close');
+        $('#desktop_signup_form').foundation('open');
+
+    };
+    $scope.switchToLogin=function(){
+        $('#desktop_signup_form').foundation('close');
+        $('#desktop_login_form').foundation('open');
+
+    };  
+
     $scope.joinus = function () {
         $scope.username = document.getElementById('username_signup').value;
         $scope.password = document.getElementById('password_signup').value;

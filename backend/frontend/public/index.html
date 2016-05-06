@@ -101,6 +101,7 @@
         <button class="close-button" data-close aria-label="Close reveal" type="button">
             <span aria-hidden="true">&times;</span>
         </button>
+        <p ng-click="switchToSignup()">Or sign up instead...</p>
     </div>
 
 
@@ -144,6 +145,8 @@
 
             <button class="login_buttons hvr-shadow-radial" ng-click="joinus()">JOIN US</button>
             <span id="username_exists" class="form-error">Username already exists!</span>
+            <p ng-click="switchToLogin()">Or log in instead...</p>
+
         </div>
 
         <button class="close-button" data-close aria-label="Close reveal" type="button">
