@@ -271,57 +271,6 @@ userFavoriteResortRoute.delete(function(req, res) {
     });
 });
 
-//User Favorite Resort route
-// var userFavoriteResortRoute = router.route('/users/:user_id/favorite/:resort_id');
-//
-// userFavoriteResortRoute.get(function(req, res) {
-//     User.findById(req.params.user_id, function(err, user) {
-//         if (err || user === null) {
-//             res.status(404);
-//             res.json({ message : "User not found", data : []});
-//             return;
-//         }
-//         Resort.findById(req.params.resort_id, function(err, resort) {
-//             if (err || resort === null) {
-//                 res.status(404);
-//                 res.json({ message : "Resort not found", data : []});
-//                 return;
-//             }
-//             res.json({ message : "OK", data : resort});
-//         });
-//     });
-// });
-//
-// userFavoriteResortRoute.delete(function(req, res) {
-//     User.findById(req.params.user_id, function(err, old_user) {
-//         if (err || user === null) {
-//             res.status(404);
-//             res.json({ message : "User not found", data : []});
-//             return;
-//         }
-//         var idx = old_user.favoriteResorts.indexOf(req.params.resort_id);
-//         if (idx > -1) {
-//             old_user.favoriteResorts.splice(idx, 1);
-//         }
-//         old_user.save(function(err, new_user) {
-//             if (err) {
-//                 res.status(500);
-//                 res.json({ message : "We don't know what happened!", data : []});
-//                 return;
-//             }
-//             // return user with updated info
-//             User.findById(old_user._id, function(err, new_info) {
-//                 if (err) {
-//                     res.status(500);
-//                     res.json({ message : "We don't know what happened!", data : []});
-//                     return;
-//                 }
-//                 res.json({ message : "User updated", data : new_info});
-//             });
-//         });
-//     });
-// });
-
 //Resorts route
 var resortsRoute = router.route('/resorts');
 
