@@ -4190,33 +4190,37 @@ h1 {
   color: #00303F; }
 
 /* line 32, ../../source_sass/_base.scss */
+.bigger {
+  font-size: 70px; }
+
+/* line 36, ../../source_sass/_base.scss */
 h2 {
   font-family: Playfair;
   color: #00303F; }
 
-/* line 37, ../../source_sass/_base.scss */
+/* line 41, ../../source_sass/_base.scss */
 h3 {
   font-family: Playfair;
   color: #00303F; }
 
-/* line 43, ../../source_sass/_base.scss */
+/* line 47, ../../source_sass/_base.scss */
 h4 {
   font-family: Playfair;
   color: #00303F; }
 
-/* line 49, ../../source_sass/_base.scss */
+/* line 53, ../../source_sass/_base.scss */
 p {
   font-family: "Helvetica Neue"; }
 
-/* line 54, ../../source_sass/_base.scss */
+/* line 58, ../../source_sass/_base.scss */
 a {
   color: #00303F; }
 
-/* line 58, ../../source_sass/_base.scss */
+/* line 62, ../../source_sass/_base.scss */
 .mobile_bar {
   color: #CAE4DB;
   background-color: transparent; }
-  /* line 60, ../../source_sass/_base.scss */
+  /* line 64, ../../source_sass/_base.scss */
   .mobile_bar .button {
     margin: auto auto;
     background-color: transparent;
@@ -4225,39 +4229,43 @@ a {
     font-size: 18px;
     color: #00303F; }
 
-/* line 72, ../../source_sass/_base.scss */
+/* line 76, ../../source_sass/_base.scss */
 .desktop_bar .button {
   background-color: transparent;
   font-family: Playfair;
   font-weight: 400;
   font-size: 18px;
   color: #00303F; }
-  /* line 78, ../../source_sass/_base.scss */
+  /* line 82, ../../source_sass/_base.scss */
   .desktop_bar .button :focus {
     border-color: #00303F; }
 
-/* line 84, ../../source_sass/_base.scss */
+/* line 88, ../../source_sass/_base.scss */
 .fullWidth {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
   max-width: initial; }
 
-/* line 91, ../../source_sass/_base.scss */
+/* line 95, ../../source_sass/_base.scss */
 .title-bar {
   background-color: transparent; }
 
-/* line 95, ../../source_sass/_base.scss */
+/* line 98, ../../source_sass/_base.scss */
+.mobile_icon {
+  margin-left: 5%; }
+
+/* line 102, ../../source_sass/_base.scss */
 .home_title {
   margin-top: 5%;
   padding-left: 2%; }
 
-/* line 100, ../../source_sass/_base.scss */
+/* line 107, ../../source_sass/_base.scss */
 .discover_section {
   margin-top: 60px;
   font-size: 22px; }
 
-/* line 105, ../../source_sass/_base.scss */
+/* line 112, ../../source_sass/_base.scss */
 .discover_button {
   color: #00303F;
   border-width: 1px;
@@ -4271,7 +4279,7 @@ a {
     border-bottom-color: $third_color;
     border-width: 2px;
   }*/ }
-  /* line 112, ../../source_sass/_base.scss */
+  /* line 119, ../../source_sass/_base.scss */
   .discover_button :hover {
     border-width: 0;
     transition: all 0.5s;
@@ -4279,26 +4287,26 @@ a {
     -webkit-transition: all 0.5s;
     -o-transition: all 0.5s; }
 
-/* line 126, ../../source_sass/_base.scss */
+/* line 133, ../../source_sass/_base.scss */
 #desktop_login_form {
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
 
-/* line 133, ../../source_sass/_base.scss */
+/* line 140, ../../source_sass/_base.scss */
 .reveal .ng-enter {
   animation: fadeInDown 1s; }
 
-/* line 138, ../../source_sass/_base.scss */
+/* line 145, ../../source_sass/_base.scss */
 .hvr-underline-from-left:hover {
   color: #00303F; }
 
-/* line 142, ../../source_sass/_base.scss */
+/* line 149, ../../source_sass/_base.scss */
 .login_form {
   height: auto;
   width: auto;
   color: #00303F; }
 
-/* line 148, ../../source_sass/_base.scss */
+/* line 155, ../../source_sass/_base.scss */
 .login_input, .function_input {
   font-family: Playfair;
   width: 200px;
@@ -4307,7 +4315,7 @@ a {
   padding-bottom: 3px;
   border-radius: 12px; }
 
-/* line 157, ../../source_sass/_base.scss */
+/* line 164, ../../source_sass/_base.scss */
 .function_input {
   margin: 10px 10px 10px 0;
   border: solid 1px #ccc;
@@ -4316,15 +4324,15 @@ a {
   border-radius: 10em;
   background: url(../media/zip.png) no-repeat 9px center transparent; }
 
-/* line 168, ../../source_sass/_base.scss */
+/* line 175, ../../source_sass/_base.scss */
 .search_area {
   margin-top: 5%; }
 
-/* line 172, ../../source_sass/_base.scss */
+/* line 179, ../../source_sass/_base.scss */
 .login_title {
   margin-bottom: 5%; }
 
-/* line 176, ../../source_sass/_base.scss */
+/* line 183, ../../source_sass/_base.scss */
 .login_buttons {
   padding-top: 2%;
   padding-bottom: 2%;
@@ -4336,28 +4344,28 @@ a {
   font-weight: 400;
   font-size: 18px;
   color: #00303F; }
-  /* line 188, ../../source_sass/_base.scss */
+  /* line 195, ../../source_sass/_base.scss */
   .login_buttons :focus {
     border-color: #00303F;
     background-color: transparent; }
 
-/* line 194, ../../source_sass/_base.scss */
+/* line 201, ../../source_sass/_base.scss */
 .thumbnail {
   width: 300px;
   max-width: 100%;
   height: 200px; }
 
-/* line 200, ../../source_sass/_base.scss */
+/* line 207, ../../source_sass/_base.scss */
 .img_detail {
   transition: scale(2.5);
   width: auto; }
 
-/* line 207, ../../source_sass/_base.scss */
+/* line 214, ../../source_sass/_base.scss */
 .picture_wrapper {
   height: 600px;
   width: 400px; }
 
-/* line 212, ../../source_sass/_base.scss */
+/* line 219, ../../source_sass/_base.scss */
 .sites_result {
   margin-top: 100px;
   background-size: cover;
@@ -4365,26 +4373,26 @@ a {
   background-attachment: fixed;
   max-width: 100%;
   z-index: 1; }
-  /* line 221, ../../source_sass/_base.scss */
+  /* line 228, ../../source_sass/_base.scss */
   .sites_result .ng-enter {
     animation: fadeInDown 1s; }
 
-/* line 226, ../../source_sass/_base.scss */
+/* line 233, ../../source_sass/_base.scss */
 .slide_module {
   color: darkgrey; }
 
-/* line 230, ../../source_sass/_base.scss */
+/* line 237, ../../source_sass/_base.scss */
 .information_section {
   margin-top: 60px;
   margin-bottom: 50px; }
 
-/* line 238, ../../source_sass/_base.scss */
+/* line 245, ../../source_sass/_base.scss */
 #map {
   height: 600px;
   width: 400px;
   z-index: 500; }
 
-/* line 244, ../../source_sass/_base.scss */
+/* line 251, ../../source_sass/_base.scss */
 .bk1 {
   background: url("../media/mountain_p2.png") no-repeat;
   background-size: cover;
@@ -4396,7 +4404,7 @@ a {
   border-color: lightgrey;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
 
-/* line 260, ../../source_sass/_base.scss */
+/* line 267, ../../source_sass/_base.scss */
 .bk2 {
   background: url("../media/mountain_p3.png") no-repeat;
   background-size: cover;
@@ -4409,7 +4417,7 @@ a {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
 
 /*Site's background*/
-/* line 277, ../../source_sass/_base.scss */
+/* line 284, ../../source_sass/_base.scss */
 .snowBackground {
   background-image: url("../media/snow1.png"), url("../media/snow2.png"), url("../media/snow3.png");
   height: 100%;
@@ -4426,13 +4434,13 @@ a {
   100% {
     background-position: 500px 1000px, 200px 400px, -100px 300px; } }
 /*The glass blur for other views.*/
-/* line 299, ../../source_sass/_base.scss */
+/* line 306, ../../source_sass/_base.scss */
 .function_view {
   margin-left: 3.5%;
   margin-right: 3.5%; }
 
 /*The search bar's css*/
-/* line 306, ../../source_sass/_base.scss */
+/* line 313, ../../source_sass/_base.scss */
 input[type=search] {
   background: url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
   font-family: Playfair;
@@ -4445,7 +4453,7 @@ input[type=search] {
   -webkit-transition: all 0.5s;
   -o-transition: all 0.5s; }
 
-/* line 316, ../../source_sass/_base.scss */
+/* line 323, ../../source_sass/_base.scss */
 input[type=search]:focus {
   width: 320px;
   font-family: Playfair;
@@ -4457,27 +4465,27 @@ input[type=search]:focus {
   -webkit-transition: all 0.5s;
   -o-transition: all 0.5s; }
 
-/* line 325, ../../source_sass/_base.scss */
+/* line 332, ../../source_sass/_base.scss */
 label {
   font-family: Playfair;
   font-size: 18px; }
 
-/* line 330, ../../source_sass/_base.scss */
+/* line 337, ../../source_sass/_base.scss */
 .slide_module {
   padding: 10px 0 10px 0; }
 
-/* line 334, ../../source_sass/_base.scss */
+/* line 341, ../../source_sass/_base.scss */
 .search_bar_area {
   margin-top: 3%;
   padding-bottom: 5%; }
 
-/* line 339, ../../source_sass/_base.scss */
+/* line 346, ../../source_sass/_base.scss */
 .right_bar_detail {
   margin-top: 250px; }
 
 /*Animation for ng-repeat*/
 /* Animations */
-/* line 346, ../../source_sass/_base.scss */
+/* line 353, ../../source_sass/_base.scss */
 .slide-animation.ng-enter {
   transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s;
   -webkit-transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s;
@@ -4486,32 +4494,32 @@ label {
   right: 0;
   min-height: 1000px; }
 
-/* line 356, ../../source_sass/_base.scss */
+/* line 363, ../../source_sass/_base.scss */
 .slide-animation.ng-enter {
   opacity: 0;
   left: 60%; }
 
-/* line 361, ../../source_sass/_base.scss */
+/* line 368, ../../source_sass/_base.scss */
 .slide-animation.ng-enter.ng-enter-active {
   left: 0;
   opacity: 1; }
 
-/* line 366, ../../source_sass/_base.scss */
+/* line 373, ../../source_sass/_base.scss */
 .slide-animation.ng-leave {
   left: 0;
   opacity: 1; }
 
-/* line 371, ../../source_sass/_base.scss */
+/* line 378, ../../source_sass/_base.scss */
 .slide-animation.ng-leave.ng-leave-active {
   left: -100px;
   opacity: 0; }
 
 /* loading animation*/
-/* line 378, ../../source_sass/_base.scss */
+/* line 385, ../../source_sass/_base.scss */
 .loading_wrpper {
   margin: 200px; }
 
-/* line 383, ../../source_sass/_base.scss */
+/* line 390, ../../source_sass/_base.scss */
 .loading {
   width: 300px;
   height: 300px;
@@ -4533,7 +4541,7 @@ label {
     transform: rotate(180deg); }
   100% {
     transform: rotate(360deg); } }
-/* line 410, ../../source_sass/_base.scss */
+/* line 417, ../../source_sass/_base.scss */
 #load2 {
   width: 190px;
   height: 190px;
@@ -4541,7 +4549,7 @@ label {
   top: 51%;
   animation-delay: .2s; }
 
-/* line 419, ../../source_sass/_base.scss */
+/* line 426, ../../source_sass/_base.scss */
 #load3 {
   width: 180px;
   height: 180px;
@@ -4549,7 +4557,7 @@ label {
   top: 52%;
   animation-delay: .4s; }
 
-/* line 427, ../../source_sass/_base.scss */
+/* line 434, ../../source_sass/_base.scss */
 #load4 {
   width: 170px;
   height: 170px;
@@ -4557,7 +4565,7 @@ label {
   top: 53%;
   animation-delay: .6s; }
 
-/* line 436, ../../source_sass/_base.scss */
+/* line 443, ../../source_sass/_base.scss */
 #load5 {
   width: 160px;
   height: 160px;

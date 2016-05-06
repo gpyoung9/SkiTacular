@@ -334,6 +334,7 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
             + $scope.distance_slider.maxValue.toString() + '},"name": {$regex:"' + $scope.search_parameter + '"}}';
 
 
+
         console.log(get_request);
         ResortService.put_service(zipcode_request, function () {
             ResortService.get_service(get_request, function (data) {

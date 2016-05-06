@@ -1,17 +1,25 @@
 <div class="detail_view" ng-controller='detailsController'>
     <div class="row columns">
 
-        <h1 class="show-for-large-only">{{resort.name+" "}}
+        <h2 class="show-for-large bigger">{{resort.name+" "}}
             <i ng-click="favorite()" ng-show="!is_faved" class="fa fa-heart-o"></i>
             <i ng-click="favorite()" ng-show="is_faved" class="fa fa-heart"></i>
 
             <i class="fa fa-location-arrow" ng-click="locate()" aria-hidden="true"></i>
-        </h1>
-        <h2 class="hide-for-large-only">{{resort.name+" "}}
+        </h2>
+        <h2 class="show-for-medium-only">{{resort.name+" "}}
             <i ng-click="favorite()" ng-show="!is_faved" class="fa fa-heart-o"></i>
             <i ng-click="favorite()" ng-show="is_faved" class="fa fa-heart"></i>
 
             <i class="fa fa-location-arrow" ng-click="locate()" aria-hidden="true"></i>
+        </h2>
+        <h2 class="show-for-small-only">{{resort.name+" "}}
+        </h2>
+        <h2 class="show-for-small-only text-right">
+            <i ng-click="favorite()" ng-show="!is_faved" class="fa fa-heart-o fa-2x"></i>
+            <i ng-click="favorite()" ng-show="is_faved" class="fa fa-heart fa-2x"></i>
+
+            <i class="fa fa-location-arrow fa-2x mobile_icon" ng-click="locate()" aria-hidden="true"></i>
         </h2>
 
         <h2>{{resort.Location}}</h2>

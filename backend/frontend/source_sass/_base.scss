@@ -29,6 +29,10 @@ h1 {
   color: $third_color;
 }
 
+.bigger{
+  font-size: 70px;
+}
+
 h2 {
   font-family: Playfair;
   color: $third_color;
@@ -90,6 +94,9 @@ a {
 
 .title-bar {
   background-color: transparent;
+}
+.mobile_icon{
+  margin-left: 5%;
 }
 
 .home_title {
