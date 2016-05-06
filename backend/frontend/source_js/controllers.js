@@ -16,7 +16,7 @@ AppControllers.controller('favoritesController', ['$scope', 'CommonData', 'UserS
     $scope.data = "";
     $scope.displayText = "";
 
-    var quest = "'/users/" + CommonData.get_user()._id + "/favorite/";
+    var quest = "users/" + CommonData.get_user()._id + "/favorite/";
     UserService.get_service(quest, function (data) {
         $scope.search_result = data;
         console.log($scope.search_result);
