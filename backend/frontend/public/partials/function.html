@@ -55,17 +55,33 @@
                 <div class="small-12  medium-12 large-6 columns">
                     <a href="#/details/{{site._id}}">
                         <div class="media-object stack-for-small">
-                            <div class="media-object-section">
-                                <div>
-                                    <img class="thumbnail"
-                                         src={{site.Img_URL}}>
+                            <div ng-if="site.Percent_trails_open > 0" class="bk2">
+                                <div class="media-object-section">
+                                    <div>
+                                        <img class="thumbnail"
+                                             src={{site.Img_URL}}>
+                                    </div>
+                                </div>
+                                <div class="media-object-section">
+                                    <h4>{{site.name}}</h4>
+                                    <h6>{{"Distance: "+site.Distance +" Miles"}}</h6>
+                                    <h6>{{"Price: $"+site.Price}}</h6>
+                                    <h6>{{"Trail: "+(site.Percent_trails_open*100).toFixed(2)+" %"}}</h6>
                                 </div>
                             </div>
-                            <div class="media-object-section">
-                                <h4>{{site.name}}</h4>
-                                <h6>{{"Distance: "+site.Distance +" Miles"}}</h6>
-                                <h6>{{"Price: $"+site.Price}}</h6>
-                                <h6>{{"Trail: "+(site.Percent_trails_open*100).toFixed(2)+" %"}}</h6>
+                            <div ng-if="site.Percent_trails_open == 0" class="bk1">
+                                <div class="media-object-section">
+                                    <div>
+                                        <img class="thumbnail"
+                                             src={{site.Img_URL}}>
+                                    </div>
+                                </div>
+                                <div class="media-object-section">
+                                    <h4>{{site.name}}</h4>
+                                    <h6>{{"Distance: "+site.Distance +" Miles"}}</h6>
+                                    <h6>{{"Price: $"+site.Price}}</h6>
+                                    <h6>{{"Trail: "+(site.Percent_trails_open*100).toFixed(2)+" %"}}</h6>
+                                </div>
                             </div>
                         </div>
                     </a>

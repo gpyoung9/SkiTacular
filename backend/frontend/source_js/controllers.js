@@ -3,7 +3,7 @@ var AppControllers = angular.module('AppControllers', []);
 AppControllers.controller('homeController', ['$scope', 'CommonData', 'ResortService', function ($scope, CommonData, ResortService) {
     $scope.data = "";
     $scope.displayText = "";
-
+    $("body").css('background-image', 'url(../media/mountain.png)');
 
     $scope.setData = function () {
         CommonData.setData($scope.data);
@@ -17,7 +17,7 @@ AppControllers.controller('homeController', ['$scope', 'CommonData', 'ResortServ
 AppControllers.controller('favoritesController', ['$scope', 'CommonData', 'UserService', function ($scope, CommonData, UserService) {
     $scope.data = "";
     $scope.displayText = "";
-
+    $("body").css('background-image', 'url(../media/mountain.png)');
     var quest = "users/" + CommonData.get_user()._id + "/favorite/";
     UserService.get_service(quest, function (data) {
         $scope.search_result = data;
@@ -35,7 +35,7 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
     $scope.data = {};
     $scope.displayText = "";
     $scope.login_status = CommonData.get_login();
-
+    $("body").css('background-image', 'url(../media/mountain.png)');
     $scope.formData = {};
 
 
@@ -54,16 +54,16 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
         })
     };
 
-    $scope.switchToSignup=function(){
+    $scope.switchToSignup = function () {
         $('#desktop_login_form').foundation('close');
         $('#desktop_signup_form').foundation('open');
 
     };
-    $scope.switchToLogin=function(){
+    $scope.switchToLogin = function () {
         $('#desktop_signup_form').foundation('close');
         $('#desktop_login_form').foundation('open');
 
-    };  
+    };
 
 
     $scope.joinus = function () {
@@ -78,12 +78,12 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
             "zipcode": $scope.zipcode
         };
 
-      //  console.log("zip length");
-       // console.log($scope.zipcode.length);
+        //  console.log("zip length");
+        // console.log($scope.zipcode.length);
         //http://stackoverflow.com/questions/2577236/regex-for-zip-code
         var zipChecker = /^\d{5}(?:[-\s]\d{4})?$/.test($scope.zipcode);
-       // console.log(zipChecker);
-       // console.log($scope.password);
+        // console.log(zipChecker);
+        // console.log($scope.password);
 
         if (zipChecker) {
             UserService.post_service("signup", data, function (data) {
@@ -138,8 +138,6 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
             }
 
         });
-
-
     };
 
     $scope.logout = function () {
@@ -154,6 +152,9 @@ AppControllers.controller('detailsController', ['$scope', 'CommonData', '$routeP
 
     var query = 'resorts?where={"_id":"' + $routeParams.id + '"}';
 
+    //background: url('../media/mountain.png') no-repeat center center;
+    //$('myOjbect').css('background-image', 'url(' + imageUrl + ')');
+    $("body").css('background-image', 'url(../media/mountain_blur.png)');
 
     var check_fav = function (user) {
         $scope.is_faved = false;
@@ -177,6 +178,18 @@ AppControllers.controller('detailsController', ['$scope', 'CommonData', '$routeP
         $scope.is_faved = false;
     }
 
+    $scope.locate = function () {
+        var zipcode = 61820;
+
+        ResortService.get_service(query, function (data) {
+            if (CommonData.get_login()) {
+                zipcode = CommonData.get_user().zipcode;
+            }
+            //https://www.google.com/maps/dir/61801/40.6655101,-73.89188969999998
+            var query = "https://www.google.com/maps/dir/" + zipcode + "/" + data[0].Latitude + "," + data[0].Longitude;
+            window.open(query);
+        })
+    };
 
     ResortService.get_service(query, function (data) {
         console.log(data);
@@ -221,8 +234,8 @@ AppControllers.controller('detailsController', ['$scope', 'CommonData', '$routeP
 }]);
 
 
-AppControllers.controller('functionController', ['$scope', '$http', '$window', 'ResortService', 'Pagination', 'CommonData', function ($scope, $http, $window, ResortService, Pagination, CommonData) {
-
+AppControllers.controller('functionController', ['$scope', '$http', '$window', 'ResortService', 'Pagination', 'CommonData', 'UserService', function ($scope, $http, $window, ResortService, Pagination, CommonData, UserService) {
+    $("body").css('background-image', 'url(../media/mountain.png)');
     $scope.search_parameter = "";
     $scope.hidePagination = true;
     $scope.zipcode = "";
@@ -316,13 +329,22 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
             + $scope.distance_slider.maxValue.toString() + '},"name": {$regex:"' + $scope.search_parameter + '"}}';
 
 
-        console.log(get_request)
+        console.log(get_request);
         ResortService.put_service(zipcode_request, function () {
             ResortService.get_service(get_request, function (data) {
 
                 $scope.is_loading = false;
-
+                $("body").css('background-image', 'url(../media/mountain_blur.png)');
                 $scope.search_result = data;
+                $scope.is_log_in = CommonData.get_login();
+
+                if (CommonData.get_login()) {
+                    UserService.get_service('users/' + user._id + '/favorite/', function (data) {
+                        $scope.is_fav_list = data;
+                    })
+                }
+
+
                 CommonData.set_search_status();
                 CommonData.set_search_data(data);
 
