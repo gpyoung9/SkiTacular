@@ -1,7 +1,7 @@
 var AppServices = angular.module('AppServices', []);
 
 AppServices.factory('CommonData', function () {
-    var data = "http://localhost:4000/api/";
+    var data = "http://162.243.27.217:4000/api/";
     var login_status = false;
     var search_result = [];
     var user = {};
