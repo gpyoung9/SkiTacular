@@ -41,6 +41,14 @@
         </div>
 
     </div>
+
+    <div class="row loading_wrpper" ng-show="is_loading">
+        <div id="load2" class="loading"></div>
+        <div id="load3" class="loading"></div>
+        <div id="load4" class="loading"></div>
+        <div id="load5" class="loading"></div>
+    </div>
+
     <div class="row sites_result">
         <div class="small-12">
             <div ng-repeat="site in search_result |startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
@@ -63,22 +71,23 @@
                     </a>
                 </div>
             </div>
-
-            <ul class="pagination" ng-show="!hidePagination">
-                <li><a href="" ng-hide="pagination.page == 0"
-                       ng-click="pagination.prevPage()"><i class="fa fa-angle-double-left"
-                                                           aria-hidden="true"></i></a>
-                </li>
-                <li ng-repeat="n in [] | range: pagination.numPages"
-                    ng-class="{active: n == pagination.page}">
-                    <a href="" ng-click="pagination.toPageId(n)"><h5>{{n + 1}}</h5></a>
-                </li>
-                <li><a href="" ng-hide="pagination.page + 1 >= pagination.numPages"
-                       ng-click="pagination.nextPage()"><i class="fa fa-angle-double-right"
-                                                           aria-hidden="true"></i></a>
-                </li>
-            </ul>
         </div>
+    </div>
+    <div class="row">
+        <ul class="pagination" ng-show="!hidePagination">
+            <li><a href="" ng-hide="pagination.page == 0"
+                   ng-click="pagination.prevPage()"><i class="fa fa-angle-double-left"
+                                                       aria-hidden="true"></i></a>
+            </li>
+            <li ng-repeat="n in [] | range: pagination.numPages"
+                ng-class="{active: n == pagination.page}">
+                <a href="" ng-click="pagination.toPageId(n)"><h5>{{n + 1}}</h5></a>
+            </li>
+            <li><a href="" ng-hide="pagination.page + 1 >= pagination.numPages"
+                   ng-click="pagination.nextPage()"><i class="fa fa-angle-double-right"
+                                                       aria-hidden="true"></i></a>
+            </li>
+        </ul>
     </div>
 
 </div>

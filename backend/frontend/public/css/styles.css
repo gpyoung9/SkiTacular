@@ -4210,11 +4210,11 @@ p {
 a {
   color: #00303F; }
 
-/* line 57, ../../source_sass/_base.scss */
+/* line 56, ../../source_sass/_base.scss */
 .mobile_bar {
   color: #CAE4DB;
   background-color: transparent; }
-  /* line 59, ../../source_sass/_base.scss */
+  /* line 58, ../../source_sass/_base.scss */
   .mobile_bar .button {
     margin: auto auto;
     background-color: transparent;
@@ -4223,39 +4223,39 @@ a {
     font-size: 18px;
     color: #00303F; }
 
-/* line 71, ../../source_sass/_base.scss */
+/* line 70, ../../source_sass/_base.scss */
 .desktop_bar .button {
   background-color: transparent;
   font-family: Playfair;
   font-weight: 400;
   font-size: 18px;
   color: #00303F; }
-  /* line 77, ../../source_sass/_base.scss */
+  /* line 76, ../../source_sass/_base.scss */
   .desktop_bar .button :focus {
     border-color: #00303F; }
 
-/* line 83, ../../source_sass/_base.scss */
+/* line 82, ../../source_sass/_base.scss */
 .fullWidth {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
   max-width: initial; }
 
-/* line 90, ../../source_sass/_base.scss */
+/* line 89, ../../source_sass/_base.scss */
 .title-bar {
   background-color: transparent; }
 
-/* line 94, ../../source_sass/_base.scss */
+/* line 93, ../../source_sass/_base.scss */
 .home_title {
   margin-top: 5%;
   padding-left: 2%; }
 
-/* line 99, ../../source_sass/_base.scss */
+/* line 98, ../../source_sass/_base.scss */
 .discover_section {
   margin-top: 60px;
   font-size: 22px; }
 
-/* line 104, ../../source_sass/_base.scss */
+/* line 103, ../../source_sass/_base.scss */
 .discover_button {
   color: #00303F;
   border-width: 1px;
@@ -4269,7 +4269,7 @@ a {
     border-bottom-color: $third_color;
     border-width: 2px;
   }*/ }
-  /* line 111, ../../source_sass/_base.scss */
+  /* line 110, ../../source_sass/_base.scss */
   .discover_button :hover {
     border-width: 0;
     transition: all 0.5s;
@@ -4277,26 +4277,26 @@ a {
     -webkit-transition: all 0.5s;
     -o-transition: all 0.5s; }
 
-/* line 125, ../../source_sass/_base.scss */
+/* line 124, ../../source_sass/_base.scss */
 #desktop_login_form {
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
 
-/* line 132, ../../source_sass/_base.scss */
+/* line 131, ../../source_sass/_base.scss */
 .reveal .ng-enter {
   animation: fadeInDown 1s; }
 
-/* line 137, ../../source_sass/_base.scss */
+/* line 136, ../../source_sass/_base.scss */
 .hvr-underline-from-left:hover {
   color: #00303F; }
 
-/* line 141, ../../source_sass/_base.scss */
+/* line 140, ../../source_sass/_base.scss */
 .login_form {
   height: auto;
   width: auto;
   color: #00303F; }
 
-/* line 147, ../../source_sass/_base.scss */
+/* line 146, ../../source_sass/_base.scss */
 .login_input, .function_input {
   font-family: Playfair;
   width: 200px;
@@ -4305,7 +4305,7 @@ a {
   padding-bottom: 3px;
   border-radius: 12px; }
 
-/* line 156, ../../source_sass/_base.scss */
+/* line 155, ../../source_sass/_base.scss */
 .function_input {
   margin: 10px 10px 10px 0;
   border: solid 1px #ccc;
@@ -4314,15 +4314,15 @@ a {
   border-radius: 10em;
   background: url(../media/zip.png) no-repeat 9px center transparent; }
 
-/* line 167, ../../source_sass/_base.scss */
+/* line 166, ../../source_sass/_base.scss */
 .search_area {
   margin-top: 5%; }
 
-/* line 171, ../../source_sass/_base.scss */
+/* line 170, ../../source_sass/_base.scss */
 .login_title {
   margin-bottom: 5%; }
 
-/* line 175, ../../source_sass/_base.scss */
+/* line 174, ../../source_sass/_base.scss */
 .login_buttons {
   padding-top: 2%;
   padding-bottom: 2%;
@@ -4334,28 +4334,28 @@ a {
   font-weight: 400;
   font-size: 18px;
   color: #00303F; }
-  /* line 187, ../../source_sass/_base.scss */
+  /* line 186, ../../source_sass/_base.scss */
   .login_buttons :focus {
     border-color: #00303F;
     background-color: transparent; }
 
-/* line 193, ../../source_sass/_base.scss */
+/* line 192, ../../source_sass/_base.scss */
 .thumbnail {
   width: 300px;
   max-width: 100%;
   height: 200px; }
 
-/* line 199, ../../source_sass/_base.scss */
+/* line 198, ../../source_sass/_base.scss */
 .img_detail {
   transition: scale(2.5);
   width: auto; }
 
-/* line 206, ../../source_sass/_base.scss */
+/* line 205, ../../source_sass/_base.scss */
 .picture_wrapper {
   height: 600px;
   width: 400px; }
 
-/* line 211, ../../source_sass/_base.scss */
+/* line 210, ../../source_sass/_base.scss */
 .sites_result {
   margin-top: 100px;
   background-size: cover;
@@ -4363,25 +4363,25 @@ a {
   background-attachment: fixed;
   max-width: 100%;
   z-index: 1; }
-  /* line 220, ../../source_sass/_base.scss */
+  /* line 219, ../../source_sass/_base.scss */
   .sites_result .ng-enter {
     animation: fadeInDown 1s; }
 
-/* line 225, ../../source_sass/_base.scss */
+/* line 224, ../../source_sass/_base.scss */
 .slide_module {
   color: darkgrey; }
 
-/* line 229, ../../source_sass/_base.scss */
+/* line 228, ../../source_sass/_base.scss */
 .information_section {
   margin-top: 60px;
   margin-bottom: 50px; }
 
-/* line 237, ../../source_sass/_base.scss */
+/* line 236, ../../source_sass/_base.scss */
 #map {
   height: 600px;
   width: 400px; }
 
-/* line 244, ../../source_sass/_base.scss */
+/* line 241, ../../source_sass/_base.scss */
 .media-object {
   background: url("../media/mountain_p2.png") no-repeat;
   background-size: cover;
@@ -4394,7 +4394,7 @@ a {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
 
 /*Site's background*/
-/* line 261, ../../source_sass/_base.scss */
+/* line 258, ../../source_sass/_base.scss */
 .snowBackground {
   background-image: url("../media/snow1.png"), url("../media/snow2.png"), url("../media/snow3.png");
   height: 100%;
@@ -4411,13 +4411,13 @@ a {
   100% {
     background-position: 500px 1000px, 200px 400px, -100px 300px; } }
 /*The glass blur for other views.*/
-/* line 283, ../../source_sass/_base.scss */
+/* line 280, ../../source_sass/_base.scss */
 .function_view {
   margin-left: 3.5%;
   margin-right: 3.5%; }
 
 /*The search bar's css*/
-/* line 290, ../../source_sass/_base.scss */
+/* line 287, ../../source_sass/_base.scss */
 input[type=search] {
   background: url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
   font-family: Playfair;
@@ -4430,7 +4430,7 @@ input[type=search] {
   -webkit-transition: all 0.5s;
   -o-transition: all 0.5s; }
 
-/* line 300, ../../source_sass/_base.scss */
+/* line 297, ../../source_sass/_base.scss */
 input[type=search]:focus {
   width: 320px;
   font-family: Playfair;
@@ -4442,27 +4442,27 @@ input[type=search]:focus {
   -webkit-transition: all 0.5s;
   -o-transition: all 0.5s; }
 
-/* line 309, ../../source_sass/_base.scss */
+/* line 306, ../../source_sass/_base.scss */
 label {
   font-family: Playfair;
   font-size: 18px; }
 
-/* line 314, ../../source_sass/_base.scss */
+/* line 311, ../../source_sass/_base.scss */
 .slide_module {
   padding: 10px 0 10px 0; }
 
-/* line 318, ../../source_sass/_base.scss */
+/* line 315, ../../source_sass/_base.scss */
 .search_bar_area {
   margin-top: 3%;
   padding-bottom: 5%; }
 
-/* line 323, ../../source_sass/_base.scss */
+/* line 320, ../../source_sass/_base.scss */
 .right_bar_detail {
   margin-top: 250px; }
 
 /*Animation for ng-repeat*/
 /* Animations */
-/* line 330, ../../source_sass/_base.scss */
+/* line 327, ../../source_sass/_base.scss */
 .slide-animation.ng-enter {
   transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s;
   -webkit-transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s;
@@ -4471,25 +4471,84 @@ label {
   right: 0;
   min-height: 1000px; }
 
-/* line 340, ../../source_sass/_base.scss */
+/* line 337, ../../source_sass/_base.scss */
 .slide-animation.ng-enter {
   opacity: 0;
   left: 60%; }
 
-/* line 345, ../../source_sass/_base.scss */
+/* line 342, ../../source_sass/_base.scss */
 .slide-animation.ng-enter.ng-enter-active {
   left: 0;
   opacity: 1; }
 
-/* line 350, ../../source_sass/_base.scss */
+/* line 347, ../../source_sass/_base.scss */
 .slide-animation.ng-leave {
   left: 0;
   opacity: 1; }
 
-/* line 355, ../../source_sass/_base.scss */
+/* line 352, ../../source_sass/_base.scss */
 .slide-animation.ng-leave.ng-leave-active {
   left: -100px;
   opacity: 0; }
+
+/* loading animation*/
+/* line 359, ../../source_sass/_base.scss */
+.loading_wrpper {
+  margin: 200px; }
+
+/* line 365, ../../source_sass/_base.scss */
+.loading {
+  width: 300px;
+  height: 300px;
+  border-radius: 100%;
+  position: relative;
+  border: 2px solid cornflowerblue;
+  animation: up 1s;
+  animation-iteration-count: infinite;
+  transition: 2s;
+  border-bottom: none;
+  border-right: none;
+  animation-timing-function: linear;
+  margin-top: -170px; }
+
+@keyframes up {
+  from {
+    transform: rotate(0deg); }
+  50% {
+    transform: rotate(180deg); }
+  100% {
+    transform: rotate(360deg); } }
+/* line 392, ../../source_sass/_base.scss */
+#load2 {
+  width: 190px;
+  height: 190px;
+  left: 51%;
+  top: 51%;
+  animation-delay: .2s; }
+
+/* line 401, ../../source_sass/_base.scss */
+#load3 {
+  width: 180px;
+  height: 180px;
+  left: 51.5%;
+  top: 52%;
+  animation-delay: .4s; }
+
+/* line 409, ../../source_sass/_base.scss */
+#load4 {
+  width: 170px;
+  height: 170px;
+  left: 51%;
+  top: 53%;
+  animation-delay: .6s; }
+
+/* line 418, ../../source_sass/_base.scss */
+#load5 {
+  width: 160px;
+  height: 160px;
+  left: 52%;
+  top: 54%;
+  animation-delay: .8s; }
 
 /*
   NOTE: Do not touch this file. Write the bulk of your custom styles

@@ -1,6 +1,6 @@
 var AppControllers = angular.module('AppControllers', []);
 
-AppControllers.controller('homeController', ['$scope', 'CommonData', function ($scope, CommonData) {
+AppControllers.controller('homeController', ['$scope', 'CommonData', 'ResortService', function ($scope, CommonData, ResortService) {
     $scope.data = "";
     $scope.displayText = "";
 
@@ -9,6 +9,8 @@ AppControllers.controller('homeController', ['$scope', 'CommonData', function ($
         CommonData.setData($scope.data);
         $scope.displayText = "Data set"
     };
+
+
 }]);
 
 
@@ -22,14 +24,14 @@ AppControllers.controller('favoritesController', ['$scope', 'CommonData', 'UserS
         console.log($scope.search_result);
         $scope.pagination = Pagination.getNew(16);
         $scope.pagination.numPages = Math.ceil($scope.search_result.length / $scope.pagination.perPage);
-    })
+    });
 
     console.log("get this user's favorites");
     console.log(username);
 }]);
 
 
-AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserService', function ($scope, CommonData, UserService) {
+AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserService', 'ResortService', '$location', function ($scope, CommonData, UserService, ResortService, $location) {
     $scope.data = {};
     $scope.displayText = "";
     $scope.login_status = CommonData.get_login();
@@ -41,6 +43,15 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
         CommonData.setData($scope.data);
         $scope.displayText = "Data set"
 
+    };
+
+
+    $scope.suggest = function () {
+        console.log('ff');
+        ResortService.get_service("resorts/random/", function (data) {
+            $location.path('/details/' + data[0]._id);
+            console.log(data);
+        })
     };
 
     $scope.joinus = function () {
@@ -154,7 +165,6 @@ AppControllers.controller('detailsController', ['$scope', 'CommonData', '$routeP
     }
 
 
-
     ResortService.get_service(query, function (data) {
         console.log(data);
         $scope.resort = data[0];
@@ -203,6 +213,7 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
     $scope.search_parameter = "";
     $scope.hidePagination = true;
     $scope.zipcode = "";
+    $scope.is_loading = false;
 
     /**
      * If already searched, use the history as a temporary solution.
@@ -283,6 +294,7 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
 
     $scope.search = function () {
         zipcode_request = "distances/" + $scope.zipcode;
+        $scope.is_loading = true;
         $scope.hidePagination = false;
         var get_request = "resorts?where={ Price: { $gt: " + $scope.price_slider.minValue.toString() + ", $lt: "
             + $scope.price_slider.maxValue.toString() + " }, Percent_trails_open: { $gt:" + ($scope.p_t.minValue / 100 - 0.01).toString() + ", $lt:"
@@ -294,6 +306,9 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
         console.log(get_request)
         ResortService.put_service(zipcode_request, function () {
             ResortService.get_service(get_request, function (data) {
+
+                $scope.is_loading = false;
+
                 $scope.search_result = data;
                 CommonData.set_search_status();
                 CommonData.set_search_data(data);
