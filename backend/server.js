@@ -344,6 +344,21 @@ resortsRoute.post(function(req, res) {
     });
 });
 
+var resortsRandomRoute = router.route('/resorts/random/');
+
+resortsRandomRoute.get(function(req, res){
+    var r = Math.floor(Math.random() * 168);
+    var randomElement = Resort.find().limit(1).skip(r).exec(
+    function(err, samples){
+         if(err){
+            res.status(500);
+            res.json({message: "error in finding random samples", error: err});
+        }
+        else
+            res.status(201).json({message: "random resorts", data: samples});
+    });
+});
+
 //Resort route
 var resortIdRoute = router.route('/resorts/:resort_id');
 
