@@ -44,10 +44,10 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
     };
 
     $scope.joinus = function () {
-        $scope.username = document.getElementById('username').value;
-        $scope.password = document.getElementById('password').value;
+        $scope.username = document.getElementById('username_signup').value;
+        $scope.password = document.getElementById('password_signup').value;
         $scope.zipcode = document.getElementById('zipcode').value;
-        console.log($scope.username);
+        //console.log($scope.username);
 
         data = {
             "email": $scope.username,
@@ -55,26 +55,27 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
             "zipcode": $scope.zipcode
         };
 
-        console.log("zip length");
-        console.log($scope.zipcode.length);
+      //  console.log("zip length");
+       // console.log($scope.zipcode.length);
         //http://stackoverflow.com/questions/2577236/regex-for-zip-code
         var zipChecker = /^\d{5}(?:[-\s]\d{4})?$/.test($scope.zipcode);
-        console.log(zipChecker);
+       // console.log(zipChecker);
+       // console.log($scope.password);
 
         if (zipChecker) {
             UserService.post_service("signup", data, function (data) {
                 $scope.user = data;
-                console.log(data);
+                // console.log(data);
 
                 if (data == "Unauthorized" || null) {
                     //el = document.getElementById('username_exists');
-                    $('#desktop_login_form').animo({animation: "tada", duration: 0.5, keep: false}, function () {
+                    $('#desktop_singup_form').animo({animation: "tada", duration: 0.5, keep: false}, function () {
                     });
                     //console.log("nah fam");
                 }
                 else {
                     $scope.login_status = true;
-                    $('#desktop_login_form').foundation('close');
+                    $('#desktop_signup_form').foundation('close');
                     CommonData.signup(data.user);
                 }
             });
@@ -85,7 +86,7 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
         $scope.username = document.getElementById('username').value;
         $scope.password = document.getElementById('password').value;
         $scope.zipcode = document.getElementById('zipcode').value;
-        console.log("login attempt");
+        // console.log("login attempt");
 
 
         data = {
@@ -95,7 +96,7 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
 
         UserService.post_service("login", data, function (data) {
             $scope.user = data;
-            console.log(data);
+            // console.log(data);
             if (data == "Unauthorized") {
                 //el = document.getElementById('invalid_login');
                 //el.style.display = "block";
