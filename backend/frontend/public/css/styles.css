@@ -4377,6 +4377,11 @@ a {
   margin-bottom: 50px; }
 
 /* line 237, ../../source_sass/_base.scss */
+#map {
+  height: 600px;
+  width: 400px; }
+
+/* line 244, ../../source_sass/_base.scss */
 .media-object {
   background: url("../media/mountain_p2.png") no-repeat;
   background-size: cover;
@@ -4389,7 +4394,7 @@ a {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
 
 /*Site's background*/
-/* line 254, ../../source_sass/_base.scss */
+/* line 261, ../../source_sass/_base.scss */
 .snowBackground {
   background-image: url("../media/snow1.png"), url("../media/snow2.png"), url("../media/snow3.png");
   height: 100%;
@@ -4406,13 +4411,13 @@ a {
   100% {
     background-position: 500px 1000px, 200px 400px, -100px 300px; } }
 /*The glass blur for other views.*/
-/* line 276, ../../source_sass/_base.scss */
+/* line 283, ../../source_sass/_base.scss */
 .function_view {
   margin-left: 3.5%;
   margin-right: 3.5%; }
 
 /*The search bar's css*/
-/* line 283, ../../source_sass/_base.scss */
+/* line 290, ../../source_sass/_base.scss */
 input[type=search] {
   background: url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
   font-family: Playfair;
@@ -4425,7 +4430,7 @@ input[type=search] {
   -webkit-transition: all 0.5s;
   -o-transition: all 0.5s; }
 
-/* line 293, ../../source_sass/_base.scss */
+/* line 300, ../../source_sass/_base.scss */
 input[type=search]:focus {
   width: 320px;
   font-family: Playfair;
@@ -4437,27 +4442,27 @@ input[type=search]:focus {
   -webkit-transition: all 0.5s;
   -o-transition: all 0.5s; }
 
-/* line 302, ../../source_sass/_base.scss */
+/* line 309, ../../source_sass/_base.scss */
 label {
   font-family: Playfair;
   font-size: 18px; }
 
-/* line 307, ../../source_sass/_base.scss */
+/* line 314, ../../source_sass/_base.scss */
 .slide_module {
   padding: 10px 0 10px 0; }
 
-/* line 311, ../../source_sass/_base.scss */
+/* line 318, ../../source_sass/_base.scss */
 .search_bar_area {
   margin-top: 3%;
   padding-bottom: 5%; }
 
-/* line 316, ../../source_sass/_base.scss */
+/* line 323, ../../source_sass/_base.scss */
 .right_bar_detail {
   margin-top: 250px; }
 
 /*Animation for ng-repeat*/
 /* Animations */
-/* line 323, ../../source_sass/_base.scss */
+/* line 330, ../../source_sass/_base.scss */
 .slide-animation.ng-enter {
   transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s;
   -webkit-transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s;
@@ -4466,22 +4471,22 @@ label {
   right: 0;
   min-height: 1000px; }
 
-/* line 333, ../../source_sass/_base.scss */
+/* line 340, ../../source_sass/_base.scss */
 .slide-animation.ng-enter {
   opacity: 0;
   left: 60%; }
 
-/* line 338, ../../source_sass/_base.scss */
+/* line 345, ../../source_sass/_base.scss */
 .slide-animation.ng-enter.ng-enter-active {
   left: 0;
   opacity: 1; }
 
-/* line 343, ../../source_sass/_base.scss */
+/* line 350, ../../source_sass/_base.scss */
 .slide-animation.ng-leave {
   left: 0;
   opacity: 1; }
 
-/* line 348, ../../source_sass/_base.scss */
+/* line 355, ../../source_sass/_base.scss */
 .slide-animation.ng-leave.ng-leave-active {
   left: -100px;
   opacity: 0; }

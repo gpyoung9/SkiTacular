@@ -1,8 +1,13 @@
 <div class="detail_view" ng-controller='detailsController'>
     <div class="row columns">
 
-        <h1 class="show-for-large-only">{{resort.name+" "}} <i ng-click="favorite()" class="fa fa-heart-o"></i></h1>
-        <h2 class="hide-for-large-only">{{resort.name+" "}} <i ng-click="favorite()" class="fa fa-heart-o"></i></h2>
+        <h1 class="show-for-large-only">{{resort.name+" "}}
+            <i ng-click="favorite()" ng-show="!is_faved" class="fa fa-heart-o"></i>
+            <i ng-click="favorite()" ng-show="is_faved" class="fa fa-heart"></i>
+        </h1>
+        <h2 class="hide-for-large-only">{{resort.name+" "}}
+            <i ng-click="favorite()" ng-show="!is_faved" class="fa fa-heart-o"></i>
+            <i ng-click="favorite()" ng-show="is_faved" class="fa fa-heart"></i></h2>
         <h2>{{resort.Location}}</h2>
     </div>
 
@@ -30,7 +35,30 @@
     <div class="row">
         <h5>Regular Price:{{resort.Price}}</h5>
         <h5>Discount Price:{{resort.Discount_price}}</h5>
-
+        <div id="map"></div>
     </div>
+
+
+    <script>
+
+        function initMap() {
+            var myLatLng = {lat: -25.363, lng: 131.044};
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: myLatLng
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: 'Hello World!'
+            });
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlPhwrvT97gH5WRVrjmiT1ZeItaE5AZt4&callback=initMap">
+    </script>
+
 
 </div>

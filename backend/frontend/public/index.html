@@ -89,27 +89,27 @@
             <span class="form-error">
                 A password is required
             </span>
-        </form>
+            </form>
 
-        <form data-abide novalidate>
+            <form data-abide novalidate>
                 <input type="password" class="login_input" placeholder="Confirm Password"
                        data-equalto="password" required pattern="alpha_numeric">
             <span class="form-error">
                 Passwords don't match
             </span>
 
-        </form>
+            </form>
 
-        <form data-abide novalidate>
+            <form data-abide novalidate>
                 <input type="text" class="login_input" placeholder="Zip Code" ng-model="zip_code" required
                        pattern="number" id="zipcode" value="Zip Code">
             <span class="form-error">
                 Please input your zip code correctly
             </span>
-        </form>
+            </form>
 
-                <button class="login_buttons hvr-shadow-radial" ng-click="joinus()">JOIN US</button>
-                <button class="login_buttons hvr-shadow-radial" ng-click="login()">LOGIN</button>
+            <button class="login_buttons hvr-shadow-radial" ng-click="joinus()">JOIN US</button>
+            <button class="login_buttons hvr-shadow-radial" ng-click="login()">LOGIN</button>
             <span id="username_exists" class="form-error">Username already exists!</span>
         </div>
 
@@ -127,6 +127,8 @@
     <script src="./lib/ng-simplePagination/simplePagination.js"></script>
     <script src="./lib/animo/animo.js"></script>
     <script src="./js/script.js"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlPhwrvT97gH5WRVrjmiT1ZeItaE5AZt4&callback=initMap"></script>
     <script>
         $(document).foundation();
     </script>

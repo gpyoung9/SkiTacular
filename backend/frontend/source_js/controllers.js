@@ -130,6 +130,31 @@ AppControllers.controller('detailsController', ['$scope', 'CommonData', '$routeP
 
     var query = 'resorts?where={"_id":"' + $routeParams.id + '"}';
 
+
+    var check_fav = function (user) {
+        $scope.is_faved = false;
+        for (var i = 0; i < user.favoriteResorts.length; i++) {
+            // console.log(i);
+            // console.log(user.favoriteResorts[i]);
+            // console.log($routeParams.id);
+            if (user.favoriteResorts[i] === $routeParams.id) {
+                console.log("same");
+                $scope.is_faved = true;
+            }
+        }
+        console.log($scope.is_faved);
+    };
+
+
+    if (CommonData.get_login()) {
+        var user = CommonData.get_user();
+        check_fav(user);
+    } else {
+        $scope.is_faved = false;
+    }
+
+
+
     ResortService.get_service(query, function (data) {
         console.log(data);
         $scope.resort = data[0];
@@ -138,21 +163,34 @@ AppControllers.controller('detailsController', ['$scope', 'CommonData', '$routeP
         var p = s.slice(s.length / 2).split(" ").slice(1).join(" ").length;
         $scope.word_1 = s.slice(0, s.length - p);
         $scope.word_2 = s.slice(s.length - p);
-
     });
 
-    $scope.favorite=function(){
-        console.log("favorite clicked");
-        console.log(CommonData.get_user());
-        var query2 = 'users/'+CommonData.get_user()._id+'/favorite/'+$routeParams.id;
+    $scope.favorite = function () {
+        var user = CommonData.get_user();
 
-        if(CommonData.get_login()){
-            UserService.post_service_fav(query2, function(data){
-                console.log(data);
+        //console.log("favorite clicked");
+        //console.log(user);
+        var query2 = 'users/' + user._id + '/favorite/' + $routeParams.id;
 
-            });
+        if (CommonData.get_login()) {
+            if (!$scope.is_faved) {
+                UserService.post_service_fav(query2, function (data) {
+                    //console.log(data);
+                    user = data;
+                    CommonData.login(data);
+                    check_fav(user);
+                });
+            }
+            else {
+                UserService.delete_service(query2, function (data) {
+                    //console.log(data);
+                    CommonData.login(data);
+                    user = data;
+                    check_fav(user);
+                });
+            }
         }
-        else{
+        else {
             $('#desktop_login_form').foundation('open');
         }
     };

@@ -117,7 +117,7 @@ AppServices.factory('UserService', ['$http', 'CommonData', function ($http, Comm
         },
 
         delete_service: function (delete_call, callback) {
-            $http.delete(CommonData.getData + delete_call)
+            $http.delete(CommonData.getData() + delete_call)
                 .success(function (data) {
                     callback(data.data)
                 })
