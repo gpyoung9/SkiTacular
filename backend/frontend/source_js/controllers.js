@@ -108,7 +108,7 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
     $scope.login = function () {
         $scope.username = document.getElementById('username').value;
         $scope.password = document.getElementById('password').value;
-        $scope.zipcode = document.getElementById('zipcode').value;
+        $scope.zipcode = "";
         // console.log("login attempt");
 
 
@@ -134,6 +134,7 @@ AppControllers.controller('mainController', ['$scope', 'CommonData', 'UserServic
                 //el.style.display = "none";
                 $scope.login_status = true;
                 CommonData.login(data.user);
+                $scope.zipcode=data.user.zipcode;
 
             }
 
@@ -240,6 +241,10 @@ AppControllers.controller('functionController', ['$scope', '$http', '$window', '
     $scope.hidePagination = true;
     $scope.zipcode = "";
     $scope.is_loading = false;
+
+    if(CommonData.get_login()){
+        $scope.zipcode=CommonData.get_user().zipcode;
+    }
 
     /**
      * If already searched, use the history as a temporary solution.
