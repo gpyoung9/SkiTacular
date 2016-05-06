@@ -40,7 +40,7 @@
                 <div class="title-bar-right">
                     <a class="button hvr-shadow-radial" ng-show="!login_status"
                        data-toggle="desktop_login_form">LOGIN</a>
-                       <a class="button hvr-shadow-radial" ng-show="!login_status"
+                    <a class="button hvr-shadow-radial" ng-show="!login_status"
                        data-toggle="desktop_signup_form">JOIN US</a>
                 </div>
                 <div class="title-bar-right">
@@ -95,7 +95,7 @@
             </span>
             </form>
             <button class="login_buttons hvr-shadow-radial" ng-click="login()">LOGIN</button>
-            <p ng-click="switchToSignup()">Or sign up instead...</p>
+            <p ng-click="switchToSignup()" class="login_buttons">Or sign up instead...</p>
         </div>
 
         <button class="close-button" data-close aria-label="Close reveal" type="button">
@@ -104,7 +104,7 @@
     </div>
 
 
-  <div class="reveal" id="desktop_signup_form" data-reveal data-close-on-click="true"
+    <div class="reveal" id="desktop_signup_form" data-reveal data-close-on-click="true"
          data-animation-in="fade-in"
          data-animation-out="fade-out">
 
@@ -112,7 +112,7 @@
             <form data-abide novalidate>
                 <h4 class="login_title">JOIN US</h4>
                 <input type="email" class="login_input" placeholder="Email" required
-                        id="username_signup">
+                       id="username_signup">
                 <span class="form-error">
                     A username is required (email format)
                 </span>
@@ -144,7 +144,7 @@
 
             <button class="login_buttons hvr-shadow-radial" ng-click="joinus()">JOIN US</button>
             <span id="username_exists" class="form-error">Username already exists!</span>
-            <p ng-click="switchToLogin()">Or log in instead...</p>
+            <p ng-click="switchToLogin()" class="login_buttons">Or log in instead...</p>
 
         </div>
 
